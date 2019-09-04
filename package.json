@@ -1,7 +1,7 @@
 {
   "name": "@checkdigit/eslint-config",
   "version": "1.0.0",
-  "description": "check digit approved linting configuration",
+  "description": "linting configuration",
   "private": false,
   "main": "index.js",
   "dependencies": {
