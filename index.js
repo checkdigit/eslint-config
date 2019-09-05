@@ -18,6 +18,7 @@ module.exports = {
     // Per require-await docs:
     // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
     'require-await': 0,
+    '@typescript-eslint/require-await': 0,
 
     // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
     // set to 200 because that is sonar's default
@@ -70,6 +71,8 @@ module.exports = {
     'prefer-rest-params': 1,
     'prefer-spread': 1,
     'require-yield': 2,
+    'no-console': 2,
+    'no-return-await': 2,
 
     // having to manually type out the return type of all functions can get noisy
     // typescript does a good job at inferring types and detecting downstream errors
@@ -79,6 +82,7 @@ module.exports = {
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/no-floating-promises': 2,
     '@typescript-eslint/no-require-imports': 2,
+
     // typeof any === 'evil'.
     '@typescript-eslint/no-explicit-any': 2,
 
@@ -87,7 +91,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/**/*.spec.ts'],
+      files: ['*.spec.ts'],
       rules: {
         'no-undefined': 0,
         'max-lines-per-function': 0,
