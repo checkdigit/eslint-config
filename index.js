@@ -15,6 +15,10 @@ module.exports = {
     // 1 - warn
     // 2 - error
 
+    // Per require-await docs:
+    // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
+    'require-await': 0,
+
     // enforce use of curly braces around if statements and discourage one-line ifs
     'curly': 2,
 
@@ -36,9 +40,6 @@ module.exports = {
 
     // disallow this keywords outside of classes or class-like objects. carl's gonna like this one
     'no-invalid-this': 2,
-
-    // undefined can be overwritten by assigning it to a variable (let undefined = 1)
-    'no-undefined': 2,
 
     // sync methods are slow and we shouldn't be using them in production code
     'no-sync': 2,
