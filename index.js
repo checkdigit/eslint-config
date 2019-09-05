@@ -15,6 +15,14 @@ module.exports = {
     // 1 - warn
     // 2 - error
 
+    // Per require-await docs:
+    // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
+    'require-await': 0,
+
+    // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
+    // set to 200 because that is sonar's default
+    'max-lines-per-function': ['error', 200],
+
     // enforce use of curly braces around if statements and discourage one-line ifs
     'curly': 2,
 
@@ -23,6 +31,9 @@ module.exports = {
 
     // always use ===
     'eqeqeq': 2,
+
+    // undefined can be overwritten by assigning it to a variable (let undefined = 1)
+    'no-undefined': 2,
 
     // We require single quotes (') because they look better.
     'quotes': ['error', 'single'],
@@ -36,9 +47,6 @@ module.exports = {
 
     // disallow this keywords outside of classes or class-like objects. carl's gonna like this one
     'no-invalid-this': 2,
-
-    // undefined can be overwritten by assigning it to a variable (let undefined = 1)
-    'no-undefined': 2,
 
     // sync methods are slow and we shouldn't be using them in production code
     'no-sync': 2,
@@ -63,7 +71,6 @@ module.exports = {
     'prefer-spread': 1,
     'require-yield': 2,
 
-
     // having to manually type out the return type of all functions can get noisy
     // typescript does a good job at inferring types and detecting downstream errors
     '@typescript-eslint/explicit-function-return-type': 0,
@@ -77,5 +84,17 @@ module.exports = {
 
     // We're smarter than the default (15). Right?
     'sonarjs/cognitive-complexity': ['error', 24]
-  }
+  },
+  overrides: [
+    {
+      files: ['src/**/*.spec.ts'],
+      rules: {
+        'no-undefined': 0,
+        'max-lines-per-function': 0,
+
+        'sonarjs/no-duplicate-string': 0,
+        'sonarjs/no-identical-functions': 0,
+      }
+    }
+  ]
 };
