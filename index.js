@@ -59,6 +59,7 @@ module.exports = {
     'no-lonely-if': 2,
 
     // make eslint feel just like the tslint days
+    
     'no-unneeded-ternary': 2,
     'no-trailing-spaces': 2,
     'one-var': [2, 'never'],
