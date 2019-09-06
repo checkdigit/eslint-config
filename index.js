@@ -8,7 +8,8 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:sonarjs/recommended'
+    'plugin:sonarjs/recommended',
+    'plugin:prettier/recommended'
   ],
   rules: {
     // 0 - off
@@ -19,10 +20,6 @@ module.exports = {
     // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
     'require-await': 0,
     '@typescript-eslint/require-await': 0,
-
-    // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
-    // set to 200 because that is sonar's default
-    'max-lines-per-function': ['error', 200],
 
     // enforce use of curly braces around if statements and discourage one-line ifs
     'curly': 2,
@@ -61,7 +58,6 @@ module.exports = {
     // make eslint feel just like the tslint days
     'max-len': ['error', { code: 120, ignoreUrls: true }],
     'no-unneeded-ternary': 2,
-    'no-trailing-spaces': 2,
     'one-var': [2, 'never'],
     'sort-imports': 2,
     'space-before-blocks': 2,

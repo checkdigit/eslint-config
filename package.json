@@ -7,6 +7,7 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
+    "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-sonarjs": "^0.4.0"
   },
   "peerDependencies": {
