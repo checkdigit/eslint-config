@@ -80,7 +80,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 0,
 
     '@typescript-eslint/ban-ts-ignore': 2,
-    '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/no-floating-promises': 2,
     '@typescript-eslint/no-require-imports': 2,
 
