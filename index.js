@@ -8,7 +8,8 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:sonarjs/recommended'
+    'plugin:sonarjs/recommended',
+    'plugin:prettier/recommended'
   ],
   rules: {
     // 0 - off
@@ -60,7 +61,6 @@ module.exports = {
 
     // make eslint feel just like the tslint days
     'no-unneeded-ternary': 2,
-    'no-trailing-spaces': 2,
     'one-var': [2, 'never'],
     'sort-imports': 2,
     'space-before-blocks': 2,
