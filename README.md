@@ -28,7 +28,6 @@ Replace npm scripts and set lint to false within the service key to false to dis
 
 ### Add `.eslintrc` file
 
-If you have generated TypeScript files you can have Prettier ignore them by creating a `.prettierignore` file like so:
 ```jsonc
 {
   "extends": ["@checkdigit"]
