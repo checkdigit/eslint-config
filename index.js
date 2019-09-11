@@ -29,9 +29,6 @@ module.exports = {
     // enforce use of curly braces around if statements and discourage one-line ifs
     'curly': 2,
 
-    // extra parens are redundant and unnecessary
-    'no-extra-parens': 2,
-
     // always use ===
     'eqeqeq': 2,
 
