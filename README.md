@@ -9,7 +9,7 @@ $ npm i @checkdigit/eslint-config eslint --save-dev
 ```
 
 ### Edit `package.json`
-Replace npm scripts and set lint "to false" within the service key to false to disable running tslint as part of `serve test`
+Replace npm scripts and set lint to false within the service key to disable running tslint as part of `serve test`
 ```jsonc
 {
   // ...
