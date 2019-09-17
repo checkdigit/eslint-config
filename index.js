@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'sonarjs'],
+  plugins: ['@typescript-eslint', 'sonarjs', 'import'],
   parserOptions: {
     project: './tsconfig.json'
   },
@@ -60,7 +60,15 @@ module.exports = {
     // make eslint feel just like the tslint days
     'no-unneeded-ternary': 2,
     'one-var': [2, 'never'],
-    'sort-imports': 2,
+
+    // these two rules working together ain't nobody stopping
+    'sort-imports': ['error', {
+      'ignoreDeclarationSort': true,
+    }],
+    'import/order': ['error', {
+      'newlines-between': 'ignore'
+    }],
+
     'space-before-blocks': 2,
     'space-unary-ops': 2,
     'spaced-comment': 2,

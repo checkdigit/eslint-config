@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "linting configuration",
   "private": false,
   "main": "index.js",
@@ -8,6 +8,7 @@
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-sonarjs": "^0.4.0"
   },
   "peerDependencies": {
