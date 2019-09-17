@@ -63,7 +63,7 @@ module.exports = {
 
     // these two rules working together ain't nobody stopping
     'sort-imports': ['error', {
-      'ignoreDeclarationSort': false,
+      'ignoreDeclarationSort': true,
     }],
     'import/order': ['error', {
       'newlines-between': 'ignore'
