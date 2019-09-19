@@ -69,6 +69,8 @@ module.exports = {
       'newlines-between': 'ignore'
     }],
 
+    'import/no-deprecated': 2,
+
     'space-before-blocks': 2,
     'space-unary-ops': 2,
     'spaced-comment': 2,
