@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "linting configuration",
   "private": false,
   "main": "index.js",
