@@ -27,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/chkdgt/eslint-config/issues"
   },
-  "homepage": "https://github.com/chkdgt/eslint-config#readme"
+  "homepage": "https://github.com/chkdgt/eslint-config#readme",
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-plugin-no-only-tests": "^2.3.1"
+  }
 }

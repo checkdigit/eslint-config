@@ -11,6 +11,7 @@ module.exports = {
     'plugin:sonarjs/recommended',
     'prettier',
     'prettier/@typescript-eslint',
+    'no-only-tests'
   ],
   rules: {
     // 0 - off
@@ -90,11 +91,18 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 2,
     '@typescript-eslint/no-require-imports': 2,
 
+    // sometimes fails on valid interface names like ISO8583
+    '@typescript-eslint/interface-name-prefix': 0,
+
     // typeof any === 'evil'.
     '@typescript-eslint/no-explicit-any': 2,
 
+
+
     // We're smarter than the default (15). Right?
-    'sonarjs/cognitive-complexity': ['error', 24]
+    'sonarjs/cognitive-complexity': ['error', 24],
+
+    'no-only-tests/no-only-tests': 2
   },
   overrides: [
     {
