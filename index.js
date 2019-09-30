@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'sonarjs', 'import'],
+  plugins: ['@typescript-eslint', 'sonarjs', 'import', 'no-only-tests'],
   parserOptions: {
     project: './tsconfig.json'
   },
@@ -10,8 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:sonarjs/recommended',
     'prettier',
-    'prettier/@typescript-eslint',
-    'no-only-tests'
+    'prettier/@typescript-eslint'
   ],
   rules: {
     // 0 - off
