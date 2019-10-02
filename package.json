@@ -8,6 +8,7 @@
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-file-path-comment": "^1.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-no-only-tests": "^2.3.1",
     "eslint-plugin-sonarjs": "^0.4.0"

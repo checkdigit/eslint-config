@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'sonarjs', 'import', 'no-only-tests'],
+  plugins: ['@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'file-path-comment'],
   parserOptions: {
     project: './tsconfig.eslint.json'
   },
@@ -17,6 +17,7 @@ module.exports = {
     // 1 - warn
     // 2 - error
 
+    'file-path-comment/file-comment-header': 'error',
     // Per require-await docs:
     // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
     'require-await': 0,
