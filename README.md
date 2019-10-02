@@ -8,6 +8,17 @@ Check Digit [ESLint](https://eslint.org/) configuration
 $ npm i @checkdigit/eslint-config eslint --save-dev
 ```
 
+### Create `tsconfig.eslint.json`
+
+```json
+{
+  "compilerOptions": { "strict": true },
+  "include": [
+    "**/src/**/*.ts"
+  ]
+}
+```
+
 ### Edit `package.json`
 Replace npm scripts and set lint to false within the service key to disable running tslint as part of `serve test`
 ```jsonc
