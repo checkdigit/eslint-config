@@ -36,9 +36,6 @@ module.exports = {
     // undefined can be overwritten by assigning it to a variable (let undefined = 1)
     'no-undefined': 2,
 
-    // We require single quotes (') because they look better.
-    'quotes': ['error', 'single'],
-
     // tslint does this and it feels like a good idea
     'guard-for-in': 2,
 
@@ -64,7 +61,8 @@ module.exports = {
 
     // these two rules working together ain't nobody stopping
     'sort-imports': ['error', {
-      'ignoreDeclarationSort': true,
+      'ignoreCase': true,
+      'ignoreDeclarationSort': true
     }],
     'import/order': ['error', {
       'newlines-between': 'ignore'
