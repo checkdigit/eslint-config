@@ -5,7 +5,7 @@ module.exports = {
     project: './tsconfig.eslint.json'
   },
   extends: [
-    'plugin:@typescript-eslint/eslint-recommended',
+    'eslint:all',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:sonarjs/recommended',
@@ -59,7 +59,7 @@ module.exports = {
     'no-unneeded-ternary': 2,
     'one-var': [2, 'never'],
 
-    // these two rules working together ain't nobody stopping
+    // these two configurations need to be kept in sync
     'sort-imports': ['error', {
       'ignoreCase': true,
       'ignoreDeclarationSort': true
@@ -95,17 +95,35 @@ module.exports = {
     // typeof any === 'evil'.
     '@typescript-eslint/no-explicit-any': 2,
 
-
-
     // We're smarter than the default (15). Right?
     'sonarjs/cognitive-complexity': ['error', 24],
 
-    'no-only-tests/no-only-tests': 2
+    'no-only-tests/no-only-tests': 2,
+
+    // eslint:all stuff to disable
+    'sort-keys': 0,
+    'capitalized-comments': 0,
+    'func-style': ['error', 'declaration', { 'allowArrowFunctions': true }],
+    'no-negated-condition': 0,
+    'multiline-comment-style': 0,
+    'no-magic-numbers': ['error', {'ignore': [-1, 0, 1, 2, 10, 16, 60]}],
+    'no-ternary': 0,
+    'max-params': [2, 8],
+    'max-statements': 0,
+    'consistent-return': 0,
+    'no-undef': 0,
+    'init-declarations': 0,
+    'no-inline-comments': 0,
+    'line-comment-position': 0,
+    'prefer-destructuring': 0,
+    'no-useless-return': 0,
+    'complexity': 0
   },
   overrides: [
     {
       files: ['*.spec.ts'],
       rules: {
+        'no-magic-numbers': 0,
         'no-undefined': 0,
         'max-lines-per-function': 0,
 
