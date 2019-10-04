@@ -100,7 +100,7 @@ module.exports = {
 
     'no-only-tests/no-only-tests': 2,
 
-    // eslint:all stuff to disable
+    // eslint:all rules to modify
     'sort-keys': 0,
     'capitalized-comments': 0,
     'func-style': ['error', 'declaration', { 'allowArrowFunctions': true }],
@@ -117,7 +117,14 @@ module.exports = {
     'line-comment-position': 0,
     'prefer-destructuring': 0,
     'no-useless-return': 0,
-    'complexity': 0
+    'complexity': 0,
+    'max-lines': ['error', {'max': 500, 'skipBlankLines': true, 'skipComments': true}],
+    'id-length': ['error', {properties: 'never'}],
+    // as long as we don't rely on ASI this can remain off
+    'no-plusplus': 0,
+    'default-case': 0,
+    'no-continue': 0
+
   },
   overrides: [
     {
@@ -129,6 +136,14 @@ module.exports = {
 
         'sonarjs/no-duplicate-string': 0,
         'sonarjs/no-identical-functions': 0,
+        'max-lines': 0,
+        'no-await-in-loop': 0
+      }
+    },
+    {
+      files: ['swagger.ts'],
+      rules: {
+        'max-lines': 0
       }
     }
   ]
