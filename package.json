@@ -1,13 +1,13 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "linting configuration",
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
-    "@typescript-eslint/parser": "^2.0.0",
-    "eslint-config-prettier": "^6.2.0",
+    "@typescript-eslint/eslint-plugin": "^2.3.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-file-path-comment": "^1.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-no-only-tests": "^2.3.1",
