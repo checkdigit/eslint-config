@@ -123,8 +123,8 @@ module.exports = {
     // as long as we don't rely on ASI this can remain off
     'no-plusplus': 0,
     'default-case': 0,
-    'no-continue': 0
-
+    'no-continue': 0,
+    'callback-return': ['error', ['callback', 'cb']]
   },
   overrides: [
     {
