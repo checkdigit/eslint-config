@@ -124,7 +124,8 @@ module.exports = {
     'no-plusplus': 0,
     'default-case': 0,
     'no-continue': 0,
-    'callback-return': ['error', ['callback', 'cb']]
+    'callback-return': ['error', ['callback', 'cb']],
+    'new-cap': ['error', { 'capIsNew': false}]
   },
   overrides: [
     {
