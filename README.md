@@ -25,8 +25,8 @@ Replace npm scripts and set lint to false within the service key to disable runn
 {
   // ...
   "scripts": {
-    "lint": "eslint -f unix --ext .js,.ts src/**",
-    "lint:fix": "eslint -f unix --ext .js,.ts src/** --fix",
+    "lint": "eslint -f unix --ext .js,.ts 'src/**'",
+    "lint:fix": "eslint -f unix --ext .js,.ts 'src/**' --fix",
     "test": "export PORT=3002 && export AWS_REGION=us-east-1 && export AWS_ACCESS_KEY_ID=test && export AWS_SECRET_ACCESS_KEY=test && serve test && npm run lint"
   },
   // ...
