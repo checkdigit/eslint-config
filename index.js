@@ -1,6 +1,14 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'file-path-comment'],
+  plugins: [
+    '@typescript-eslint',
+    'sonarjs',
+    'import',
+    'no-only-tests',
+    'file-path-comment',
+    'no-secrets',
+    '@checkdigit'
+  ],
   parserOptions: {
     project: './tsconfig.eslint.json'
   },
@@ -16,6 +24,9 @@ module.exports = {
     // 0 - off
     // 1 - warn
     // 2 - error
+
+    '@checkdigit/no-card-numbers': 'error',
+    'no-secrets/no-secrets': 'error',
 
     'file-path-comment/file-comment-header': 'error',
     // Per require-await docs:
