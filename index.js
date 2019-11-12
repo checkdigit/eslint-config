@@ -129,7 +129,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.spec.ts'],
+      files: ['*.spec.ts', '*.test.ts'],
       rules: {
         'no-magic-numbers': 0,
         'no-undefined': 0,
