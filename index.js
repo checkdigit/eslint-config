@@ -26,7 +26,7 @@ module.exports = {
     // 2 - error
 
     '@checkdigit/no-card-numbers': 'error',
-    'no-secrets/no-secrets': 'error',
+    'no-secrets/no-secrets': ['error', { 'tolerance': 4.2 }],
 
     'file-path-comment/file-comment-header': 'error',
     // Per require-await docs:

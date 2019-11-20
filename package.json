@@ -1,14 +1,14 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "description": "linting configuration",
   "private": false,
   "main": "index.js",
   "dependencies": {
     "@checkdigit/eslint-plugin": "^1.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.7.0",
-    "@typescript-eslint/parser": "^2.7.0",
-    "eslint-config-prettier": "^6.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-file-path-comment": "^1.0.2",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-no-only-tests": "^2.3.1",
