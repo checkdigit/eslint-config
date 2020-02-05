@@ -9,6 +9,9 @@ module.exports = {
     'no-secrets',
     '@checkdigit'
   ],
+  parserOptions: {
+    project: './tsconfig.json'
+  },
   extends: [
     'eslint:all',
     'plugin:@typescript-eslint/recommended',
