@@ -9,9 +9,6 @@ module.exports = {
     'no-secrets',
     '@checkdigit'
   ],
-  parserOptions: {
-    project: './tsconfig.eslint.json'
-  },
   extends: [
     'eslint:all',
     'plugin:@typescript-eslint/recommended',
@@ -148,6 +145,8 @@ module.exports = {
 
         'sonarjs/no-duplicate-string': 0,
         'sonarjs/no-identical-functions': 0,
+        'sonarjs/cognitive-complexity': 0,
+
         'max-lines': 0,
         'no-await-in-loop': 0
       }
