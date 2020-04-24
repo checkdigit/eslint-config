@@ -78,6 +78,7 @@ module.exports = {
     'import/order': ['error', {
       'newlines-between': 'ignore'
     }],
+    'import/no-extraneous-dependencies': ['error', {'devDependencies': ['**/*.spec.ts', '**/*.test.ts'], 'optionalDependencies': false, 'peerDependencies': false}],
 
     'import/no-deprecated': 2,
 
