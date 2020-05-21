@@ -25,6 +25,8 @@ module.exports = {
     // 1 - warn
     // 2 - error
 
+    'id-length': ['error', { "exceptions": ['_']],
+
     'func-names': 0,
 
     '@checkdigit/no-card-numbers': 'error',
