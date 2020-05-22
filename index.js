@@ -25,8 +25,6 @@ module.exports = {
     // 1 - warn
     // 2 - error
 
-    'id-length': ['error', { "exceptions": ['_']}],
-
     'func-names': 0,
 
     '@checkdigit/no-card-numbers': 'error',
@@ -135,7 +133,7 @@ module.exports = {
     'no-useless-return': 0,
     'complexity': 0,
     'max-lines': ['error', {'max': 500, 'skipBlankLines': true, 'skipComments': true}],
-    'id-length': ['error', {properties: 'never'}],
+    'id-length': ['error', {properties: 'never', exceptions: ['_']}],
     // as long as we don't rely on ASI this can remain off
     'no-plusplus': 0,
     'default-case': 0,
