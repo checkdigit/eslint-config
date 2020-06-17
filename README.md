@@ -1,4 +1,4 @@
-# eslint-config
+# eslint-config 
 
 Check Digit [ESLint](https://eslint.org/) configuration
 
