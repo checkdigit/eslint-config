@@ -21,11 +21,6 @@ module.exports = {
     'prettier/@typescript-eslint'
   ],
   rules: {
-    // 0 - off
-    // 1 - warn
-    // 2 - error
-
-    
     'no-useless-constructor': 'off',
     ' @typescript-eslint/no-useless-constructor': 'error',
 
