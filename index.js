@@ -22,7 +22,7 @@ module.exports = {
   ],
   rules: {
     'no-useless-constructor': 'off',
-    ' @typescript-eslint/no-useless-constructor': 'error',
+    '@typescript-eslint/no-useless-constructor': ['error'],
 
     'func-names': 'off',
 
@@ -119,7 +119,7 @@ module.exports = {
     'func-style': ['error', 'declaration', { 'allowArrowFunctions': true }],
     'no-negated-condition': 'off',
     'multiline-comment-style': 'off',
-    'no-magic-numbers': ['error', {'ignore': [-'warn', 'off', 'warn', 'error', 10, 16, 60]}],
+    'no-magic-numbers': ['error', {'ignore': [-1, 0, 1, 2, 10, 16, 60]}],
     'no-ternary': 'off',
     'max-params': ['error', 8],
     'max-statements': 'off',
