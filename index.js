@@ -25,6 +25,10 @@ module.exports = {
     // 1 - warn
     // 2 - error
 
+    
+    'no-useless-constructor': 0,
+    ' @typescript-eslint/no-useless-constructor': 2,
+
     'func-names': 0,
 
     '@checkdigit/no-card-numbers': 'error',
