@@ -1,0 +1,13 @@
+{
+  "extends": "@checkdigit/typescript",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "build"
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "serve"
+  ]
+}
