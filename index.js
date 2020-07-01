@@ -153,7 +153,13 @@ module.exports = {
         'sonarjs/cognitive-complexity': 'off',
 
         'max-lines': 'off',
-        'no-await-in-loop': 'off'
+        'no-await-in-loop': 'off',
+
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/restrict-template-expressions": "off"
       }
     },
     {
