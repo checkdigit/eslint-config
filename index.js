@@ -7,7 +7,8 @@ module.exports = {
     'no-only-tests',
     'file-path-comment',
     'no-secrets',
-    '@checkdigit'
+    '@checkdigit',
+    'deprecate'
   ],
   parserOptions: {
     project: './tsconfig.json'
@@ -21,6 +22,10 @@ module.exports = {
     'prettier/@typescript-eslint'
   ],
   rules: {
+    'deprecate/function': 'error',
+    'deprecate/member-expression': 'error',
+    'deprecate/import': 'error',
+
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': ['error'],
 
