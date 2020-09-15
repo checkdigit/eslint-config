@@ -22,7 +22,9 @@ module.exports = {
     'prettier/@typescript-eslint'
   ],
   rules: {
-    'deprecate/rule-name': 'on',
+    'deprecate/function': 'error',
+    'deprecate/member-expression': 'error',
+    'deprecate/import': 'error',
 
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': ['error'],
