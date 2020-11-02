@@ -19,7 +19,8 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:sonarjs/recommended',
     'prettier',
-    'prettier/@typescript-eslint'
+    'prettier/@typescript-eslint',
+    'plugin:eslint-comments/recommended'
   ],
   rules: {
     '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
