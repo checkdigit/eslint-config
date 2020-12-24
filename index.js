@@ -51,8 +51,8 @@ module.exports = {
     // always use ===
     'eqeqeq': 'error',
 
-    // undefined can be overwritten by assigning it to a variable (let undefined = 1)
-    'no-undefined': 'error',
+    // undefined can be used
+    'no-undefined': 'off',
 
     // tslint does this and it feels like a good idea
     'guard-for-in': 'error',
