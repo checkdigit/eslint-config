@@ -21,8 +21,8 @@
     "eslint": ">=7"
   },
   "scripts": {
-    "prepublish": "npm run lint",
-    "lint": "eslint -f unix --ext .js,.ts src/**"
+    "prepublish": "npm run test",
+    "test": "eslint -f unix --ext .js,.ts src/**"
   },
   "repository": {
     "type": "git",
