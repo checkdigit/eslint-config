@@ -6,9 +6,9 @@
   "main": "index.js",
   "dependencies": {
     "@checkdigit/eslint-plugin": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.6.1",
-    "@typescript-eslint/parser": "^4.6.1",
-    "eslint-config-prettier": "^6.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-deprecate": "^0.7.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-file-path-comment": "^1.0.2",
