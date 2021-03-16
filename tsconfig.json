@@ -1,5 +1,5 @@
 {
-  "extends": "@checkdigit/typescript",
+  "extends": "@checkdigit/typescript-config",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "build"
