@@ -33,7 +33,7 @@
   },
   "keywords": [],
   "author": "Check Digit, LLC",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/checkdigit/eslint-config/issues"
   },

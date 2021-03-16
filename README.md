@@ -1,22 +1,13 @@
 # eslint-config 
 
+Copyright (c) 2021 [Check Digit, LLC](https://checkdigit.com)
+
 Check Digit [ESLint](https://eslint.org/) configuration
 
 ### Install
 
 ```bash
 $ npm i @checkdigit/eslint-config eslint --save-dev
-```
-
-### Create `tsconfig.eslint.json`
-
-```json
-{
-  "compilerOptions": { "strict": true },
-  "include": [
-    "**/src/**/*.ts"
-  ]
-}
 ```
 
 ### Edit `package.json`
@@ -27,13 +18,9 @@ Replace npm scripts and set lint to false within the service key to disable runn
   "scripts": {
     "lint": "eslint -f unix 'src/**/*.ts'",
     "lint:fix": "eslint -f unix 'src/**/*.ts' --fix",
-    "test": "export PORT=3002 && export AWS_REGION=us-east-1 && export AWS_ACCESS_KEY_ID=test && export AWS_SECRET_ACCESS_KEY=test && serve test && npm run lint"
+    "test": "... && npm run lint"
   },
   // ...
-  "service": {
-    "lint": false
-    // ...
-  }
 }
 ```
 
@@ -44,4 +31,8 @@ Replace npm scripts and set lint to false within the service key to disable runn
   "extends": ["@checkdigit"]
 }
 ```
+
+## License
+
+MIT
 
