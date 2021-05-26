@@ -1,21 +1,21 @@
 {
   "name": "@checkdigit/eslint-config",
   "version": "3.4.2",
-  "description": "linting configuration",
+  "description": "Check Digit standard eslint configuration",
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@checkdigit/eslint-plugin": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "eslint-config-prettier": "^8.1.0",
+    "@checkdigit/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecate": "^0.7.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-file-path-comment": "^1.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-no-only-tests": "^2.4.0",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-no-secrets": "^0.8.9",
-    "eslint-plugin-sonarjs": "^0.6.0"
+    "eslint-plugin-sonarjs": "^0.7.0"
   },
   "peerDependencies": {
     "eslint": ">=7"
@@ -25,7 +25,7 @@
     "postpublish": "rimraf dist .npmignore",
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
-    "test": "eslint -f unix --ext .js,.ts src/**"
+    "test": "tsc --noEmit && eslint -f unix --ext .js,.ts src/**"
   },
   "repository": {
     "type": "git",
@@ -39,9 +39,9 @@
   },
   "homepage": "https://github.com/checkdigit/eslint-config#readme",
   "devDependencies": {
-    "@checkdigit/publish": "^1.0.18",
-    "@checkdigit/typescript-config": "1.0.5",
+    "@checkdigit/publish": "^1.0.19",
+    "@checkdigit/typescript-config": "2.1.0",
     "eslint": "^7.3.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.3.2"
   }
 }
