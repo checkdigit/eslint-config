@@ -1,5 +1,8 @@
 # eslint-config 
 
+[![MIT License](https://img.shields.io/github/license/checkdigit/eslint-config)](https://github.com/checkdigit/eslint-config/blob/master/LICENSE.txt)
+[![David](https://status.david-dm.org/gh/checkdigit/eslint-config.svg)](https://status.david-dm.org/gh/checkdigit/eslint-config.svg)
+
 Copyright (c) 2021 [Check Digit, LLC](https://checkdigit.com)
 
 Check Digit [ESLint](https://eslint.org/) configuration
@@ -10,8 +13,7 @@ Check Digit [ESLint](https://eslint.org/) configuration
 $ npm i @checkdigit/eslint-config eslint --save-dev
 ```
 
-### Edit `package.json`
-Replace npm scripts and set lint to false within the service key to disable running tslint as part of `serve test`
+### Example `package.json`
 ```jsonc
 {
   // ...
