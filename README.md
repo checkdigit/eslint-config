@@ -37,4 +37,3 @@ $ npm i @checkdigit/eslint-config eslint --save-dev
 ## License
 
 MIT
-
