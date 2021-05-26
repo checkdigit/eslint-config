@@ -8,10 +8,10 @@ module.exports = {
     'file-path-comment',
     'no-secrets',
     '@checkdigit',
-    'deprecate'
+    'deprecate',
   ],
   parserOptions: {
-    project: './tsconfig.json'
+    project: './tsconfig.json',
   },
   extends: [
     'eslint:all',
@@ -19,10 +19,10 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:sonarjs/recommended',
     'prettier',
-    'plugin:eslint-comments/recommended'
+    'plugin:eslint-comments/recommended',
   ],
   rules: {
-    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'deprecate/function': 'error',
     'deprecate/member-expression': 'error',
     'deprecate/import': 'error',
@@ -33,7 +33,7 @@ module.exports = {
     'func-names': 'off',
 
     '@checkdigit/no-card-numbers': 'error',
-    'no-secrets/no-secrets': ['error', { 'tolerance': 4.2 }],
+    'no-secrets/no-secrets': ['error', { tolerance: 4.2 }],
 
     'file-path-comment/file-comment-header': 'error',
     // Per require-await docs:
@@ -46,10 +46,10 @@ module.exports = {
     'max-lines-per-function': ['error', 200],
 
     // enforce use of curly braces around if statements and discourage one-line ifs
-    'curly': 'error',
+    curly: 'error',
 
     // always use ===
-    'eqeqeq': 'error',
+    eqeqeq: 'error',
 
     // undefined can be used
     'no-undefined': 'off',
@@ -78,14 +78,23 @@ module.exports = {
     'one-var': ['error', 'never'],
 
     // these two configurations need to be kept in sync
-    'sort-imports': ['error', {
-      'ignoreCase': true,
-      'ignoreDeclarationSort': true
-    }],
-    'import/order': ['error', {
-      'newlines-between': 'ignore'
-    }],
-    'import/no-extraneous-dependencies': ['error', {'devDependencies': ['**/*.spec.ts', '**/*.test.ts'], 'optionalDependencies': false, 'peerDependencies': false}],
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'ignore',
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/*.spec.ts', '**/*.test.ts'], optionalDependencies: false, peerDependencies: false },
+    ],
 
     'import/no-deprecated': 'error',
 
@@ -122,10 +131,10 @@ module.exports = {
     // eslint:all rules to modify
     'sort-keys': 'off',
     'capitalized-comments': 'off',
-    'func-style': ['error', 'declaration', { 'allowArrowFunctions': true }],
+    'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
     'no-negated-condition': 'off',
     'multiline-comment-style': 'off',
-    'no-magic-numbers': ['error', {'ignore': [-1, 0, 1, 2, 10, 16, 60]}],
+    'no-magic-numbers': ['error', { ignore: [-1, 0, 1, 2, 10, 16, 60] }],
     'no-ternary': 'off',
     'max-params': ['error', 8],
     'max-statements': 'off',
@@ -136,15 +145,16 @@ module.exports = {
     'line-comment-position': 'off',
     'prefer-destructuring': 'off',
     'no-useless-return': 'off',
-    'complexity': 'off',
-    'max-lines': ['error', {'max': 500, 'skipBlankLines': true, 'skipComments': true}],
-    'id-length': ['error', {properties: 'never', exceptions: ['_']}],
+    complexity: 'off',
+    'max-lines': ['error', { max: 500, skipBlankLines: true, skipComments: true }],
+    'id-length': ['error', { properties: 'never', exceptions: ['_'] }],
     // as long as we don't rely on ASI this can remain off
     'no-plusplus': 'off',
     'default-case': 'off',
     'no-continue': 'off',
     'callback-return': ['error', ['callback', 'cb']],
-    'new-cap': ['error', { 'capIsNew': false}]
+    'new-cap': ['error', { capIsNew: false }],
+    'dot-notation': 'off',
   },
   overrides: [
     {
@@ -161,18 +171,18 @@ module.exports = {
         'max-lines': 'off',
         'no-await-in-loop': 'off',
 
-        "@typescript-eslint/no-unsafe-call": "off",
-        "@typescript-eslint/no-unsafe-member-access": "off",
-        "@typescript-eslint/no-unsafe-assignment": "off",
-        "@typescript-eslint/no-unsafe-return": "off",
-        "@typescript-eslint/restrict-template-expressions": "off"
-      }
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
+      },
     },
     {
       files: ['swagger.ts'],
       rules: {
-        'max-lines': 'off'
-      }
-    }
-  ]
+        'max-lines': 'off',
+      },
+    },
+  ],
 };
