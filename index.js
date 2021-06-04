@@ -22,6 +22,9 @@ module.exports = {
     'plugin:eslint-comments/recommended',
   ],
   rules: {
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
+
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'deprecate/function': 'error',
     'deprecate/member-expression': 'error',
