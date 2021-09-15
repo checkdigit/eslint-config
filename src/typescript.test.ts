@@ -1,4 +1,4 @@
-// test-typescript.ts
+// typescript.test.ts
 
 function hello(_?: string) {
   return 1;
