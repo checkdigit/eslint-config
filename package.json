@@ -4,6 +4,7 @@
   "description": "Check Digit standard eslint configuration",
   "private": false,
   "prettier": "@checkdigit/prettier-config",
+  "main": "index.js",
   "dependencies": {
     "@checkdigit/eslint-plugin": "^2.0.5",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
