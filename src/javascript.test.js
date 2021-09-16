@@ -1,4 +1,4 @@
-// test-javascript.js
+// javascript.test.js
 
 function hello(_) {
   return 1;
