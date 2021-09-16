@@ -14,6 +14,7 @@
   },
   "extends": [
     "eslint:all",
+    "plugin:@checkdigit/all",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:sonarjs/recommended",
@@ -43,9 +44,6 @@
         "tolerance": 4.2
       }
     ],
-    // Check Digit plugins... errors all the way
-    "@checkdigit/no-card-numbers": "error",
-    "@checkdigit/file-path-comment": "error",
     // Per require-await docs:
     // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
     "require-await": "off",

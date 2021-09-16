@@ -5,7 +5,7 @@
   "private": false,
   "prettier": "@checkdigit/prettier-config",
   "dependencies": {
-    "@checkdigit/eslint-plugin": "^2.0.2",
+    "@checkdigit/eslint-plugin": "^2.0.5",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "eslint-config-prettier": "^8.3.0",
