@@ -5,20 +5,18 @@
   "private": false,
   "prettier": "@checkdigit/prettier-config",
   "main": "index.js",
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
     "@checkdigit/eslint-plugin": "^2.0.5",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": ">=7",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecate": "^0.7.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-no-secrets": "^0.8.9",
     "eslint-plugin-sonarjs": "^0.10.0"
-  },
-  "peerDependencies": {
-    "eslint": ">=7"
   },
   "scripts": {
     "preversion": "npm test",
@@ -43,6 +41,6 @@
     "@checkdigit/typescript-config": "2.2.0",
     "eslint": "^7.3.1",
     "prettier": "^2.4.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   }
 }

@@ -11,7 +11,6 @@
  * }
  */
 
-/* eslint-disable no-magic-numbers */
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'deprecate'],
@@ -56,6 +55,7 @@ module.exports = {
 
     // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
     // set to 200 because that is sonar's default
+    // eslint-disable-next-line no-magic-numbers
     'max-lines-per-function': ['error', 200],
 
     // enforce use of curly braces around if statements and discourage one-line ifs
@@ -135,6 +135,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
 
     // We're smarter than the default (15). Right?
+    // eslint-disable-next-line no-magic-numbers
     'sonarjs/cognitive-complexity': ['error', 24],
     'no-only-tests/no-only-tests': 'error',
 
@@ -207,6 +208,7 @@ module.exports = {
         'sonarjs/cognitive-complexity': 'off',
         'max-lines': 'off',
         'no-await-in-loop': 'off',
+        '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',
@@ -223,4 +225,3 @@ module.exports = {
     },
   ],
 };
-/* eslint-enable no-magic-numbers */
