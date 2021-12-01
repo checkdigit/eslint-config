@@ -32,9 +32,11 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
+        varsIgnorePattern: '^_',
         argsIgnorePattern: '^_',
       },
     ],
+    'no-underscore-dangle': 'off',
     'deprecate/function': 'error',
     'deprecate/member-expression': 'error',
     'deprecate/import': 'error',
@@ -195,6 +197,7 @@ module.exports = {
       },
     ],
     'dot-notation': 'off',
+    'eslint-comments/no-unused-disable': 2,
   },
   overrides: [
     {
