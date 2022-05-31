@@ -5,19 +5,21 @@
   "private": false,
   "prettier": "@checkdigit/prettier-config",
   "main": "index.js",
-  "dependencies": {},
+  "engines": {
+    "node": ">=16"
+  },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.5.0",
-    "@typescript-eslint/parser": "^5.5.0",
+    "@checkdigit/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
     "eslint": ">=8",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-deprecate": "^0.7.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-no-secrets": "^0.8.9",
-    "eslint-plugin-sonarjs": "^0.11.0"
+    "eslint-plugin-sonarjs": "^0.13.0"
   },
   "scripts": {
     "preversion": "npm test",
@@ -30,7 +32,7 @@
     "type": "git",
     "url": "git+https://github.com/checkdigit/eslint-config.git"
   },
-  "keywords": [],
+  "keywords": ["eslint"],
   "author": "Check Digit, LLC",
   "license": "MIT",
   "bugs": {
@@ -38,10 +40,7 @@
   },
   "homepage": "https://github.com/checkdigit/eslint-config#readme",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^1.0.2",
-    "@checkdigit/typescript-config": "2.2.0",
-    "eslint": "^8.3.0",
-    "prettier": "^2.5.0",
-    "typescript": "^4.5.2"
+    "@checkdigit/prettier-config": "^2.0.1",
+    "@checkdigit/typescript-config": "3.0.0"
   }
 }
