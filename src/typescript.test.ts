@@ -5,3 +5,5 @@ function testHello(_?: string) {
 }
 
 testHello();
+
+export default testHello;
