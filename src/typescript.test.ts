@@ -1,7 +1,7 @@
 // typescript.test.ts
 
-function hello(_?: string) {
-  return 1;
+function testHello(_?: string) {
+  return 123;
 }
 
-hello();
+testHello();

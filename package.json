@@ -25,7 +25,8 @@
     "postversion": "git push && git push --tags",
     "prettier": "prettier --list-different src/**",
     "prettier:fix": "prettier --write src/**",
-    "test": "tsc --noEmit && eslint -f unix --ext .js,.ts src/** && npm run prettier"
+    "lint": "eslint -f unix --ext .js,.ts src/**",
+    "test": "npm run lint && npm run prettier && tsc --noEmit"
   },
   "repository": {
     "type": "git",

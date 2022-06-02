@@ -51,7 +51,7 @@ module.exports = {
     ],
 
     // Per require-await docs:
-    // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
+    // If you are throwing an error inside an asynchronous function for this purpose, then you may want to disable this rule.
     'require-await': 'off',
     '@typescript-eslint/require-await': 'off',
 
@@ -156,7 +156,40 @@ module.exports = {
     'no-magic-numbers': [
       'error',
       {
-        ignore: [-1, 0, 1, 2, 4, 8, 10, 16, 32, 60, 64, 128, 256, 512, 1000, 1024],
+        ignore: [
+          -1,
+          0,
+          1,
+          2,
+          4,
+          8,
+          10,
+          16,
+          32,
+          60,
+          64,
+          128,
+          256,
+          512,
+          1000,
+          1024,
+          '-1n',
+          '0n',
+          '1n',
+          '2n',
+          '4n',
+          '8n',
+          '10n',
+          '16n',
+          '32n',
+          '60n',
+          '64n',
+          '128n',
+          '256n',
+          '512n',
+          '1000n',
+          '1024n',
+        ],
       },
     ],
     'no-ternary': 'off',
