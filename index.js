@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Check Digit, LLC
+ * Copyright (c) 2021-2022 Check Digit, LLC
  *
  * This code is licensed under the MIT license (see LICENSE.txt for details).
  */
@@ -11,6 +11,7 @@
  * }
  */
 
+// eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'deprecate'],
@@ -25,6 +26,7 @@ module.exports = {
     'plugin:sonarjs/recommended',
     'prettier',
     'plugin:eslint-comments/recommended',
+    'plugin:unicorn/recommended'
   ],
   rules: {
     'no-shadow': 'off',
