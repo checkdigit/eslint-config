@@ -26,7 +26,7 @@ module.exports = {
     'plugin:sonarjs/recommended',
     'prettier',
     'plugin:eslint-comments/recommended',
-    'plugin:unicorn/recommended'
+    'plugin:unicorn/recommended',
   ],
   rules: {
     'no-shadow': 'off',
@@ -234,6 +234,12 @@ module.exports = {
     ],
     'dot-notation': 'off',
     'eslint-comments/no-unused-disable': 2,
+
+    // this doesn't make sense in Typescript code, we can rely on type checking to catch it
+    'unicorn/no-array-callback-reference': 'off',
+
+    // regardless of merits, this rule contradicts prettier so cannot be
+    'unicorn/no-nested-ternary': 'off',
   },
   overrides: [
     {
@@ -254,6 +260,12 @@ module.exports = {
         '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/restrict-template-expressions': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
+        'unicorn/no-useless-undefined': 'off',
+        'unicorn/no-null': 'off',
+        'unicorn/no-await-expression-member': 'off',
+        'unicorn/consistent-function-scoping': 'off',
+        'unicorn/no-array-reduce': 'off',
+        'unicorn/error-message': 'off',
       },
     },
     {
