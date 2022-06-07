@@ -74,17 +74,17 @@ module.exports = {
     // tslint does this and it feels like a good idea
     'guard-for-in': 'error',
 
-    // we probably shouldn't be using eval
+    // we should never use eval
     'no-eval': 'error',
     'no-implied-eval': 'error',
 
-    // disallow this keywords outside of classes or class-like objects. carl's gonna like this one
+    // disallow "this" outside of classes or class-like objects
     'no-invalid-this': 'error',
 
-    // sync methods are slow and we shouldn't be using them in production code
+    // sync methods are slow and block the main event loop
     'no-sync': 'error',
 
-    // modules we don"t like
+    // modules we don't like
     'no-restricted-modules': ['error', 'url'],
 
     // prefer else-if
@@ -198,6 +198,7 @@ module.exports = {
     'no-ternary': 'off',
     'max-params': ['error', 8],
     'max-statements': 'off',
+    'max-statements-per-line': 'off',
     'consistent-return': 'off',
     'no-undef': 'off',
     'init-declarations': 'off',
@@ -240,6 +241,24 @@ module.exports = {
 
     // regardless of merits, this rule contradicts prettier so cannot be
     'unicorn/no-nested-ternary': 'off',
+
+    // require 4 separate conditions before an error
+    'unicorn/prefer-switch': ['error', { minimumCases: 4, emptyDefaultCase: 'do-nothing-comment' }],
+
+    // this seems excessive
+    'unicorn/no-unreadable-array-destructuring': 'off',
+
+    // duplicate of eslint-comments/no-unlimited-disable
+    'unicorn/no-abusive-eslint-disable': 'off',
+
+    // because of Typescript, we don't use null in our code unless we have to, which makes this annoying
+    'unicorn/no-null': 'off',
+
+    // there are a lot of cases where this doesn't help readability
+    'unicorn/prefer-ternary': 'off',
+
+    // a lot of our "useless" switch/cases are based on external specifications and are important documentation
+    'unicorn/no-useless-switch-case': 'off',
   },
   overrides: [
     {
@@ -261,7 +280,6 @@ module.exports = {
         '@typescript-eslint/restrict-template-expressions': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         'unicorn/no-useless-undefined': 'off',
-        'unicorn/no-null': 'off',
         'unicorn/no-await-expression-member': 'off',
         'unicorn/consistent-function-scoping': 'off',
         'unicorn/no-array-reduce': 'off',
