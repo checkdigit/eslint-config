@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Check Digit, LLC
+ * Copyright (c) 2021-2022 Check Digit, LLC
  *
  * This code is licensed under the MIT license (see LICENSE.txt for details).
  */
@@ -11,6 +11,7 @@
  * }
  */
 
+// eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'deprecate'],
@@ -25,6 +26,7 @@ module.exports = {
     'plugin:sonarjs/recommended',
     'prettier',
     'plugin:eslint-comments/recommended',
+    'plugin:unicorn/recommended',
   ],
   rules: {
     'no-shadow': 'off',
@@ -51,7 +53,7 @@ module.exports = {
     ],
 
     // Per require-await docs:
-    // If you are throwing an error inside of an asynchronous function for this purpose, then you may want to disable this rule.
+    // If you are throwing an error inside an asynchronous function for this purpose, then you may want to disable this rule.
     'require-await': 'off',
     '@typescript-eslint/require-await': 'off',
 
@@ -72,17 +74,17 @@ module.exports = {
     // tslint does this and it feels like a good idea
     'guard-for-in': 'error',
 
-    // we probably shouldn't be using eval
+    // we should never use eval
     'no-eval': 'error',
     'no-implied-eval': 'error',
 
-    // disallow this keywords outside of classes or class-like objects. carl's gonna like this one
+    // disallow "this" outside of classes or class-like objects
     'no-invalid-this': 'error',
 
-    // sync methods are slow and we shouldn't be using them in production code
+    // sync methods are slow and block the main event loop
     'no-sync': 'error',
 
-    // modules we don"t like
+    // modules we don't like
     'no-restricted-modules': ['error', 'url'],
 
     // prefer else-if
@@ -126,6 +128,7 @@ module.exports = {
     'no-console': 'error',
     'no-return-await': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-require-imports': 'error',
@@ -156,12 +159,46 @@ module.exports = {
     'no-magic-numbers': [
       'error',
       {
-        ignore: [-1, 0, 1, 2, 4, 8, 10, 16, 32, 60, 64, 128, 256, 512, 1000, 1024],
+        ignore: [
+          -1,
+          0,
+          1,
+          2,
+          4,
+          8,
+          10,
+          16,
+          32,
+          60,
+          64,
+          128,
+          256,
+          512,
+          1000,
+          1024,
+          '-1n',
+          '0n',
+          '1n',
+          '2n',
+          '4n',
+          '8n',
+          '10n',
+          '16n',
+          '32n',
+          '60n',
+          '64n',
+          '128n',
+          '256n',
+          '512n',
+          '1000n',
+          '1024n',
+        ],
       },
     ],
     'no-ternary': 'off',
     'max-params': ['error', 8],
     'max-statements': 'off',
+    'max-statements-per-line': 'off',
     'consistent-return': 'off',
     'no-undef': 'off',
     'init-declarations': 'off',
@@ -198,6 +235,30 @@ module.exports = {
     ],
     'dot-notation': 'off',
     'eslint-comments/no-unused-disable': 2,
+
+    // this doesn't make sense in Typescript code, we can rely on type checking to catch it
+    'unicorn/no-array-callback-reference': 'off',
+
+    // regardless of merits, this rule contradicts prettier so cannot be
+    'unicorn/no-nested-ternary': 'off',
+
+    // require 4 separate conditions before an error
+    'unicorn/prefer-switch': ['error', { minimumCases: 4, emptyDefaultCase: 'do-nothing-comment' }],
+
+    // this seems excessive
+    'unicorn/no-unreadable-array-destructuring': 'off',
+
+    // duplicate of eslint-comments/no-unlimited-disable
+    'unicorn/no-abusive-eslint-disable': 'off',
+
+    // because of Typescript, we don't use null in our code unless we have to, which makes this annoying
+    'unicorn/no-null': 'off',
+
+    // there are a lot of cases where this doesn't help readability
+    'unicorn/prefer-ternary': 'off',
+
+    // a lot of our "useless" switch/cases are based on external specifications and are important documentation
+    'unicorn/no-useless-switch-case': 'off',
   },
   overrides: [
     {
@@ -217,6 +278,12 @@ module.exports = {
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/restrict-template-expressions': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        'unicorn/no-useless-undefined': 'off',
+        'unicorn/no-await-expression-member': 'off',
+        'unicorn/consistent-function-scoping': 'off',
+        'unicorn/no-array-reduce': 'off',
+        'unicorn/error-message': 'off',
       },
     },
     {
