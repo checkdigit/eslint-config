@@ -9,22 +9,22 @@
     "node": ">=16"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "^4.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-deprecate": "^0.7.0",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-no-only-tests": "^3.0.0",
-    "eslint-plugin-no-secrets": "^0.8.9",
-    "eslint-plugin-sonarjs": "^0.15.0",
-    "eslint-plugin-unicorn": "^43.0.2"
+    "@checkdigit/eslint-plugin": "4.0.0",
+    "@typescript-eslint/eslint-plugin": "5.33.1",
+    "@typescript-eslint/parser": "5.33.1",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-deprecate": "0.7.0",
+    "eslint-plugin-eslint-comments": "3.2.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-no-only-tests": "3.0.0",
+    "eslint-plugin-no-secrets": "0.8.9",
+    "eslint-plugin-sonarjs": "0.15.0",
+    "eslint-plugin-unicorn": "43.0.2"
   },
   "scripts": {
     "postversion": "git push && git push --tags",
-    "prettier": "prettier --list-different src/**",
-    "prettier:fix": "prettier --write src/**",
+    "prettier": "prettier --list-different .",
+    "prettier:fix": "prettier --write .",
     "lint": "eslint -f unix --ext .js,.ts src/**",
     "test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "ci:compile": "tsc --noEmit",
@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/checkdigit/eslint-config#readme",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^2.1.0",
-    "@checkdigit/typescript-config": "3.0.1"
+    "@checkdigit/prettier-config": "^3.0.0",
+    "@checkdigit/typescript-config": "^3.0.1"
   }
 }
