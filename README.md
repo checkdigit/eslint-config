@@ -13,6 +13,7 @@ $ npm i @checkdigit/eslint-config eslint --save-dev
 ```
 
 ### Example `package.json`
+
 ```jsonc
 {
   // ...
@@ -20,7 +21,7 @@ $ npm i @checkdigit/eslint-config eslint --save-dev
     "lint": "eslint -f unix 'src/**/*.ts'",
     "lint:fix": "eslint -f unix 'src/**/*.ts' --fix",
     "test": "... && npm run lint"
-  },
+  }
   // ...
 }
 ```

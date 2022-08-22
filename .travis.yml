@@ -1,7 +1,0 @@
-language: node_js
-node_js:
-  - "16"
-arch: arm64
-notifications:
-  slack: checkdigit:KPANFpO8mCjIwBUXdElcj7Mr
-after_success: npm run coveralls
