@@ -22,7 +22,6 @@
     "eslint-plugin-unicorn": "43.0.2"
   },
   "scripts": {
-    "preversion": "npm test",
     "postversion": "git push && git push --tags",
     "prettier": "prettier --list-different .",
     "prettier:fix": "prettier --write .",
