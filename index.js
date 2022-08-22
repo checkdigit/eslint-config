@@ -242,7 +242,7 @@ module.exports = {
     'unicorn/no-nested-ternary': 'off',
 
     // require 4 separate conditions before an error
-    'unicorn/prefer-switch': ['error', {minimumCases: 4, emptyDefaultCase: 'do-nothing-comment'}],
+    'unicorn/prefer-switch': ['error', { minimumCases: 4, emptyDefaultCase: 'do-nothing-comment' }],
 
     // this seems excessive
     'unicorn/no-unreadable-array-destructuring': 'off',
