@@ -238,8 +238,9 @@ module.exports = {
     // this doesn't make sense in Typescript code, we can rely on type checking to catch it
     'unicorn/no-array-callback-reference': 'off',
 
-    // regardless of merits, this rule contradicts prettier so cannot be
+    // regardless of merits, these rules contradict prettier so cannot be
     'unicorn/no-nested-ternary': 'off',
+    'unicorn/number-literal-case': 'off',
 
     // require 4 separate conditions before an error
     'unicorn/prefer-switch': ['error', { minimumCases: 4, emptyDefaultCase: 'do-nothing-comment' }],
@@ -283,6 +284,8 @@ module.exports = {
         'unicorn/consistent-function-scoping': 'off',
         'unicorn/no-array-reduce': 'off',
         'unicorn/error-message': 'off',
+        'unicorn/prevent-abbreviations': 'off',
+        'unicorn/no-array-for-each': 'off',
       },
     },
     {

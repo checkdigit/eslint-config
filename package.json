@@ -10,8 +10,8 @@
   },
   "peerDependencies": {
     "@checkdigit/eslint-plugin": "4.0.0",
-    "@typescript-eslint/eslint-plugin": "5.35.1",
-    "@typescript-eslint/parser": "5.35.1",
+    "@typescript-eslint/eslint-plugin": "5.36.1",
+    "@typescript-eslint/parser": "5.36.1",
     "eslint": "8.22.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-deprecate": "0.7.0",
