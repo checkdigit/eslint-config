@@ -9,8 +9,11 @@ Check Digit [ESLint](https://eslint.org/) configuration
 ### Install
 
 ```bash
-$ npm i @checkdigit/eslint-config eslint --save-dev
+$ npm i @checkdigit/eslint-config --save-dev
 ```
+
+Note that `@checkdigit/eslint-config` automatically brings in the correct version of `eslint` and the various
+plugins that are supported by the configuration via `peerDependencies`.
 
 ### Example `package.json`
 
