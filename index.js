@@ -139,7 +139,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
 
     // We're smarter than the default (15). Right?
-    // eslint-disable-next-line no-magic-numbers
     'sonarjs/cognitive-complexity': ['error', 24],
     'no-only-tests/no-only-tests': 'error',
 
@@ -164,9 +163,14 @@ module.exports = {
           1,
           2,
           4,
+          7,
           8,
           10,
+          12,
           16,
+          24,
+          30,
+          31,
           32,
           60,
           64,
@@ -180,9 +184,14 @@ module.exports = {
           '1n',
           '2n',
           '4n',
+          '7n',
           '8n',
           '10n',
+          '12n',
           '16n',
+          '24n',
+          '30n',
+          '31n',
           '32n',
           '60n',
           '64n',
