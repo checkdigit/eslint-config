@@ -10,9 +10,9 @@
   },
   "peerDependencies": {
     "@checkdigit/eslint-plugin": "4.0.0",
-    "@typescript-eslint/eslint-plugin": "5.36.1",
-    "@typescript-eslint/parser": "5.36.1",
-    "eslint": "8.22.0",
+    "@typescript-eslint/eslint-plugin": "5.38.0",
+    "@typescript-eslint/parser": "5.38.0",
+    "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-deprecate": "0.7.0",
     "eslint-plugin-eslint-comments": "3.2.0",
@@ -24,8 +24,8 @@
   },
   "scripts": {
     "postversion": "git push && git push --tags",
-    "prettier": "prettier --list-different .",
-    "prettier:fix": "prettier --write .",
+    "prettier": "prettier --ignore-path .gitignore --list-different .",
+    "prettier:fix": "prettier --ignore-path .gitignore --write .",
     "lint": "eslint -f unix --ext .js,.ts src/**",
     "test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "ci:compile": "tsc --noEmit",
