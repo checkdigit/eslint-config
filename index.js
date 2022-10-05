@@ -273,6 +273,7 @@ module.exports = {
     {
       files: ['*.spec.ts', '*.test.ts'],
       rules: {
+        '@checkdigit/no-uuid': 'off',
         'no-magic-numbers': 'off',
         'no-undefined': 'off',
         'max-lines-per-function': 'off',

@@ -9,6 +9,8 @@ function hello(_?: string): bigint {
   // do nothing
 });
 
+// eslint-disable-next-line @checkdigit/no-uuid
+// uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- not ok since this is a non-test file
 hello();
 
 export default hello;
