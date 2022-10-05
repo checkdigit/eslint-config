@@ -9,10 +9,10 @@
     "node": ">=16"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "4.0.0",
-    "@typescript-eslint/eslint-plugin": "5.38.0",
-    "@typescript-eslint/parser": "5.38.0",
-    "eslint": "8.23.1",
+    "@checkdigit/eslint-plugin": "4.1.0",
+    "@typescript-eslint/eslint-plugin": "5.39.0",
+    "@typescript-eslint/parser": "5.39.0",
+    "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-deprecate": "0.7.0",
     "eslint-plugin-eslint-comments": "3.2.0",
@@ -20,13 +20,13 @@
     "eslint-plugin-no-only-tests": "3.0.0",
     "eslint-plugin-no-secrets": "0.8.9",
     "eslint-plugin-sonarjs": "0.15.0",
-    "eslint-plugin-unicorn": "43.0.2"
+    "eslint-plugin-unicorn": "44.0.1"
   },
   "scripts": {
     "postversion": "git push && git push --tags",
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
-    "lint": "eslint -f unix --ext .js,.ts src/**",
+    "lint": "eslint -f unix --ext .ts src",
     "test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "ci:compile": "tsc --noEmit",
     "ci:lint": "npm run lint",

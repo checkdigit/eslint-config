@@ -1,7 +1,5 @@
 # eslint-config
 
-[![MIT License](https://img.shields.io/github/license/checkdigit/eslint-config)](https://github.com/checkdigit/eslint-config/blob/master/LICENSE.txt)
-
 Copyright (c) 2021-2022 [Check Digit, LLC](https://checkdigit.com)
 
 Check Digit [ESLint](https://eslint.org/) configuration
@@ -25,15 +23,12 @@ plugins that are supported by the configuration via `peerDependencies`.
     "lint:fix": "eslint -f unix 'src/**/*.ts' --fix",
     "test": "... && npm run lint"
   }
+  "eslintConfig": {
+    "extends": [
+      "@checkdigit/eslint-config"
+    ]
+  }
   // ...
-}
-```
-
-### Add `.eslintrc` file
-
-```jsonc
-{
-  "extends": ["@checkdigit"]
 }
 ```
 
