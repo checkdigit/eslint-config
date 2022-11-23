@@ -308,6 +308,7 @@ module.exports = {
         'unicorn/error-message': 'off',
         'unicorn/prevent-abbreviations': 'off',
         'unicorn/no-array-for-each': 'off',
+        'require-yield': 'off',
       },
     },
     {
