@@ -13,4 +13,10 @@ function hello(_?: string): bigint {
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- not ok since this is a non-test file
 hello();
 
+// eslint-disable-next-line require-yield
+async function* paginator() {
+  throw new Error('should not be called');
+}
+paginator();
+
 export default hello;
