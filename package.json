@@ -28,7 +28,8 @@
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
     "lint": "eslint -f unix --ext .ts src",
-    "test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
+    "test": "npm run ci:test",
+    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "ci:compile": "tsc --noEmit",
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier"
