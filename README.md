@@ -1,6 +1,6 @@
 # eslint-config
 
-Copyright (c) 2021-2022 [Check Digit, LLC](https://checkdigit.com)
+Copyright (c) 2021-2023 [Check Digit, LLC](https://checkdigit.com)
 
 Check Digit [ESLint](https://eslint.org/) configuration
 
