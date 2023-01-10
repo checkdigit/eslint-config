@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Check Digit, LLC
+ * Copyright (c) 2021-2023 Check Digit, LLC
  *
  * This code is licensed under the MIT license (see LICENSE.txt for details).
  */
@@ -309,6 +309,24 @@ module.exports = {
         'unicorn/prevent-abbreviations': 'off',
         'unicorn/no-array-for-each': 'off',
         'require-yield': 'off',
+      },
+    },
+    {
+      files: ['*.spec.ts'],
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+      rules: {
+        'jest/expect-expect': 'off',
+        'jest/max-nested-describe': ['error', { max: 1 }],
+        'jest/no-duplicate-hooks': ['error'],
+        'jest/prefer-hooks-in-order': ['error'],
+        'jest/prefer-hooks-on-top': ['error'],
+        'jest/require-top-level-describe': [
+          'error',
+          {
+            maxNumberOfTopLevelDescribes: 1,
+          },
+        ],
       },
     },
     {
