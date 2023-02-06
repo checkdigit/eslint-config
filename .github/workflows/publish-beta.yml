@@ -22,13 +22,10 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          CI: true
       - name: Run Test
         run: npm run ci:test
       - name: perform beta publish
-        uses: checkdigit/github-actions/publish-beta@main
+        uses: checkdigit/github-actions/publish-beta@typescript-5.0
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
