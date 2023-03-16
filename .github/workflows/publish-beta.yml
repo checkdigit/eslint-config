@@ -28,7 +28,7 @@ jobs:
       - name: Run Test
         run: npm run ci:test
       - name: perform beta publish
-        uses: checkdigit/github-actions/publish-beta@npx-tsc
+        uses: checkdigit/github-actions/publish-beta@main
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
