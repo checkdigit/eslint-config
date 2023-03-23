@@ -11,12 +11,32 @@
  * }
  */
 
+const eslintRulesWithError = {};
+
 // eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
 const eslintStrictRules = require('@typescript-eslint/eslint-plugin').configs['strict'].rules;
-const eslintStrictRulesWithError = {};
 for (const [key, value] of Object.entries(eslintStrictRules)) {
+  // eslint-disable-next-line sonarjs/no-duplicate-string
   if (key.startsWith('@typescript-eslint/') && value === 'warn') {
-    eslintStrictRulesWithError[key] = 'error';
+    eslintRulesWithError[key] = 'error';
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
+const eslintRecommendedRules = require('@typescript-eslint/eslint-plugin').configs['recommended'].rules;
+for (const [key, value] of Object.entries(eslintRecommendedRules)) {
+  if (key.startsWith('@typescript-eslint/') && value === 'warn') {
+    eslintRulesWithError[key] = 'error';
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
+const eslintRecommendedRequiringTypeCheckingRules = require('@typescript-eslint/eslint-plugin').configs[
+  'recommended-requiring-type-checking'
+].rules;
+for (const [key, value] of Object.entries(eslintRecommendedRequiringTypeCheckingRules)) {
+  if (key.startsWith('@typescript-eslint/') && value === 'warn') {
+    eslintRulesWithError[key] = 'error';
   }
 }
 
@@ -39,7 +59,7 @@ module.exports = {
     'plugin:unicorn/recommended',
   ],
   rules: {
-    ...eslintStrictRulesWithError,
+    ...eslintRulesWithError,
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': [
