@@ -23,6 +23,7 @@ module.exports = {
     'plugin:@checkdigit/all',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/strict',
     'plugin:sonarjs/recommended',
     'prettier',
     'plugin:eslint-comments/recommended',
@@ -321,6 +322,8 @@ module.exports = {
         'jest/no-duplicate-hooks': ['error'],
         'jest/prefer-hooks-in-order': ['error'],
         'jest/prefer-hooks-on-top': ['error'],
+        'jest/no-disabled-tests': ['error'],
+        'jest/no-commented-out-tests': ['error'],
         'jest/require-top-level-describe': [
           'error',
           {
