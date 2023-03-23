@@ -5,7 +5,10 @@ function hello(_?: string): bigint {
 }
 
 // eslint-disable-next-line unicorn/no-array-for-each,unicorn/prevent-abbreviations
-[].forEach((_lib) => {
+['', undefined].forEach((_lib) => {
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const thing = _lib || {};
+  hello(thing as string);
   // do nothing
 });
 

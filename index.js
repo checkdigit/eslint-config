@@ -11,6 +11,15 @@
  * }
  */
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
+const eslintStrictRules = require('@typescript-eslint/eslint-plugin').configs['strict'].rules;
+const eslintStrictRulesWithError = {};
+for (const [key, value] of Object.entries(eslintStrictRules)) {
+  if (key.startsWith('@typescript-eslint/') && value === 'warn') {
+    eslintStrictRulesWithError[key] = 'error';
+  }
+}
+
 // eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -30,6 +39,7 @@ module.exports = {
     'plugin:unicorn/recommended',
   ],
   rules: {
+    ...eslintStrictRulesWithError,
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': [
