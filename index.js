@@ -339,8 +339,8 @@ module.exports = {
         'unicorn/prevent-abbreviations': 'off',
         'unicorn/no-array-for-each': 'off',
         'require-yield': 'off',
-        'typescript-eslint/no-non-null-assertion': 'off',
-        'typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
       },
     },
     {
