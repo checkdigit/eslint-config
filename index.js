@@ -11,6 +11,34 @@
  * }
  */
 
+const eslintRulesWithError = {};
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
+const eslintStrictRules = require('@typescript-eslint/eslint-plugin').configs['strict'].rules;
+for (const [key, value] of Object.entries(eslintStrictRules)) {
+  if (value === 'warn') {
+    eslintRulesWithError[key] = 'error';
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
+const eslintRecommendedRules = require('@typescript-eslint/eslint-plugin').configs['recommended'].rules;
+for (const [key, value] of Object.entries(eslintRecommendedRules)) {
+  if (value === 'warn') {
+    eslintRulesWithError[key] = 'error';
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
+const eslintRecommendedRequiringTypeCheckingRules = require('@typescript-eslint/eslint-plugin').configs[
+  'recommended-requiring-type-checking'
+].rules;
+for (const [key, value] of Object.entries(eslintRecommendedRequiringTypeCheckingRules)) {
+  if (value === 'warn') {
+    eslintRulesWithError[key] = 'error';
+  }
+}
+
 // eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -23,12 +51,14 @@ module.exports = {
     'plugin:@checkdigit/all',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/strict',
     'plugin:sonarjs/recommended',
     'prettier',
     'plugin:eslint-comments/recommended',
     'plugin:unicorn/recommended',
   ],
   rules: {
+    ...eslintRulesWithError,
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': [
@@ -309,6 +339,8 @@ module.exports = {
         'unicorn/prevent-abbreviations': 'off',
         'unicorn/no-array-for-each': 'off',
         'require-yield': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
       },
     },
     {
@@ -321,6 +353,8 @@ module.exports = {
         'jest/no-duplicate-hooks': ['error'],
         'jest/prefer-hooks-in-order': ['error'],
         'jest/prefer-hooks-on-top': ['error'],
+        'jest/no-disabled-tests': ['error'],
+        'jest/no-commented-out-tests': ['error'],
         'jest/require-top-level-describe': [
           'error',
           {
