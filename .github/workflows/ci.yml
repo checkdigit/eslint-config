@@ -5,13 +5,16 @@ on:
     branches:
       - 'main'
 
+env:
+  CI: true
+
 jobs:
   pullRequestBuild:
     name: Pull Request Build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -20,20 +23,28 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Audit Signatures
+        run: npm audit signatures
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Compile
         run: npm run ci:compile
       - name: Check Code Style
         run: npm run ci:style
       - name: Perform Linting
         run: npm run ci:lint
+      - name: Run Tests
+        run: npm run ci:test
 
   branchBuild:
     runs-on: ubuntu-latest
     name: Branch Build
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -44,10 +55,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Audit Signatures
+        run: npm audit signatures
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Compile
         run: npm run ci:compile
       - name: Check Code Style
         run: npm run ci:style
       - name: Perform Linting
         run: npm run ci:lint
+      - name: Run Tests
+        run: npm run ci:test
