@@ -9,7 +9,7 @@
     "node": ">=18"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "5.0.0-PR.36-f31c",
+    "@checkdigit/eslint-plugin": "5.0.0-PR.36-c07a",
     "@typescript-eslint/eslint-plugin": "5.60.1",
     "@typescript-eslint/parser": "5.60.1",
     "eslint": "8.43.0",
