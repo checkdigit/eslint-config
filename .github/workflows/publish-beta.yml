@@ -6,8 +6,9 @@ on:
       - 'main'
 
 jobs:
-  comment:
+  publishBeta:
     runs-on: ubuntu-latest
+    name: Publish Beta
     strategy:
       matrix:
         node-version: [18.x]
@@ -19,16 +20,23 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
-        run: npm ci
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          CI: true
+        run: npm ci --ignore-scripts
+      - name: Audit Signatures
+        run: npm audit signatures
       - name: Run Test
-        run: npm run ci:test
-      - name: perform beta publish
-        uses: checkdigit/github-actions/publish-beta@main
+        run: npm run test
+      - name: Prepare Beta
+        id: prepare-beta
+        uses: checkdigit/github-actions/prepare-beta@main
+      - name: Publish Beta
+        run: npm publish --tag beta
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
+      - name: Comment
+        uses: checkdigit/github-actions/comment-npm-publish@main
+        with:
+          betaPackage: ${{ steps.prepare-beta.outputs.betaPackage }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

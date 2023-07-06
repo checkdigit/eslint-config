@@ -1,30 +1,29 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "7.8.0",
+  "version": "8.0.0",
   "description": "Check Digit standard eslint configuration",
   "private": false,
   "prettier": "@checkdigit/prettier-config",
   "main": "index.js",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "4.1.0",
-    "@typescript-eslint/eslint-plugin": "5.56.0",
-    "@typescript-eslint/parser": "5.56.0",
-    "eslint": "8.36.0",
+    "@checkdigit/eslint-plugin": "5.0.0",
+    "@typescript-eslint/eslint-plugin": "5.61.0",
+    "@typescript-eslint/parser": "5.61.0",
+    "eslint": "8.44.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-deprecate": "0.7.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-jest": "27.2.1",
+    "eslint-plugin-jest": "27.2.2",
     "eslint-plugin-no-only-tests": "3.1.0",
     "eslint-plugin-no-secrets": "0.8.9",
     "eslint-plugin-sonarjs": "0.19.0",
-    "eslint-plugin-unicorn": "46.0.0"
+    "eslint-plugin-unicorn": "47.0.0"
   },
   "scripts": {
-    "postversion": "git push && git push --tags",
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
     "lint": "eslint -f unix --ext .ts src",
@@ -49,10 +48,11 @@
   },
   "homepage": "https://github.com/checkdigit/eslint-config#readme",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^3.3.0",
-    "@checkdigit/typescript-config": "^3.3.0",
-    "@types/jest": "^29.5.0",
-    "jest": "^29.5.0"
+    "@checkdigit/prettier-config": "^4.0.0",
+    "@checkdigit/typescript-config": "^4.0.0",
+    "@types/jest": "^29.5.2",
+    "jest": "^29.6.0",
+    "ts-node": "^10.9.1"
   },
   "files": [
     "index.js"
