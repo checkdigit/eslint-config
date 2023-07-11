@@ -15,6 +15,7 @@ const eslintRulesWithError = {};
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
 const eslintStrictRules = require('@typescript-eslint/eslint-plugin').configs['strict'].rules;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 for (const [key, value] of Object.entries(eslintStrictRules)) {
   if (value === 'warn') {
     eslintRulesWithError[key] = 'error';
@@ -23,6 +24,7 @@ for (const [key, value] of Object.entries(eslintStrictRules)) {
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
 const eslintRecommendedRules = require('@typescript-eslint/eslint-plugin').configs['recommended'].rules;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 for (const [key, value] of Object.entries(eslintRecommendedRules)) {
   if (value === 'warn') {
     eslintRulesWithError[key] = 'error';
@@ -33,6 +35,7 @@ for (const [key, value] of Object.entries(eslintRecommendedRules)) {
 const eslintRecommendedRequiringTypeCheckingRules = require('@typescript-eslint/eslint-plugin').configs[
   'recommended-requiring-type-checking'
 ].rules;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 for (const [key, value] of Object.entries(eslintRecommendedRequiringTypeCheckingRules)) {
   if (value === 'warn') {
     eslintRulesWithError[key] = 'error';
@@ -49,9 +52,8 @@ module.exports = {
   extends: [
     'eslint:all',
     'plugin:@checkdigit/all',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:@typescript-eslint/strict',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:sonarjs/recommended',
     'prettier',
     'plugin:eslint-comments/recommended',
