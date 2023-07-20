@@ -45,7 +45,7 @@ for (const [key, value] of Object.entries(eslintRecommendedRequiringTypeChecking
 // eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'deprecate'],
+  plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets'],
   parserOptions: {
     project: './tsconfig.json',
   },
@@ -71,9 +71,6 @@ module.exports = {
       },
     ],
     'no-underscore-dangle': 'off',
-    'deprecate/function': 'error',
-    'deprecate/member-expression': 'error',
-    'deprecate/import': 'error',
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': ['error'],
     'func-names': 'off',
