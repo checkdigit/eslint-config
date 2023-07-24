@@ -24,7 +24,7 @@ module.exports = {
     'plugin:@checkdigit/all',
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
-    'plugin:import/recommended',
+    'plugin:import/errors',
     'plugin:import/typescript',
     'plugin:n/recommended',
     'plugin:sonarjs/recommended',
@@ -90,7 +90,6 @@ module.exports = {
     ],
 
     // turn on node-specific stylistic rules
-    'n/callback-return': 'error',
     'n/exports-style': 'error',
     'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore']],
     'n/no-process-env': 'error',
@@ -105,6 +104,7 @@ module.exports = {
 
     // this doesn't work for our style of imports
     'n/no-missing-import': 'off',
+    'n/no-extraneous-import': 'off',
 
     // import-specific rules
     'import/no-extraneous-dependencies': [
@@ -114,6 +114,7 @@ module.exports = {
       },
     ],
     'import/no-deprecated': 'error',
+    'import/namespace': 'off',
 
     'spaced-comment': 'error',
     'no-var': 'error',
@@ -141,6 +142,7 @@ module.exports = {
 
     // eslint:all rules to modify
     'one-var': 'off',
+    'default-case': 'off',
     'sort-keys': 'off',
     'capitalized-comments': 'off',
     'func-style': [
@@ -217,6 +219,7 @@ module.exports = {
     // this should use the default (3) but would currently cause too much pain
     'max-params': ['error', 8],
 
+    // this should be turned on if the ignoreTopLevelFunctions option starts working
     'max-statements': 'off',
     'consistent-return': 'off',
     'init-declarations': 'off',
@@ -227,6 +230,9 @@ module.exports = {
     // use the sonarjs version instead
     complexity: 'off',
 
+    // thanks to Prettier, we don't rely on automatic semicolon insertion, so this can remain off
+    'no-plusplus': 'off',
+
     'max-lines': [
       'error',
       {
@@ -235,6 +241,7 @@ module.exports = {
         skipComments: true,
       },
     ],
+
     'id-length': [
       'error',
       {
@@ -242,7 +249,6 @@ module.exports = {
         exceptions: ['_'],
       },
     ],
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'new-cap': [
       'error',
       {
