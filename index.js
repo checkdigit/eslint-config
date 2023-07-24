@@ -106,6 +106,12 @@ module.exports = {
     'n/no-missing-import': 'off',
     'n/no-extraneous-import': 'off',
 
+    // this doesn't seem to work
+    'n/no-unpublished-import': 'off',
+
+    // duplicated by unicorn/no-process-exit
+    'n/no-process-exit': 'off',
+
     // import-specific rules
     'import/no-extraneous-dependencies': [
       'error',
@@ -115,6 +121,9 @@ module.exports = {
     ],
     'import/no-deprecated': 'error',
     'import/namespace': 'off',
+
+    // has a bug, throws an exception in some cases
+    'import/export': 'off',
 
     'spaced-comment': 'error',
     'no-var': 'error',
@@ -314,6 +323,7 @@ module.exports = {
         'require-yield': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+        'n/no-process-env': 'off',
       },
     },
     {
