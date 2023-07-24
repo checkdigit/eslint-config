@@ -24,12 +24,20 @@ module.exports = {
     'plugin:@checkdigit/all',
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
     'plugin:n/recommended',
     'plugin:sonarjs/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:unicorn/recommended',
     'prettier',
   ],
+  settings: {
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    },
+  },
   rules: {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
@@ -64,57 +72,40 @@ module.exports = {
     // enforce use of curly braces around if statements and discourage one-line ifs
     curly: 'error',
 
-    // always use ===
-    eqeqeq: 'error',
-
     // undefined can be used
     'no-undefined': 'off',
 
-    // tslint does this and it feels like a good idea
-    'guard-for-in': 'error',
-
-    // we should never use eval
-    'no-eval': 'error',
-    'no-implied-eval': 'error',
-
-    // disallow "this" outside of classes or class-like objects
-    'no-invalid-this': 'error',
-
-    // sync methods are slow and block the main event loop
-    'no-sync': 'error',
-
-    // modules we don't like
-    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore']],
-
-    // prefer else-if
-    'no-lonely-if': 'error',
-
-    // make eslint feel just like the tslint days
-    'no-unneeded-ternary': 'error',
-    'one-var': ['error', 'never'],
-
-    // these two configurations need to be kept in sync
     'sort-imports': [
       'error',
       {
         ignoreCase: true,
-        ignoreDeclarationSort: true,
       },
     ],
-    'import/order': [
-      'error',
-      {
-        'newlines-between': 'ignore',
-      },
-    ],
+
+    // turn on node-specific stylistic rules
+    'n/callback-return': 'error',
+    'n/file-extension-in-import': ['error', 'never'],
+    'n/exports-style': 'error',
+    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore']],
+    'n/no-process-env': 'error',
+    'n/no-sync': 'error',
+    'n/prefer-global/buffer': 'error',
+    'n/prefer-global/console': 'error',
+    'n/prefer-global/process': 'error',
+    'n/prefer-global/text-decoder': 'error',
+    'n/prefer-global/text-encoder': 'error',
+    'n/prefer-global/url': 'error',
+    'n/prefer-global/url-search-params': 'error',
+
+    // import-specific rules
     'import/no-extraneous-dependencies': [
       'error',
       {
         devDependencies: ['**/*.spec.ts', '**/*.test.ts'],
-        optionalDependencies: false,
       },
     ],
     'import/no-deprecated': 'error',
+
     'spaced-comment': 'error',
     'no-var': 'error',
     'prefer-const': 'error',
@@ -149,7 +140,6 @@ module.exports = {
         allowArrowFunctions: true,
       },
     ],
-    'no-negated-condition': 'off',
     'multiline-comment-style': 'off',
     'no-magic-numbers': [
       'error',
@@ -213,17 +203,19 @@ module.exports = {
       },
     ],
     'no-ternary': 'off',
+
+    // this should use the default (3) but would currently cause too much pain
     'max-params': ['error', 8],
-    'max-statements': 'off',
-    'max-statements-per-line': 'off',
+
+    'max-statements': ['error', 10, { ignoreTopLevelFunctions: true }],
     'consistent-return': 'off',
-    'no-undef': 'off',
     'init-declarations': 'off',
     'no-inline-comments': 'off',
     'line-comment-position': 'off',
-    'prefer-destructuring': 'off',
-    'no-useless-return': 'off',
+
+    // use the sonarjs version instead
     complexity: 'off',
+
     'max-lines': [
       'error',
       {
@@ -239,11 +231,7 @@ module.exports = {
         exceptions: ['_'],
       },
     ],
-    // as long as we don't rely on ASI this can remain off
-    'no-plusplus': 'off',
-    'default-case': 'off',
-    'no-continue': 'off',
-    'callback-return': ['error', ['callback', 'cb']],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'new-cap': [
       'error',
       {
@@ -290,6 +278,7 @@ module.exports = {
         'sonarjs/no-identical-functions': 'off',
         'sonarjs/cognitive-complexity': 'off',
         'max-lines': 'off',
+        'max-statements': 'off',
         'no-await-in-loop': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',

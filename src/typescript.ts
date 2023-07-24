@@ -3,6 +3,21 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'jest';
 
+// eslint-disable-next-line unicorn/prefer-node-protocol
+import { strict as assert } from 'assert';
+
+import fs from 'node:fs';
+
+// eslint-disable-next-line n/prefer-global/url-search-params
+import { URLSearchParams } from 'node:url';
+
+// eslint-disable-next-line n/no-sync
+assert.ok(fs.existsSync('.'));
+assert.ok(URLSearchParams);
+
+// eslint-disable-next-line n/no-process-env
+assert.ok(process.env['DEBUG']);
+
 function hello(_?: string): bigint {
   return -1n + 1n + 10n;
 }
@@ -24,5 +39,29 @@ async function* paginator() {
   throw new Error('should not be called');
 }
 paginator();
+
+// eslint-disable-next-line @typescript-eslint/no-for-in-array,guard-for-in,no-magic-numbers
+for (const value in [1, 2, 3]) {
+  // eslint-disable-next-line no-console
+  console.log(value);
+}
+
+// eslint-disable-next-line no-eval
+eval('console.log("no-no");');
+
+// eslint-disable-next-line no-invalid-this
+assert.ok(this);
+
+if (Math.random()) {
+  // ...
+} else {
+  // eslint-disable-next-line no-lonely-if
+  if (Math.random()) {
+    // ...
+  }
+}
+
+// eslint-disable-next-line no-unneeded-ternary
+assert.ok(Math.random() === 2 ? true : false);
 
 export default hello;
