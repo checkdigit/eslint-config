@@ -217,11 +217,12 @@ module.exports = {
     // this should use the default (3) but would currently cause too much pain
     'max-params': ['error', 8],
 
-    'max-statements': ['error', 10, { ignoreTopLevelFunctions: true }],
+    'max-statements': 'off',
     'consistent-return': 'off',
     'init-declarations': 'off',
     'no-inline-comments': 'off',
     'line-comment-position': 'off',
+    'prefer-destructuring': 'off',
 
     // use the sonarjs version instead
     complexity: 'off',
