@@ -11,41 +11,11 @@
  * }
  */
 
-const eslintRulesWithError = {};
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
-const eslintStrictRules = require('@typescript-eslint/eslint-plugin').configs['strict'].rules;
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-for (const [key, value] of Object.entries(eslintStrictRules)) {
-  if (value === 'warn') {
-    eslintRulesWithError[key] = 'error';
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
-const eslintRecommendedRules = require('@typescript-eslint/eslint-plugin').configs['recommended'].rules;
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-for (const [key, value] of Object.entries(eslintRecommendedRules)) {
-  if (value === 'warn') {
-    eslintRulesWithError[key] = 'error';
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
-const eslintRecommendedRequiringTypeCheckingRules = require('@typescript-eslint/eslint-plugin').configs[
-  'recommended-requiring-type-checking'
-].rules;
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-for (const [key, value] of Object.entries(eslintRecommendedRequiringTypeCheckingRules)) {
-  if (value === 'warn') {
-    eslintRulesWithError[key] = 'error';
-  }
-}
-
-// eslint-disable-next-line unicorn/prefer-module
+// unclear why unicorn/no-empty-file is generating an error here:
+// eslint-disable-next-line unicorn/prefer-module,unicorn/no-empty-file
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets'],
+  plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'n'],
   parserOptions: {
     project: './tsconfig.json',
   },
@@ -54,13 +24,13 @@ module.exports = {
     'plugin:@checkdigit/all',
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:n/recommended',
     'plugin:sonarjs/recommended',
-    'prettier',
     'plugin:eslint-comments/recommended',
     'plugin:unicorn/recommended',
+    'prettier',
   ],
   rules: {
-    ...eslintRulesWithError,
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': [
@@ -114,7 +84,7 @@ module.exports = {
     'no-sync': 'error',
 
     // modules we don't like
-    'no-restricted-modules': ['error', 'url'],
+    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore']],
 
     // prefer else-if
     'no-lonely-if': 'error',
@@ -145,8 +115,6 @@ module.exports = {
       },
     ],
     'import/no-deprecated': 'error',
-    'space-before-blocks': 'error',
-    'space-unary-ops': 'error',
     'spaced-comment': 'error',
     'no-var': 'error',
     'prefer-const': 'error',

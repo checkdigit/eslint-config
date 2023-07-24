@@ -1,5 +1,8 @@
 // typescript.ts
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'jest';
+
 function hello(_?: string): bigint {
   return -1n + 1n + 10n;
 }

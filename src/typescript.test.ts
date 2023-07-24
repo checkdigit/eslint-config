@@ -1,5 +1,8 @@
 // typescript.test.ts
 
+// eslint-disable-next-line n/no-restricted-import
+import 'fclone';
+
 function testHello(_?: string) {
   return 123 + 0xf;
 }
