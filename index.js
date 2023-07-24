@@ -79,12 +79,18 @@ module.exports = {
       'error',
       {
         ignoreCase: true,
+        ignoreDeclarationSort: true,
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'ignore',
       },
     ],
 
     // turn on node-specific stylistic rules
     'n/callback-return': 'error',
-    'n/file-extension-in-import': ['error', 'never'],
     'n/exports-style': 'error',
     'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore']],
     'n/no-process-env': 'error',
@@ -96,6 +102,9 @@ module.exports = {
     'n/prefer-global/text-encoder': 'error',
     'n/prefer-global/url': 'error',
     'n/prefer-global/url-search-params': 'error',
+
+    // this doesn't work for our style of imports
+    'n/no-missing-import': 'off',
 
     // import-specific rules
     'import/no-extraneous-dependencies': [
@@ -131,6 +140,7 @@ module.exports = {
     'no-only-tests/no-only-tests': 'error',
 
     // eslint:all rules to modify
+    'one-var': 'off',
     'sort-keys': 'off',
     'capitalized-comments': 'off',
     'func-style': [

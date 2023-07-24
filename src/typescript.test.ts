@@ -3,6 +3,8 @@
 // eslint-disable-next-line n/no-restricted-import
 import 'fclone';
 
+import './typescript';
+
 function testHello(_?: string) {
   return 123 + 0xf;
 }
