@@ -11,8 +11,7 @@
  * }
  */
 
-// unclear why unicorn/no-empty-file is generating an error here:
-// eslint-disable-next-line unicorn/prefer-module,unicorn/no-empty-file
+// eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'n'],
