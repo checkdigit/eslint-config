@@ -5,9 +5,6 @@ on:
     branches:
       - 'main'
 
-env:
-  CI: true
-
 jobs:
   pullRequestBuild:
     name: Pull Request Build
@@ -22,14 +19,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: Check Label
+        uses: checkdigit/github-actions/check-label@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install dependencies
         run: npm ci --ignore-scripts
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Audit Signatures
         run: npm audit signatures
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Compile
         run: npm run ci:compile
       - name: Check Code Style
@@ -54,14 +51,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: Check Label
+        uses: checkdigit/github-actions/check-label@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install dependencies
         run: npm ci --ignore-scripts
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Audit Signatures
         run: npm audit signatures
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Compile
         run: npm run ci:compile
       - name: Check Code Style

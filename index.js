@@ -11,54 +11,33 @@
  * }
  */
 
-const eslintRulesWithError = {};
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
-const eslintStrictRules = require('@typescript-eslint/eslint-plugin').configs['strict'].rules;
-for (const [key, value] of Object.entries(eslintStrictRules)) {
-  if (value === 'warn') {
-    eslintRulesWithError[key] = 'error';
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
-const eslintRecommendedRules = require('@typescript-eslint/eslint-plugin').configs['recommended'].rules;
-for (const [key, value] of Object.entries(eslintRecommendedRules)) {
-  if (value === 'warn') {
-    eslintRulesWithError[key] = 'error';
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires,unicorn/prefer-module
-const eslintRecommendedRequiringTypeCheckingRules = require('@typescript-eslint/eslint-plugin').configs[
-  'recommended-requiring-type-checking'
-].rules;
-for (const [key, value] of Object.entries(eslintRecommendedRequiringTypeCheckingRules)) {
-  if (value === 'warn') {
-    eslintRulesWithError[key] = 'error';
-  }
-}
-
 // eslint-disable-next-line unicorn/prefer-module
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'deprecate'],
+  plugins: ['@checkdigit', '@typescript-eslint', 'sonarjs', 'import', 'no-only-tests', 'no-secrets', 'n'],
   parserOptions: {
     project: './tsconfig.json',
   },
   extends: [
     'eslint:all',
     'plugin:@checkdigit/all',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:@typescript-eslint/strict',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:import/errors',
+    'plugin:import/typescript',
+    'plugin:n/recommended',
     'plugin:sonarjs/recommended',
-    'prettier',
     'plugin:eslint-comments/recommended',
     'plugin:unicorn/recommended',
+    'prettier',
   ],
+  settings: {
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    },
+  },
   rules: {
-    ...eslintRulesWithError,
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': [
@@ -69,9 +48,6 @@ module.exports = {
       },
     ],
     'no-underscore-dangle': 'off',
-    'deprecate/function': 'error',
-    'deprecate/member-expression': 'error',
-    'deprecate/import': 'error',
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': ['error'],
     'func-names': 'off',
@@ -95,36 +71,9 @@ module.exports = {
     // enforce use of curly braces around if statements and discourage one-line ifs
     curly: 'error',
 
-    // always use ===
-    eqeqeq: 'error',
-
     // undefined can be used
     'no-undefined': 'off',
 
-    // tslint does this and it feels like a good idea
-    'guard-for-in': 'error',
-
-    // we should never use eval
-    'no-eval': 'error',
-    'no-implied-eval': 'error',
-
-    // disallow "this" outside of classes or class-like objects
-    'no-invalid-this': 'error',
-
-    // sync methods are slow and block the main event loop
-    'no-sync': 'error',
-
-    // modules we don't like
-    'no-restricted-modules': ['error', 'url'],
-
-    // prefer else-if
-    'no-lonely-if': 'error',
-
-    // make eslint feel just like the tslint days
-    'no-unneeded-ternary': 'error',
-    'one-var': ['error', 'never'],
-
-    // these two configurations need to be kept in sync
     'sort-imports': [
       'error',
       {
@@ -138,16 +87,43 @@ module.exports = {
         'newlines-between': 'ignore',
       },
     ],
+
+    // turn on node-specific stylistic rules
+    'n/exports-style': 'error',
+    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore']],
+    'n/no-process-env': 'error',
+    'n/no-sync': 'error',
+    'n/prefer-global/buffer': 'error',
+    'n/prefer-global/console': 'error',
+    'n/prefer-global/process': 'error',
+    'n/prefer-global/text-decoder': 'error',
+    'n/prefer-global/text-encoder': 'error',
+    'n/prefer-global/url': 'error',
+    'n/prefer-global/url-search-params': 'error',
+
+    // this doesn't work for our style of imports
+    'n/no-missing-import': 'off',
+    'n/no-extraneous-import': 'off',
+
+    // this doesn't seem to work
+    'n/no-unpublished-import': 'off',
+
+    // duplicated by unicorn/no-process-exit
+    'n/no-process-exit': 'off',
+
+    // import-specific rules
     'import/no-extraneous-dependencies': [
       'error',
       {
         devDependencies: ['**/*.spec.ts', '**/*.test.ts'],
-        optionalDependencies: false,
       },
     ],
     'import/no-deprecated': 'error',
-    'space-before-blocks': 'error',
-    'space-unary-ops': 'error',
+    'import/namespace': 'off',
+
+    // has a bug, throws an exception in some cases
+    'import/export': 'off',
+
     'spaced-comment': 'error',
     'no-var': 'error',
     'prefer-const': 'error',
@@ -173,6 +149,8 @@ module.exports = {
     'no-only-tests/no-only-tests': 'error',
 
     // eslint:all rules to modify
+    'one-var': 'off',
+    'default-case': 'off',
     'sort-keys': 'off',
     'capitalized-comments': 'off',
     'func-style': [
@@ -182,7 +160,6 @@ module.exports = {
         allowArrowFunctions: true,
       },
     ],
-    'no-negated-condition': 'off',
     'multiline-comment-style': 'off',
     'no-magic-numbers': [
       'error',
@@ -246,17 +223,24 @@ module.exports = {
       },
     ],
     'no-ternary': 'off',
+
+    // this should use the default (3) but would currently cause too much pain
     'max-params': ['error', 8],
+
+    // this should be turned on if the ignoreTopLevelFunctions option starts working
     'max-statements': 'off',
-    'max-statements-per-line': 'off',
     'consistent-return': 'off',
-    'no-undef': 'off',
     'init-declarations': 'off',
     'no-inline-comments': 'off',
     'line-comment-position': 'off',
     'prefer-destructuring': 'off',
-    'no-useless-return': 'off',
+
+    // use the sonarjs version instead
     complexity: 'off',
+
+    // thanks to Prettier, we don't rely on automatic semicolon insertion, so this can remain off
+    'no-plusplus': 'off',
+
     'max-lines': [
       'error',
       {
@@ -265,6 +249,7 @@ module.exports = {
         skipComments: true,
       },
     ],
+
     'id-length': [
       'error',
       {
@@ -272,11 +257,6 @@ module.exports = {
         exceptions: ['_'],
       },
     ],
-    // as long as we don't rely on ASI this can remain off
-    'no-plusplus': 'off',
-    'default-case': 'off',
-    'no-continue': 'off',
-    'callback-return': ['error', ['callback', 'cb']],
     'new-cap': [
       'error',
       {
@@ -323,6 +303,7 @@ module.exports = {
         'sonarjs/no-identical-functions': 'off',
         'sonarjs/cognitive-complexity': 'off',
         'max-lines': 'off',
+        'max-statements': 'off',
         'no-await-in-loop': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
@@ -341,6 +322,7 @@ module.exports = {
         'require-yield': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+        'n/no-process-env': 'off',
       },
     },
     {

@@ -10,7 +10,7 @@ jobs:
     name: Check PR Reviews
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
     steps:
       - name: Perform Check of PR Reviews
         uses: checkdigit/github-actions/check-pr-reviews@main
