@@ -19,7 +19,7 @@ jobs:
       - name: Audit Signatures
         run: npm audit signatures
       - name: Run Test
-        run: npm run test
+        run: npm run ci:test
       - name: Publish
         run: npm publish
         env:

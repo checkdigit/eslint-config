@@ -6,11 +6,11 @@ on:
   pull_request:
     branches: ['main']
   schedule:
-    - cron: '56 08 * * 1'
+    - cron: '22 7 * * 1'
 
 jobs:
   analyze:
-    name: Analyze
+    name: CodeQL analysis
     runs-on: ubuntu-latest
     permissions:
       actions: read
