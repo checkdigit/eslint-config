@@ -10,8 +10,8 @@
   },
   "peerDependencies": {
     "@checkdigit/eslint-plugin": "5.1.0",
-    "@typescript-eslint/eslint-plugin": "6.4.1",
-    "@typescript-eslint/parser": "6.4.1",
+    "@typescript-eslint/eslint-plugin": "6.5.0",
+    "@typescript-eslint/parser": "6.5.0",
     "eslint": "8.48.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-import-resolver-typescript": "3.6.0",
@@ -50,7 +50,7 @@
   "homepage": "https://github.com/checkdigit/eslint-config#readme",
   "devDependencies": {
     "@checkdigit/prettier-config": "^4.0.1",
-    "@checkdigit/typescript-config": "4.1.0-PR.41-0e64",
+    "@checkdigit/typescript-config": "4.1.0-PR.41-46cd",
     "@types/jest": "^29.5.4",
     "fclone": "^1.0.11",
     "jest": "^29.6.4",
