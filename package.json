@@ -27,7 +27,7 @@
   "scripts": {
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
-    "lint": "eslint --ignore-path .gitignore -f unix --ext .ts src index.js",
+    "lint": "eslint --max-warnings 0 --ignore-path .gitignore .",
     "test": "npm run ci:test",
     "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "ci:compile": "tsc --noEmit",
