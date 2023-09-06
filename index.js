@@ -345,12 +345,5 @@ module.exports = {
         ],
       },
     },
-    {
-      // in Check Digit code bases, swagger.ts files are large, generated files
-      files: ['swagger.ts'],
-      rules: {
-        'max-lines': 'off',
-      },
-    },
   ],
 };
