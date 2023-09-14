@@ -323,6 +323,7 @@ module.exports = {
         'no-await-in-loop': 'off',
         'no-magic-numbers': 'off',
         'no-undefined': 'off',
+        'prefer-promise-reject-errors': 'off',
         'require-yield': 'off',
       },
     },
