@@ -144,7 +144,6 @@ module.exports = {
     // typeof any === "evil".
     '@typescript-eslint/no-explicit-any': 'error',
 
-    // We're smarter than the default (15). Right?
     'sonarjs/cognitive-complexity': ['error', 24],
     'no-only-tests/no-only-tests': 'error',
 
