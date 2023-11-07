@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "8.3.1",
+  "version": "8.3.2",
   "description": "Check Digit standard eslint configuration",
   "private": false,
   "prettier": "@checkdigit/prettier-config",
@@ -9,7 +9,7 @@
     "node": ">=18"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "5.3.0-PR.42-749f",
+    "@checkdigit/eslint-plugin": "5.3.0-PR.44-e71b",
     "@typescript-eslint/eslint-plugin": "6.7.3",
     "@typescript-eslint/parser": "6.7.3",
     "eslint": "8.50.0",
