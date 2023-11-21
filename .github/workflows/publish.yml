@@ -7,6 +7,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     name: Publish to NPM
     steps:
       - uses: actions/checkout@v3
@@ -19,8 +22,8 @@ jobs:
       - name: Audit Signatures
         run: npm audit signatures
       - name: Run Test
-        run: npm run ci:test
+        run: npm run test
       - name: Publish
-        run: npm publish
+        run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
