@@ -1,5 +1,7 @@
 // typescript.test.ts
 
+import { strict as assert } from 'node:assert';
+
 // eslint-disable-next-line n/no-restricted-import
 import 'fclone';
 
@@ -27,5 +29,8 @@ paginator();
 
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 setTimeout("alert('Hi!');", 100);
+
+const foo = <T>(argument: T) => (argument ? 1 : 0);
+assert.ok(foo);
 
 export default testHello;

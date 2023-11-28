@@ -24,7 +24,7 @@ function hello(_?: string): bigint {
 
 // eslint-disable-next-line unicorn/no-array-for-each,unicorn/prevent-abbreviations
 ['', undefined].forEach((_lib) => {
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
   const thing = _lib || {};
   hello(thing as string);
   // do nothing
@@ -63,5 +63,9 @@ if (Math.random()) {
 
 // eslint-disable-next-line no-unneeded-ternary
 assert.ok(Math.random() === 2 ? true : false);
+
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+const foo = <T>(argument: T) => (argument ? 1 : 0);
+assert.ok(foo);
 
 export default hello;
