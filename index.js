@@ -39,6 +39,7 @@ module.exports = {
   },
   rules: {
     'no-shadow': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'error',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/no-unused-vars': [
       'error',
@@ -90,7 +91,7 @@ module.exports = {
 
     // turn on node-specific stylistic rules
     'n/exports-style': 'error',
-    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore']],
+    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore', 'fs-extra']],
     'n/no-process-env': 'error',
     'n/no-sync': 'error',
     'n/prefer-global/buffer': 'error',
@@ -306,6 +307,7 @@ module.exports = {
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
         '@typescript-eslint/no-confusing-void-expression': 'off',
+        '@typescript-eslint/strict-boolean-expressions': 'off',
         '@typescript-eslint/unbound-method': 'off',
         'n/no-process-env': 'off',
         'sonarjs/no-duplicate-string': 'off',
