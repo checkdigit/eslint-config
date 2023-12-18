@@ -2,6 +2,8 @@
 
 import { strict as assert } from 'node:assert';
 
+import 'typescript';
+
 // eslint-disable-next-line n/no-restricted-import
 import 'fclone';
 
@@ -32,5 +34,7 @@ setTimeout("alert('Hi!');", 100);
 
 const foo = <T>(argument: T) => (argument ? 1 : 0);
 assert.ok(foo);
+
+assert.ok({}.toString());
 
 export default testHello;

@@ -297,6 +297,7 @@ module.exports = {
       files: ['*.spec.ts', '*.test.ts'],
       rules: {
         '@checkdigit/no-uuid': 'off',
+        '@typescript-eslint/no-base-to-string': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
@@ -309,6 +310,7 @@ module.exports = {
         '@typescript-eslint/no-confusing-void-expression': 'off',
         '@typescript-eslint/strict-boolean-expressions': 'off',
         '@typescript-eslint/unbound-method': 'off',
+        'import/no-extraneous-dependencies': 'off',
         'n/no-process-env': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'sonarjs/no-identical-functions': 'off',

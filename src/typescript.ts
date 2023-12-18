@@ -3,6 +3,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'jest';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'typescript';
+
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import { strict as assert } from 'assert';
 
@@ -26,6 +29,8 @@ function hello(_?: string): bigint {
 ['', undefined].forEach((_lib) => {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
   const thing = _lib || {};
+  // this is a comment for the regex below
+  assert.ok(/^[a-z]+$/u.test('hello'));
   hello(thing as string);
   // do nothing
 });
@@ -67,5 +72,8 @@ assert.ok(Math.random() === 2 ? true : false);
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 const foo = <T>(argument: T) => (argument ? 1 : 0);
 assert.ok(foo);
+
+// eslint-disable-next-line @typescript-eslint/no-base-to-string
+assert.ok({}.toString());
 
 export default hello;

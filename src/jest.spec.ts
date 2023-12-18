@@ -2,6 +2,8 @@
 
 import { strict as assert } from 'node:assert';
 
+import { afterEach, beforeAll, beforeEach, describe, it, xit } from '@jest/globals';
+
 // eslint-disable-next-line jest/require-top-level-describe
 it('lonely it', () => {
   // do nothing
