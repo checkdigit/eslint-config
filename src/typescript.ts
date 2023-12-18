@@ -29,6 +29,8 @@ function hello(_?: string): bigint {
 ['', undefined].forEach((_lib) => {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
   const thing = _lib || {};
+  // this is a comment for the regex below
+  assert.ok(/^[a-z]+$/u.test('hello'));
   hello(thing as string);
   // do nothing
 });
