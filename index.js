@@ -91,7 +91,7 @@ module.exports = {
 
     // turn on node-specific stylistic rules
     'n/exports-style': 'error',
-    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore', 'fs-extra']],
+    'n/no-restricted-import': ['error', ['moment', 'clone', 'fclone', 'lodash', 'underscore', 'fs-extra', '@checkdigit/typescript']],
     'n/no-process-env': 'error',
     'n/no-sync': 'error',
     'n/prefer-global/buffer': 'error',
