@@ -1,28 +1,28 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "9.1.1",
+  "version": "9.2.0",
   "description": "Check Digit standard eslint configuration",
   "private": false,
   "prettier": "@checkdigit/prettier-config",
   "main": "index.js",
   "engines": {
-    "node": ">=20.10"
+    "node": ">=20.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "5.3.0",
-    "@typescript-eslint/eslint-plugin": "6.15.0",
-    "@typescript-eslint/parser": "6.15.0",
-    "eslint": "8.56.0",
+    "@checkdigit/eslint-plugin": "5.5.3",
+    "@typescript-eslint/eslint-plugin": "7.2.0",
+    "@typescript-eslint/parser": "7.2.0",
+    "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-import-resolver-typescript": "3.6.1",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-jest": "27.6.0",
-    "eslint-plugin-n": "16.4.0",
+    "eslint-plugin-jest": "27.9.0",
+    "eslint-plugin-n": "16.6.2",
     "eslint-plugin-no-only-tests": "3.1.0",
     "eslint-plugin-no-secrets": "0.8.9",
-    "eslint-plugin-sonarjs": "0.23.0",
-    "eslint-plugin-unicorn": "49.0.0"
+    "eslint-plugin-sonarjs": "0.24.0",
+    "eslint-plugin-unicorn": "51.0.1"
   },
   "scripts": {
     "prettier": "prettier --ignore-path .gitignore --list-different .",
@@ -49,8 +49,8 @@
   },
   "homepage": "https://github.com/checkdigit/eslint-config#readme",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^5.0.0",
-    "@checkdigit/typescript-config": "^6.0.0",
+    "@checkdigit/prettier-config": "^5.3.0",
+    "@checkdigit/typescript-config": "^7.0.0",
     "@jest/globals": "^29.7.0",
     "fclone": "^1.0.11",
     "jest": "^29.7.0"
