@@ -9,7 +9,7 @@
     "node": ">=20.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "5.6.0-PR.57-e757",
+    "@checkdigit/eslint-plugin": "6.1.0-PR.63-2f57",
     "@typescript-eslint/eslint-plugin": "7.2.0",
     "@typescript-eslint/parser": "7.2.0",
     "eslint": "8.57.0",
@@ -50,7 +50,7 @@
   "homepage": "https://github.com/checkdigit/eslint-config#readme",
   "devDependencies": {
     "@checkdigit/prettier-config": "^5.3.0",
-    "@checkdigit/typescript-config": "^7.0.0",
+    "@checkdigit/typescript-config": "^7.0.1",
     "@jest/globals": "^29.7.0",
     "fclone": "^1.0.11",
     "jest": "^29.7.0"
@@ -62,5 +62,12 @@
     "extends": [
       "./index.js"
     ]
+  },
+  "wallaby": {
+    "env": {
+      "params": {
+        "runner": "--experimental-vm-modules"
+      }
+    }
   }
 }
