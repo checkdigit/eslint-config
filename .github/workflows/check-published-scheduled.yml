@@ -7,10 +7,11 @@ on:
 
 jobs:
   checkPublished:
-    runs-on: ubuntu-latest
     name: Check Published
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Check Published
