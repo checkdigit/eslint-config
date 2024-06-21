@@ -294,6 +294,19 @@ module.exports = {
 
     // a lot of our "useless" switch/cases are based on external specifications and are important documentation
     'unicorn/no-useless-switch-case': 'off',
+
+    // most of the time it makes sense, but sometimes it's bad to have to come up with a name
+    'unicorn/no-anonymous-default-export': 'off',
+
+    '@typescript-eslint/restrict-template-expressions': [
+      'error',
+      {
+        allowNumber: true,
+        allowBoolean: true,
+      },
+    ],
+
+    'n/no-unsupported-features/node-builtins': 'off',
   },
   overrides: [
     {

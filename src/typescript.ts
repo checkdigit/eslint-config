@@ -77,3 +77,15 @@ assert.ok(foo);
 assert.ok({}.toString());
 
 export default hello;
+
+const numberValue = 1;
+const booleanValue = true;
+const objectValue = { key: 'value' };
+// linting error is not reported because @typescript-eslint/restrict-template-expressions is configured to allow number and boolean
+assert(`I'm a number, ${numberValue}`);
+assert(`I'm a boolean, ${booleanValue}`);
+// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
+assert(`I'm a object, ${objectValue}`);
+
+// linting error is not reported because n/no-unsupported-features/node-builtins is disabled
+await fetch('https://example.com');

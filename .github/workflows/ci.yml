@@ -5,33 +5,23 @@ on:
     branches:
       - 'main'
 
-env:
-  CI: true
-
 jobs:
   pullRequestBuild:
     name: Pull Request Build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 21.x]
+        node-version: ['20.x', '22.x']
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Check Label
-        uses: checkdigit/github-actions/check-label@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check Imports
-        uses: checkdigit/github-actions/check-imports@main
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci --ignore-scripts
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Compile
         run: npm run ci:compile
       - name: Check Code Style
@@ -42,13 +32,14 @@ jobs:
         run: npm run ci:test
 
   branchBuild:
-    runs-on: ubuntu-latest
     name: Branch Build
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 21.x]
+        node-version: ['20.x', '22.x']
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Use Node.js ${{ matrix.node-version }}
@@ -56,16 +47,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Check Label
-        uses: checkdigit/github-actions/check-label@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check Imports
-        uses: checkdigit/github-actions/check-imports@main
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci --ignore-scripts
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Compile
         run: npm run ci:compile
       - name: Check Code Style
