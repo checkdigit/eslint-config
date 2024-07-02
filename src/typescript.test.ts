@@ -21,15 +21,17 @@ function testHello(_?: string) {
 });
 
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- ok since this is a test file
+// eslint-disable-next-line @checkdigit/no-side-effects
 testHello(undefined);
 
 async function* paginator() {
   // no yield required since this is a test file
   throw new Error('should not be called');
 }
+// eslint-disable-next-line @checkdigit/no-side-effects
 paginator();
 
-// eslint-disable-next-line @typescript-eslint/no-implied-eval
+// eslint-disable-next-line @typescript-eslint/no-implied-eval, @checkdigit/no-side-effects
 setTimeout("alert('Hi!');", 100);
 
 const foo = <T>(argument: T) => (argument ? 1 : 0);

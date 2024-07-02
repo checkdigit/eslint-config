@@ -4,11 +4,12 @@ import { strict as assert } from 'node:assert';
 
 import { afterEach, beforeAll, beforeEach, describe, it, xit } from '@jest/globals';
 
-// eslint-disable-next-line jest/require-top-level-describe
+// eslint-disable-next-line jest/require-top-level-describe, @checkdigit/no-side-effects
 it('lonely it', () => {
   // do nothing
 });
 
+// eslint-disable-next-line @checkdigit/no-side-effects
 describe('top level describe', () => {
   beforeEach(() => {
     // do nothing
@@ -65,7 +66,7 @@ describe('top level describe', () => {
   });
 });
 
-// eslint-disable-next-line jest/require-top-level-describe
+// eslint-disable-next-line jest/require-top-level-describe, @checkdigit/no-side-effects
 describe('second top level describe', () => {
   // do nothing
 });
