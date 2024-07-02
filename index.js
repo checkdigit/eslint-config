@@ -298,6 +298,7 @@ module.exports = {
     // most of the time it makes sense, but sometimes it's bad to have to come up with a name
     'unicorn/no-anonymous-default-export': 'off',
 
+    // having this restriction for number/boolean literals forces unnecessary changes
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       {
@@ -306,13 +307,17 @@ module.exports = {
       },
     ],
 
+    // we are seriously using many new features such as fetch, etc.
     'n/no-unsupported-features/node-builtins': 'off',
+
+    '@checkdigit/no-test-import': 'error',
   },
   overrides: [
     {
       files: ['*.spec.ts', '*.test.ts'],
       rules: {
         '@checkdigit/no-uuid': 'off',
+        '@checkdigit/no-test-import': 'off',
         '@typescript-eslint/no-base-to-string': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',

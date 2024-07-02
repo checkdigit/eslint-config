@@ -14,6 +14,10 @@ import fs from 'node:fs';
 // eslint-disable-next-line n/prefer-global/url-search-params
 import { URLSearchParams } from 'node:url';
 
+// eslint-disable-next-line @checkdigit/no-test-import
+import testHello from './typescript.test';
+testHello();
+
 // eslint-disable-next-line n/no-sync
 assert.ok(fs.existsSync('.'));
 assert.ok(URLSearchParams);
