@@ -37,12 +37,14 @@ function hello(_?: string): bigint {
 
 // eslint-disable-next-line @checkdigit/no-uuid
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- not ok since this is a non-test file
+// eslint-disable-next-line @checkdigit/no-side-effects
 hello();
 
 // eslint-disable-next-line require-yield
 async function* paginator() {
   throw new Error('should not be called');
 }
+// eslint-disable-next-line @checkdigit/no-side-effects
 paginator();
 
 // eslint-disable-next-line @typescript-eslint/no-for-in-array,guard-for-in,no-magic-numbers
@@ -51,7 +53,7 @@ for (const value in [1, 2, 3]) {
   console.log(value);
 }
 
-// eslint-disable-next-line no-eval
+// eslint-disable-next-line no-eval, @checkdigit/no-side-effects
 eval('console.log("no-no");');
 
 // eslint-disable-next-line no-invalid-this
@@ -88,4 +90,5 @@ assert(`I'm a boolean, ${booleanValue}`);
 assert(`I'm a object, ${objectValue}`);
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
+// eslint-disable-next-line @checkdigit/no-side-effects
 await fetch('https://example.com');
