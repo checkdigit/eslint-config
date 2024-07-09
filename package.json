@@ -27,6 +27,7 @@
     "ci:style": "npm run prettier && npx eslint-config-prettier index.js",
     "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "lint": "eslint --max-warnings 0 --ignore-path .gitignore .",
+    "lint:fix": "eslint --max-warnings 0 --ignore-path .gitignore --fix .",
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
     "test": "npm run ci:test"
@@ -45,7 +46,7 @@
     "jest": "^29.7.0"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "6.4.0-PR.72-0c74",
+    "@checkdigit/eslint-plugin": "6.4.0-PR.72-dcf0",
     "@typescript-eslint/eslint-plugin": "7.14.1",
     "@typescript-eslint/parser": "7.14.1",
     "eslint": "8.57.0",
