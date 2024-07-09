@@ -89,3 +89,10 @@ assert(`I'm a object, ${objectValue}`);
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
 await fetch('https://example.com');
+
+// test rule @checkdigit/invalid-json-stringify
+const objectToSerialize = { key: 'value' };
+assert.deepEqual(JSON.stringify(objectToSerialize), '{"key":"value"}');
+const error = new Error('error');
+// eslint-disable-next-line @checkdigit/invalid-json-stringify
+assert.equal(JSON.stringify(error), '{}'); // serialization of Error object is losing information, hance the error
