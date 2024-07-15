@@ -106,3 +106,14 @@ try {
   // eslint-disable-next-line no-console, @checkdigit/invalid-json-stringify
   console.log(JSON.stringify(caughtError));
 }
+
+export async function testNoPromiseInstanceMethodRule(): Promise<void> {
+  // eslint-disable-next-line @checkdigit/no-promise-instance-method
+  return fetch('https://example.com')
+    .then((response) => {
+      assert.ok(response);
+    })
+    .catch(() => {
+      //
+    });
+}
