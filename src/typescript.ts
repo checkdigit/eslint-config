@@ -20,10 +20,11 @@ testHello();
 
 // eslint-disable-next-line n/no-sync
 assert.ok(fs.existsSync('.'));
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 assert.ok(URLSearchParams);
 
 // eslint-disable-next-line n/no-process-env
-assert.ok(process.env['DEBUG']);
+assert.ok(process.env['DEBUG'] !== undefined);
 
 function hello(_?: string): bigint {
   return -1n + 1n + 10n;
@@ -58,7 +59,7 @@ for (const value in [1, 2, 3]) {
 // eslint-disable-next-line no-eval
 eval('console.log("no-no");');
 
-// eslint-disable-next-line no-invalid-this
+// eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions
 assert.ok(this);
 
 if (Math.random()) {
@@ -75,6 +76,7 @@ assert.ok(Math.random() === 2 ? true : false);
 
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 const foo = <T>(argument: T) => (argument ? 1 : 0);
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 assert.ok(foo);
 
 // eslint-disable-next-line @typescript-eslint/no-base-to-string
@@ -111,6 +113,7 @@ export async function testNoPromiseInstanceMethodRule(): Promise<void> {
   // eslint-disable-next-line @checkdigit/no-promise-instance-method
   return fetch('https://example.com')
     .then((response) => {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       assert.ok(response);
     })
     .catch(() => {

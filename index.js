@@ -26,7 +26,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/typescript',
     'plugin:n/recommended',
-    'plugin:sonarjs/recommended',
+    'plugin:sonarjs/recommended-legacy',
     'plugin:eslint-comments/recommended',
     'plugin:unicorn/recommended',
     'prettier',
