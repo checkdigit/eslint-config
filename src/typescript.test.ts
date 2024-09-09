@@ -9,7 +9,7 @@ import 'fclone';
 
 import './typescript';
 
-function testHello(_?: string) {
+function testHello(_?: string): number {
   return 123 + 0xf;
 }
 
