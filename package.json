@@ -46,7 +46,7 @@
     "jest": "^29.7.0"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "6.6.0-PR.79-5f54",
+    "@checkdigit/eslint-plugin": "6.6.0-PR.79-65ee",
     "@typescript-eslint/eslint-plugin": "7.17.0",
     "@typescript-eslint/parser": "7.17.0",
     "eslint": "8.57.0",
