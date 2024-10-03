@@ -120,3 +120,52 @@ export async function testNoPromiseInstanceMethodRule(): Promise<void> {
       //
     });
 }
+
+/** =================================================
+ * Below are service wrapper related stuff
+ */
+
+export type Headers = Record<string, string>;
+export interface BodyResponseOptions {
+  resolveWithFullResponse: false;
+  headers?: Headers;
+}
+export interface FullResponse<T = object> {
+  headers: Headers;
+  status: string;
+  statusCode: string;
+  body?: T;
+}
+export interface FullResponseOptions {
+  resolveWithFullResponse: true;
+  headers?: Headers;
+}
+export interface EndpointFunction<T = unknown> {
+  (uri: string, options?: BodyResponseOptions): Promise<T>;
+  (uri: string, options?: FullResponseOptions): Promise<FullResponse<T>>;
+}
+export interface EndpointFunctionWithRequestBody<T = unknown> {
+  (uri: string, json?: object, options?: BodyResponseOptions): Promise<T>;
+  (uri: string, json?: object, options?: FullResponseOptions): Promise<FullResponse<T>>;
+}
+export interface Endpoint {
+  head: EndpointFunction;
+  get: EndpointFunction;
+  del: EndpointFunction;
+  patch: EndpointFunctionWithRequestBody;
+  put: EndpointFunctionWithRequestBody;
+  post: EndpointFunctionWithRequestBody;
+}
+export interface InboundContext {
+  get: (field: string) => string;
+}
+export type ResolvedService = (context: InboundContext) => Endpoint;
+export type ResolvedServices = Record<string, ResolvedService>;
+export interface Configuration {
+  service: ResolvedServices;
+}
+
+export async function callServiceWrapper(endpoint: Endpoint): Promise<unknown> {
+  // eslint-disable-next-line @checkdigit/require-resolve-full-response
+  return endpoint.get(`/some-service/v1/ping`);
+}
