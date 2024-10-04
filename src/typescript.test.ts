@@ -2,7 +2,8 @@
 
 import { strict as assert } from 'node:assert';
 
-import 'typescript';
+// eslint-disable-next-line @checkdigit/require-type-out-of-type-only-imports
+import { type Path as _Path } from 'typescript';
 
 // eslint-disable-next-line n/no-restricted-import
 import 'fclone';

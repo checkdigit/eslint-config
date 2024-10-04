@@ -6,6 +6,9 @@ import 'jest';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'typescript';
 
+// eslint-disable-next-line @checkdigit/require-type-out-of-type-only-imports, unicorn/import-style
+import { type ParsedPath as _ParsedPath, type PlatformPath as _PlatformPath } from 'node:path';
+
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import { strict as assert } from 'assert';
 
@@ -142,10 +145,12 @@ export interface FullResponseOptions {
 }
 export interface EndpointFunction<T = unknown> {
   (uri: string, options?: BodyResponseOptions): Promise<T>;
+  // eslint-disable-next-line @checkdigit/no-full-response
   (uri: string, options?: FullResponseOptions): Promise<FullResponse<T>>;
 }
 export interface EndpointFunctionWithRequestBody<T = unknown> {
   (uri: string, json?: object, options?: BodyResponseOptions): Promise<T>;
+  // eslint-disable-next-line @checkdigit/no-full-response
   (uri: string, json?: object, options?: FullResponseOptions): Promise<FullResponse<T>>;
 }
 export interface Endpoint {
@@ -168,4 +173,9 @@ export interface Configuration {
 export async function callServiceWrapper(endpoint: Endpoint): Promise<unknown> {
   // eslint-disable-next-line @checkdigit/require-resolve-full-response
   return endpoint.get(`/some-service/v1/ping`);
+}
+
+// eslint-disable-next-line @checkdigit/no-full-response
+export async function callServiceWrapperWithFullResponse(endpoint: Endpoint): Promise<FullResponse<unknown>> {
+  return endpoint.get(`/some-service/v1/ping`, { resolveWithFullResponse: true });
 }
