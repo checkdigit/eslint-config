@@ -24,7 +24,7 @@
   "scripts": {
     "ci:compile": "tsc --noEmit",
     "ci:lint": "npm run lint",
-    "ci:style": "npm run prettier && npx eslint-config-prettier index.js",
+    "ci:style": "npm run prettier",
     "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
