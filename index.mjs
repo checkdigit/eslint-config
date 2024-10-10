@@ -1,88 +1,74 @@
+/*
+ * Copyright (c) 2021-2024 Check Digit, LLC
+ *
+ * This code is licensed under the MIT license (see LICENSE.txt for details).
+ */
+
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { promises as fs } from 'node:fs';
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import checkdigit from '@checkdigit/eslint-plugin';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
-import _import from 'eslint-plugin-import';
+import importPlugin from 'eslint-plugin-import';
 import noOnlyTests from 'eslint-plugin-no-only-tests';
 import noSecrets from 'eslint-plugin-no-secrets';
-// eslint-disable-next-line id-length
 import n from 'eslint-plugin-n';
 import tsParser from '@typescript-eslint/parser';
 import jest from 'eslint-plugin-jest';
 import js from '@eslint/js';
+import prettier from 'eslint-config-prettier';
 import { FlatCompat } from '@eslint/eslintrc';
+import unicorn from 'eslint-plugin-unicorn';
 
+const ignores = [
+  ...(await fs.readFile('.gitignore', 'utf-8')).split('\n').filter((path) => path.trim() !== ''),
+  'eslint.config.mjs',
+];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  recommendedConfig: js.configs.recommended,
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  allConfig: js.configs.all,
 });
 
 export default [
-  {
-    ignores: ['eslint.config.mjs', 'index.mjs', 'index.js', 'src/javascript.js', 'src/javascript.test.js'],
-  },
+  { ignores },
+  js.configs.all,
+  ...ts.configs.strictTypeChecked,
+  ...ts.configs.stylisticTypeChecked,
   sonarjs.configs.recommended,
-  ...fixupConfigRules(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    compat.extends(
-      'eslint:all',
-      'plugin:@checkdigit/all',
-      'plugin:@typescript-eslint/strict-type-checked',
-      'plugin:@typescript-eslint/stylistic-type-checked',
-      'plugin:import/errors',
-      'plugin:import/typescript',
-      'plugin:n/recommended',
-      'plugin:eslint-comments/recommended',
-      'plugin:unicorn/recommended',
-      'prettier',
-    ),
-  ),
+  importPlugin.flatConfigs.recommended,
+  // [TODO:] importPlugin.flatConfigs.error,
+  importPlugin.flatConfigs.typescript,
+  prettier,
+  n.configs['flat/recommended-module'],
+  checkdigit.configs.all,
+  unicorn.configs['flat/recommended'],
+  ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
   {
     plugins: {
-      '@checkdigit': fixupPluginRules(checkdigit),
-      '@typescript-eslint': fixupPluginRules(typescriptEslint),
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      import: fixupPluginRules(_import),
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       'no-only-tests': noOnlyTests,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       'no-secrets': noSecrets,
-      n: fixupPluginRules(n),
     },
-
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
-
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
         projectService: true,
-        tsconfigRootDir: __dirname,
       },
     },
-
     settings: {
       'import/resolver': {
         typescript: true,
         node: true,
       },
     },
-
     rules: {
       'no-shadow': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'error',
       '@typescript-eslint/no-shadow': 'error',
-
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -103,11 +89,19 @@ export default [
         },
       ],
 
+      // Per require-await docs:
+      // If you are throwing an error inside an asynchronous function for this purpose, then you may want to disable this rule.
       'require-await': 'off',
       '@typescript-eslint/require-await': 'off',
-      // eslint-disable-next-line no-magic-numbers
+
+      // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
+      // set to 200 because that is sonar's default
       'max-lines-per-function': ['error', 200],
+
+      // enforce use of curly braces around if statements and discourage one-line ifs
       curly: 'error',
+
+      // undefined can be used
       'no-undefined': 'off',
 
       'sort-imports': [
@@ -125,6 +119,7 @@ export default [
         },
       ],
 
+      // turn on node-specific stylistic rules
       'n/exports-style': 'error',
 
       'n/no-restricted-import': [
@@ -141,22 +136,30 @@ export default [
       'n/prefer-global/text-encoder': 'error',
       'n/prefer-global/url': 'error',
       'n/prefer-global/url-search-params': 'error',
+
+      // this doesn't work for our style of imports
       'n/no-missing-import': 'off',
       'n/no-extraneous-import': 'off',
+
+      // this doesn't seem to work
       'n/no-unpublished-import': 'off',
+
+      // duplicated by unicorn/no-process-exit
       'n/no-process-exit': 'off',
 
+      // import-specific rules
       'import/no-extraneous-dependencies': [
         'error',
         {
-          // eslint-disable-next-line sonarjs/no-duplicate-string
           devDependencies: ['**/*.spec.ts', '**/*.test.ts'],
         },
       ],
-
       'import/no-deprecated': 'error',
       'import/namespace': 'off',
+
+      // has a bug, throws an exception in some cases
       'import/export': 'off',
+
       'spaced-comment': 'error',
       'no-var': 'error',
       'prefer-const': 'error',
@@ -170,10 +173,18 @@ export default [
       '@typescript-eslint/ban-ts-comment': 'error',
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-require-imports': 'error',
+
+      // sometimes fails on valid interface names like ISO8583
       '@typescript-eslint/interface-name-prefix': 'off',
+
+      // typeof any === "evil".
       '@typescript-eslint/no-explicit-any': 'error',
+
+      // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
       'no-only-tests/no-only-tests': 'error',
+
+      // eslint:all rules to modify
       'one-var': 'off',
       'default-case': 'off',
       'sort-keys': 'off',
@@ -252,14 +263,22 @@ export default [
       ],
 
       'no-ternary': 'off',
+
+      // this should use the default (3) but would currently cause too much pain
       'max-params': ['error', 8],
+
+      // this should be turned on if the ignoreTopLevelFunctions option starts working
       'max-statements': 'off',
       'consistent-return': 'off',
       'init-declarations': 'off',
       'no-inline-comments': 'off',
       'line-comment-position': 'off',
       'prefer-destructuring': 'off',
+
+      // use the sonarjs version instead
       complexity: 'off',
+
+      // thanks to Prettier, we don't rely on automatic semicolon insertion, so this can remain off
       'no-plusplus': 'off',
 
       'max-lines': [
@@ -288,10 +307,15 @@ export default [
 
       'dot-notation': 'off',
       'eslint-comments/no-unused-disable': 2,
+
+      // this doesn't make sense in Typescript code, we can rely on type checking to catch it
       'unicorn/no-array-callback-reference': 'off',
+
+      // regardless of merits, these rules contradict prettier so cannot be
       'unicorn/no-nested-ternary': 'off',
       'unicorn/number-literal-case': 'off',
 
+      // require 4 separate conditions before an error
       'unicorn/prefer-switch': [
         'error',
         {
@@ -300,13 +324,25 @@ export default [
         },
       ],
 
+      // this seems excessive
       'unicorn/no-unreadable-array-destructuring': 'off',
+
+      // duplicate of eslint-comments/no-unlimited-disable
       'unicorn/no-abusive-eslint-disable': 'off',
+
+      // because of Typescript, we don't use null in our code unless we have to, which makes this annoying
       'unicorn/no-null': 'off',
+
+      // there are a lot of cases where this doesn't help readability
       'unicorn/prefer-ternary': 'off',
+
+      // a lot of our "useless" switch/cases are based on external specifications and are important documentation
       'unicorn/no-useless-switch-case': 'off',
+
+      // most of the time it makes sense, but sometimes it's bad to have to come up with a name
       'unicorn/no-anonymous-default-export': 'off',
 
+      // having this restriction for number/boolean literals forces unnecessary changes
       '@typescript-eslint/restrict-template-expressions': [
         'error',
         {
@@ -315,13 +351,13 @@ export default [
         },
       ],
 
+      // we are seriously using many new features such as fetch, etc.
       'n/no-unsupported-features/node-builtins': 'off',
       '@checkdigit/no-test-import': 'error',
     },
   },
   {
     files: ['**/*.spec.ts', '**/*.test.ts'],
-
     rules: {
       '@checkdigit/no-uuid': 'off',
       '@checkdigit/no-test-import': 'off',
@@ -360,35 +396,23 @@ export default [
       'require-yield': 'off',
     },
   },
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, strict, @typescript-eslint/no-unsafe-return
-  ...compat.extends('plugin:jest/recommended').map((config) => ({
-    ...config,
-    files: ['**/*.spec.ts'],
-  })),
   {
     files: ['**/*.spec.ts'],
-
-    plugins: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      jest,
-    },
-
+    ...jest.configs['flat/recommended'],
     rules: {
+      ...jest.configs['flat/recommended'].rules,
       'jest/expect-expect': 'off',
-
       'jest/max-nested-describe': [
         'error',
         {
           max: 1,
         },
       ],
-
       'jest/no-duplicate-hooks': ['error'],
       'jest/prefer-hooks-in-order': ['error'],
       'jest/prefer-hooks-on-top': ['error'],
       'jest/no-disabled-tests': ['error'],
       'jest/no-commented-out-tests': ['error'],
-
       'jest/require-top-level-describe': [
         'error',
         {

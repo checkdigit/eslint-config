@@ -1,2 +1,8 @@
 import config from './index.mjs';
-export default config;
+
+export default [
+  {
+    ignores: ['**/*.js', '**/*.mjs'],
+  },
+  ...config,
+];
