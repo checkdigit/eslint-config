@@ -7,6 +7,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promises as fs } from 'node:fs';
+
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import checkdigit from '@checkdigit/eslint-plugin';
 import ts from 'typescript-eslint';
@@ -37,19 +38,18 @@ export default [
   js.configs.all,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
+  unicorn.configs['flat/recommended'],
   sonarjs.configs.recommended,
-  importPlugin.flatConfigs.recommended,
-  // [TODO:] importPlugin.flatConfigs.error,
-  importPlugin.flatConfigs.typescript,
   prettier,
   n.configs['flat/recommended-module'],
-  checkdigit.configs.all,
-  unicorn.configs['flat/recommended'],
+  importPlugin.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
+  checkdigit.configs.all,
   {
     plugins: {
       'no-only-tests': noOnlyTests,
       'no-secrets': noSecrets,
+      import: importPlugin,
     },
     languageOptions: {
       parser: tsParser,
