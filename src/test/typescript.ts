@@ -1,7 +1,4 @@
-// typescript.ts
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'jest';
+// test/typescript.ts
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'typescript';
