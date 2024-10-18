@@ -17,8 +17,8 @@ plugins that are supported by the configuration via `peerDependencies`.
 {
   // ...
   "scripts": {
-    "lint": "eslint --max-warnings 0 --ignore-path .gitignore .",
-    "lint:fix": "eslint --ignore-path .gitignore . --fix",
+    "lint": "eslint --max-warnings 0 .",
+    "lint:fix": "eslint . --fix",
     "test": "... && npm run lint",
   },
   // ...

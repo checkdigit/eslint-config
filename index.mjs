@@ -422,7 +422,7 @@ export default [
     },
   },
   {
-    files: ['**/fixture.test.ts'],
+    files: ['src/plugin/**'],
     rules: {
       '@checkdigit/no-full-response': 'off',
     },
