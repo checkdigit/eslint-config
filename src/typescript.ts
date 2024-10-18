@@ -1,4 +1,4 @@
-// test/typescript.ts
+// typescript.ts
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'typescript';

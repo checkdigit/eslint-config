@@ -1,4 +1,4 @@
-// test/jest.spec.ts
+// jest.spec.ts
 
 import { strict as assert } from 'node:assert';
 

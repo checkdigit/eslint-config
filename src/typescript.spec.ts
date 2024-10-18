@@ -1,4 +1,4 @@
-// test/typescript.spec.ts
+// typescript.spec.ts
 
 // it's ok to import test files from test code
 import testHello from './typescript.test';

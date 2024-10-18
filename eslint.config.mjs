@@ -1,4 +1,4 @@
-import config from './src/index.mjs';
+import config from './index.mjs';
 
 export default [
   {
