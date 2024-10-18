@@ -1,4 +1,4 @@
-// index.ts
+// test/index.ts
 
 // source file empty on purpose
 

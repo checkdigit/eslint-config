@@ -1,7 +1,4 @@
-// typescript.ts
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'jest';
+// test/typescript.ts
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'typescript';
@@ -74,7 +71,7 @@ if (Math.random()) {
 // eslint-disable-next-line no-unneeded-ternary
 assert.ok(Math.random() === 2 ? true : false);
 
-// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 assert.ok(foo);

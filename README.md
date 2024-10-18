@@ -1,10 +1,8 @@
-# eslint-config
+# @checkdigit/eslint-config
 
 Copyright (c) 2021-2024 [Check Digit, LLC](https://checkdigit.com)
 
-Check Digit [ESLint](https://eslint.org/) configuration
-
-### Install
+## Install
 
 ```bash
 $ npm i @checkdigit/eslint-config --save-dev
@@ -21,15 +19,17 @@ plugins that are supported by the configuration via `peerDependencies`.
   "scripts": {
     "lint": "eslint --max-warnings 0 --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
-    "test": "... && npm run lint"
-  }
-  "eslintConfig": {
-    "extends": [
-      "@checkdigit/eslint-config"
-    ]
-  }
+    "test": "... && npm run lint",
+  },
   // ...
 }
+```
+
+### Example `eslint.config.mjs`
+
+```javascript
+import config from '@checkdigit/eslint-config';
+export default [...config];
 ```
 
 ## License
