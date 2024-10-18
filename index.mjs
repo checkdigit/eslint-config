@@ -8,7 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promises as fs } from 'node:fs';
 
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
+import { fixupConfigRules } from '@eslint/compat';
 import checkdigit from '@checkdigit/eslint-plugin';
 import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
@@ -419,6 +419,12 @@ export default [
           maxNumberOfTopLevelDescribes: 1,
         },
       ],
+    },
+  },
+  {
+    files: ['**/fixture.test.ts'],
+    rules: {
+      '@checkdigit/no-full-response': 'off',
     },
   },
 ];
