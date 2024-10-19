@@ -17,8 +17,8 @@ plugins that are supported by the configuration via `peerDependencies`.
 {
   // ...
   "scripts": {
-    "lint": "eslint --max-warnings 0 .",
-    "lint:fix": "eslint . --fix",
+    "lint": "NODE_OPTIONS=\"--disable-warning ExperimentalWarning\" eslint --max-warnings 0 .",
+    "lint:fix": "NODE_OPTIONS=\"--disable-warning ExperimentalWarning\" eslint . --fix",
     "test": "... && npm run lint",
   },
   // ...
@@ -28,8 +28,7 @@ plugins that are supported by the configuration via `peerDependencies`.
 ### Example `eslint.config.mjs`
 
 ```javascript
-import config from '@checkdigit/eslint-config';
-export default [...config];
+import { default } from '@checkdigit/eslint-config';
 ```
 
 ## License

@@ -27,7 +27,7 @@
     "ci:style": "npm run prettier",
     "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
     "lint": "NODE_OPTIONS=\"--disable-warning ExperimentalWarning\" eslint --max-warnings 0 .",
-    "lint:fix": "eslint --max-warnings 0 --fix .",
+    "lint:fix": "NODE_OPTIONS=\"--disable-warning ExperimentalWarning\" eslint --max-warnings 0 --fix .",
     "prepare": "",
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
