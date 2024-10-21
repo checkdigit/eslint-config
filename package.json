@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -44,12 +44,12 @@
   },
   "peerDependencies": {
     "@checkdigit/eslint-plugin": "7.0.0",
-    "@eslint/compat": "1.2.0",
+    "@eslint/compat": "1.2.1",
     "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.12.0",
-    "@typescript-eslint/eslint-plugin": "8.10.0",
-    "@typescript-eslint/parser": "8.10.0",
-    "eslint": "9.12.0",
+    "@eslint/js": "9.13.0",
+    "@typescript-eslint/eslint-plugin": "8.11.0",
+    "@typescript-eslint/parser": "8.11.0",
+    "eslint": "9.13.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-import-resolver-typescript": "3.6.3",
     "eslint-plugin-eslint-comments": "3.2.0",
@@ -60,7 +60,7 @@
     "eslint-plugin-no-secrets": "1.0.2",
     "eslint-plugin-sonarjs": "1.0.4",
     "eslint-plugin-unicorn": "56.0.0",
-    "typescript-eslint": "8.10.0"
+    "typescript-eslint": "8.11.0"
   },
   "engines": {
     "node": ">=20.17"
