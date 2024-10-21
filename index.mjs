@@ -35,6 +35,11 @@ const compat = new FlatCompat({
 
 export default [
   { ignores },
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+    },
+  },
   js.configs.all,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
