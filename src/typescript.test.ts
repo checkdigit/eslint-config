@@ -9,7 +9,7 @@ import 'fclone';
 
 import './typescript';
 
-function testHello(_?: string) {
+function testHello(_?: string): number {
   return 123 + 0xf;
 }
 
@@ -32,6 +32,7 @@ paginator();
 // eslint-disable-next-line @typescript-eslint/no-implied-eval
 setTimeout("alert('Hi!');", 100);
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
 assert.ok(foo);
 
