@@ -22,6 +22,8 @@ import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import { FlatCompat } from '@eslint/eslintrc';
 import unicorn from 'eslint-plugin-unicorn';
+import json from '@eslint/json';
+import yaml from 'eslint-plugin-yml';
 
 const ignores = [
   ...(await fs.readFile('.gitignore', 'utf-8')).split('\n').filter((path) => path.trim() !== ''),
@@ -33,13 +35,7 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-export default [
-  { ignores },
-  {
-    linterOptions: {
-      reportUnusedDisableDirectives: 'error',
-    },
-  },
+const tsConfigurations = [
   js.configs.all,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
@@ -432,4 +428,29 @@ export default [
       '@checkdigit/no-full-response': 'off',
     },
   },
+].map((config) => ({ files: ['**/*.ts'], ...config }));
+
+const jsonConfigurations = [
+  {
+    ignores: ['package-lock.json'],
+    language: 'json/json',
+    ...json.configs.recommended,
+  },
+].map((config) => ({ files: ['**/*.json'], ...config }));
+
+const yamlConfigurations = [...yaml.configs['flat/recommended']].map((config) => ({
+  files: ['**/*.yml', '**/*.yaml'],
+  ...config,
+}));
+
+export default [
+  { ignores },
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+    },
+  },
+  ...tsConfigurations,
+  ...jsonConfigurations,
+  ...yamlConfigurations,
 ];
