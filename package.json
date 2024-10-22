@@ -61,6 +61,7 @@
     "eslint-plugin-no-secrets": "1.0.2",
     "eslint-plugin-sonarjs": "1.0.4",
     "eslint-plugin-unicorn": "56.0.0",
+    "eslint-plugin-yml": "^1.14.0",
     "typescript-eslint": "8.11.0"
   },
   "engines": {

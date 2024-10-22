@@ -23,6 +23,7 @@ import prettier from 'eslint-config-prettier';
 import { FlatCompat } from '@eslint/eslintrc';
 import unicorn from 'eslint-plugin-unicorn';
 import json from '@eslint/json';
+import yaml from 'eslint-plugin-yml';
 
 const ignores = [
   ...(await fs.readFile('.gitignore', 'utf-8')).split('\n').filter((path) => path.trim() !== ''),
@@ -427,16 +428,20 @@ const tsConfigurations = [
       '@checkdigit/no-full-response': 'off',
     },
   },
-].map((config) => ({ files: ['**/*.ts'], ...config })); // ensure all typescript configurations are targetting typescript files so that they don't interfere with other types of files
+].map((config) => ({ files: ['**/*.ts'], ...config }));
 
 const jsonConfigurations = [
   {
-    files: ['**/*.json'],
     ignores: ['package-lock.json'],
     language: 'json/json',
     ...json.configs.recommended,
   },
-];
+].map((config) => ({ files: ['**/*.json'], ...config }));
+
+const yamlConfigurations = [...yaml.configs['flat/recommended']].map((config) => ({
+  files: ['**/*.yml', '**/*.yaml'],
+  ...config,
+}));
 
 export default [
   { ignores },
@@ -447,4 +452,5 @@ export default [
   },
   ...tsConfigurations,
   ...jsonConfigurations,
+  ...yamlConfigurations,
 ];
