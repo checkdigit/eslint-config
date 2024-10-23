@@ -354,7 +354,14 @@ const tsConfigurations = [
 
       // we are seriously using many new features such as fetch, etc.
       'n/no-unsupported-features/node-builtins': 'off',
+
       '@checkdigit/no-test-import': 'error',
+
+      // disable this now that we have a similar but better solution with auto-fix from @checkdigit/eslint-plugin
+      'no-duplicate-imports': 'off',
+
+      // at this point, it's allowed to use in production code
+      '@checkdigit/no-serve-runtime': 'off',
     },
   },
   {
@@ -362,6 +369,7 @@ const tsConfigurations = [
     rules: {
       '@checkdigit/no-uuid': 'off',
       '@checkdigit/no-test-import': 'off',
+      '@checkdigit/no-serve-runtime': 'error',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
