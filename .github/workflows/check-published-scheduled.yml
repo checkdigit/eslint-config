@@ -1,7 +1,6 @@
 name: Check Published
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: '14 18 * * *'
 
