@@ -39,12 +39,14 @@ function hello(_?: string): bigint {
 
 // eslint-disable-next-line @checkdigit/no-uuid
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- not ok since this is a non-test file
+
 hello();
 
 // eslint-disable-next-line require-yield
 async function* paginator() {
   throw new Error('should not be called');
 }
+
 paginator();
 
 // eslint-disable-next-line @typescript-eslint/no-for-in-array,guard-for-in,no-magic-numbers
@@ -91,6 +93,7 @@ assert(`I'm a boolean, ${booleanValue}`);
 assert(`I'm a object, ${objectValue}`);
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
+// eslint-disable-next-line @checkdigit/no-side-effects
 await fetch('https://example.com');
 
 // test rule @checkdigit/invalid-json-stringify
