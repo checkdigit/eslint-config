@@ -1,9 +1,6 @@
 // typescript.ts
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import 'jest';
-
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'typescript';
 
 // eslint-disable-next-line unicorn/prefer-node-protocol
@@ -14,12 +11,17 @@ import fs from 'node:fs';
 // eslint-disable-next-line n/prefer-global/url-search-params
 import { URLSearchParams } from 'node:url';
 
+// eslint-disable-next-line @checkdigit/no-test-import
+import testHello from './typescript.test';
+testHello();
+
 // eslint-disable-next-line n/no-sync
 assert.ok(fs.existsSync('.'));
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 assert.ok(URLSearchParams);
 
 // eslint-disable-next-line n/no-process-env
-assert.ok(process.env['DEBUG']);
+assert.ok(process.env['DEBUG'] !== undefined);
 
 function hello(_?: string): bigint {
   return -1n + 1n + 10n;
@@ -37,14 +39,14 @@ function hello(_?: string): bigint {
 
 // eslint-disable-next-line @checkdigit/no-uuid
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- not ok since this is a non-test file
-// eslint-disable-next-line @checkdigit/no-side-effects
+
 hello();
 
 // eslint-disable-next-line require-yield
 async function* paginator() {
   throw new Error('should not be called');
 }
-// eslint-disable-next-line @checkdigit/no-side-effects
+
 paginator();
 
 // eslint-disable-next-line @typescript-eslint/no-for-in-array,guard-for-in,no-magic-numbers
@@ -53,10 +55,10 @@ for (const value in [1, 2, 3]) {
   console.log(value);
 }
 
-// eslint-disable-next-line no-eval, @checkdigit/no-side-effects
+// eslint-disable-next-line no-eval
 eval('console.log("no-no");');
 
-// eslint-disable-next-line no-invalid-this
+// eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions
 assert.ok(this);
 
 if (Math.random()) {
@@ -71,8 +73,9 @@ if (Math.random()) {
 // eslint-disable-next-line no-unneeded-ternary
 assert.ok(Math.random() === 2 ? true : false);
 
-// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 assert.ok(foo);
 
 // eslint-disable-next-line @typescript-eslint/no-base-to-string
@@ -92,3 +95,28 @@ assert(`I'm a object, ${objectValue}`);
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
 // eslint-disable-next-line @checkdigit/no-side-effects
 await fetch('https://example.com');
+
+// test rule @checkdigit/invalid-json-stringify
+const objectToSerialize = { key: 'value' };
+assert.equal(JSON.stringify(objectToSerialize), '{"key":"value"}');
+const newError = new Error('error');
+// eslint-disable-next-line @checkdigit/invalid-json-stringify
+assert.equal(JSON.stringify(newError), '{}'); // serialization of Error object is losing information, hance the error
+try {
+  //
+} catch (caughtError) {
+  // eslint-disable-next-line no-console, @checkdigit/invalid-json-stringify
+  console.log(JSON.stringify(caughtError));
+}
+
+export async function testNoPromiseInstanceMethodRule(): Promise<void> {
+  // eslint-disable-next-line @checkdigit/no-promise-instance-method
+  return fetch('https://example.com')
+    .then((response) => {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      assert.ok(response);
+    })
+    .catch(() => {
+      //
+    });
+}
