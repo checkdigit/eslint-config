@@ -33,7 +33,7 @@ describe('top level describe', () => {
     assert.equal(0n, 0n);
   });
 
-  // eslint-disable-next-line no-only-tests/no-only-tests,jest/no-focused-tests
+  // eslint-disable-next-line no-only-tests/no-only-tests,jest/no-focused-tests,sonarjs/no-exclusive-tests
   it.only('focused test', () => {
     // do nothing
   });
