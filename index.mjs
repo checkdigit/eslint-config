@@ -23,6 +23,7 @@ import prettier from 'eslint-config-prettier';
 import { FlatCompat } from '@eslint/eslintrc';
 import unicorn from 'eslint-plugin-unicorn';
 import json from '@eslint/json';
+import markdown from '@eslint/markdown';
 import yaml from 'eslint-plugin-yml';
 
 const ignores = [
@@ -446,9 +447,14 @@ const jsonConfigurations = [
   },
 ].map((config) => ({ files: ['**/*.json'], ...config }));
 
-const yamlConfigurations = [...yaml.configs['flat/recommended']].map((config) => ({
+const yamlConfigurations = yaml.configs['flat/recommended'].map((config) => ({
   files: ['**/*.yml', '**/*.yaml'],
   ...config,
+}));
+
+const markdownConfigurations = markdown.configs.recommended.map((config) => ({
+  ...config,
+  files: ['**/*.md'],
 }));
 
 export default [
@@ -459,6 +465,7 @@ export default [
     },
   },
   ...tsConfigurations,
+  ...markdownConfigurations,
   ...jsonConfigurations,
   ...yamlConfigurations,
 ];
