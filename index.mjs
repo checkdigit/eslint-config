@@ -46,7 +46,7 @@ const tsConfigurations = [
   n.configs['flat/recommended-module'],
   importPlugin.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
-  checkdigit.configs.all,
+  ...checkdigit.configs.all,
   {
     plugins: {
       'no-only-tests': noOnlyTests,
@@ -437,7 +437,10 @@ const tsConfigurations = [
       '@checkdigit/no-full-response': 'off',
     },
   },
-].map((config) => ({ files: ['**/*.ts'], ...config }));
+].map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.ts'],
+}));
 
 const jsonConfigurations = [
   {
@@ -445,16 +448,19 @@ const jsonConfigurations = [
     language: 'json/json',
     ...json.configs.recommended,
   },
-].map((config) => ({ files: ['**/*.json'], ...config }));
+].map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.json'],
+}));
 
 const yamlConfigurations = yaml.configs['flat/recommended'].map((config) => ({
-  files: ['**/*.yml', '**/*.yaml'],
   ...config,
+  files: config.files ?? ['**/*.yml', '**/*.yaml'],
 }));
 
 const markdownConfigurations = markdown.configs.recommended.map((config) => ({
   ...config,
-  files: ['**/*.md'],
+  files: config.files ?? ['**/*.md'],
 }));
 
 export default [
