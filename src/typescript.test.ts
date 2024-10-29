@@ -12,12 +12,12 @@ function testHello(_?: string): number {
   return 123 + 0xf;
 }
 
-[].forEach((_lib) => {
-  // do nothing
-  // eslint-disable-next-line @typescript-eslint/no-shadow, eqeqeq
-  const testHello = ' '.trim() == '';
-  return testHello;
-});
+[].forEach(
+  (_lib) =>
+    // do nothing
+    // eslint-disable-next-line eqeqeq
+    ' '.trim() == '',
+);
 
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- ok since this is a test file
 // eslint-disable-next-line  sonarjs/no-undefined-argument
