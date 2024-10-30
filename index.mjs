@@ -46,7 +46,7 @@ const tsConfigurations = [
   n.configs['flat/recommended-module'],
   importPlugin.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
-  ...checkdigit.configs.all,
+  checkdigit.configs.all,
   {
     plugins: {
       'no-only-tests': noOnlyTests,
