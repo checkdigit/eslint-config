@@ -434,7 +434,7 @@ const tsConfigurations = [
   {
     files: ['src/plugin/**'],
     rules: {
-      '@checkdigit/no-full-response': 'off',
+      '@checkdigit/no-legacy-service-typing': 'off',
     },
   },
 ].map((config) => ({
