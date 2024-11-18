@@ -22,6 +22,9 @@ import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import { FlatCompat } from '@eslint/eslintrc';
 import unicorn from 'eslint-plugin-unicorn';
+import json from '@eslint/json';
+import markdown from '@eslint/markdown';
+import yaml from 'eslint-plugin-yml';
 
 const ignores = [
   ...(await fs.readFile('.gitignore', 'utf-8')).split('\n').filter((path) => path.trim() !== ''),
@@ -33,13 +36,7 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-export default [
-  { ignores },
-  {
-    linterOptions: {
-      reportUnusedDisableDirectives: 'error',
-    },
-  },
+const tsConfigurations = [
   js.configs.all,
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
@@ -358,7 +355,14 @@ export default [
 
       // we are seriously using many new features such as fetch, etc.
       'n/no-unsupported-features/node-builtins': 'off',
+
       '@checkdigit/no-test-import': 'error',
+
+      // disable this now that we have a similar but better solution with auto-fix from @checkdigit/eslint-plugin
+      'no-duplicate-imports': 'off',
+
+      // at this point, it's allowed to use in production code
+      '@checkdigit/no-serve-runtime': 'off',
     },
   },
   {
@@ -367,6 +371,7 @@ export default [
       '@checkdigit/no-random-v4-uuid': 'off',
       '@checkdigit/no-uuid': 'off',
       '@checkdigit/no-test-import': 'off',
+      '@checkdigit/no-serve-runtime': 'error',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
@@ -433,4 +438,41 @@ export default [
       '@checkdigit/no-full-response': 'off',
     },
   },
+].map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.ts'],
+}));
+
+const jsonConfigurations = [
+  {
+    ignores: ['package-lock.json'],
+    language: 'json/json',
+    ...json.configs.recommended,
+  },
+].map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.json'],
+}));
+
+const yamlConfigurations = yaml.configs['flat/recommended'].map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.yml', '**/*.yaml'],
+}));
+
+const markdownConfigurations = markdown.configs.recommended.map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.md'],
+}));
+
+export default [
+  { ignores },
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+    },
+  },
+  ...tsConfigurations,
+  ...markdownConfigurations,
+  ...jsonConfigurations,
+  ...yamlConfigurations,
 ];
