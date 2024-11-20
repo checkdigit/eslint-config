@@ -368,9 +368,11 @@ const tsConfigurations = [
   {
     files: ['**/*.spec.ts', '**/*.test.ts'],
     rules: {
+      '@checkdigit/no-random-v4-uuid': 'off',
       '@checkdigit/no-uuid': 'off',
       '@checkdigit/no-test-import': 'off',
       '@checkdigit/no-serve-runtime': 'error',
+      '@checkdigit/no-side-effects': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
@@ -429,6 +431,7 @@ const tsConfigurations = [
           maxNumberOfTopLevelDescribes: 1,
         },
       ],
+      'jest/no-deprecated-functions': 'off',
     },
   },
   {
