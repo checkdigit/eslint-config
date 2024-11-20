@@ -430,6 +430,7 @@ const tsConfigurations = [
           maxNumberOfTopLevelDescribes: 1,
         },
       ],
+      'jest/no-deprecated-functions': 'off',
     },
   },
   {
