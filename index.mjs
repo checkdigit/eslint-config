@@ -372,6 +372,7 @@ const tsConfigurations = [
       '@checkdigit/no-uuid': 'off',
       '@checkdigit/no-test-import': 'off',
       '@checkdigit/no-serve-runtime': 'error',
+      '@checkdigit/no-side-effects': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
@@ -436,7 +437,7 @@ const tsConfigurations = [
   {
     files: ['src/plugin/**'],
     rules: {
-      '@checkdigit/no-full-response': 'off',
+      '@checkdigit/no-legacy-service-typing': 'off',
     },
   },
 ].map((config) => ({
