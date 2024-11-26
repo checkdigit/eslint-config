@@ -15,7 +15,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Dependency Review
-        uses: actions/dependency-review-action@v4
+        uses: actions/dependency-review-action@v4.3.3
         with:
           allow-licenses: ${{ vars.ALLOW_LICENSES }}
       - name: Setup Node.js
