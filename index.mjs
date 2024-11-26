@@ -369,7 +369,7 @@ const tsConfigurations = [
     files: ['**/*.spec.ts', '**/*.test.ts'],
     rules: {
       '@checkdigit/no-random-v4-uuid': 'off',
-      '@checkdigit/no-status-code-assertion': 'off',
+      '@checkdigit/no-status-code-assert': 'off',
       '@checkdigit/no-uuid': 'off',
       '@checkdigit/no-test-import': 'off',
       '@checkdigit/no-serve-runtime': 'error',
