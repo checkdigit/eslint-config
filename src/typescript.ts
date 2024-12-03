@@ -18,7 +18,7 @@ import { format } from 'node:url';
 assert.ok(format !== undefined);
 
 // eslint-disable-next-line @checkdigit/no-test-import
-import testHello from './typescript.test';
+import testHello from './typescript.test.ts';
 testHello();
 
 // eslint-disable-next-line n/no-sync

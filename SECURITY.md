@@ -4,10 +4,10 @@
 
 These versions of `@checkdigit/eslint-config` are currently being supported with security updates.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| \>= 9.x | :white_check_mark: |
-| \< 9.0  | :x:                |
+| Version  | Supported          |
+| -------- | ------------------ |
+| \>= 11.x | :white_check_mark: |
+| \< 11.0  | :x:                |
 
 ## Reporting a Vulnerability
 

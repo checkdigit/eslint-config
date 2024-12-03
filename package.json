@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "10.5.0",
+  "version": "11.0.0",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -35,8 +35,8 @@
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^5.5.1",
-    "@checkdigit/typescript-config": "^8.0.0",
+    "@checkdigit/prettier-config": "^6.0.0",
+    "@checkdigit/typescript-config": "^9.0.0",
     "@jest/globals": "^29.7.0",
     "@types/eslint-config-prettier": "^6.11.3",
     "fclone": "^1.0.11",
@@ -46,26 +46,26 @@
     "@checkdigit/eslint-plugin": "7.5.0",
     "@eslint/compat": "1.2.3",
     "@eslint/eslintrc": "3.2.0",
-    "@eslint/js": "9.15.0",
-    "@eslint/json": "0.7.0",
+    "@eslint/js": "9.16.0",
+    "@eslint/json": "0.8.0",
     "@eslint/markdown": "6.2.1",
-    "@typescript-eslint/eslint-plugin": "8.15.0",
-    "@typescript-eslint/parser": "8.15.0",
-    "eslint": "9.15.0",
+    "@typescript-eslint/eslint-plugin": "8.17.0",
+    "@typescript-eslint/parser": "8.17.0",
+    "eslint": "9.16.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-import-resolver-typescript": "3.6.3",
+    "eslint-import-resolver-typescript": "3.7.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jest": "28.9.0",
-    "eslint-plugin-n": "17.13.2",
+    "eslint-plugin-n": "17.14.0",
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-no-secrets": "1.1.2",
     "eslint-plugin-sonarjs": "1.0.4",
     "eslint-plugin-unicorn": "56.0.1",
-    "eslint-plugin-yml": "1.15.0",
-    "typescript-eslint": "8.15.0"
+    "eslint-plugin-yml": "1.16.0",
+    "typescript-eslint": "8.17.0"
   },
   "engines": {
-    "node": ">=20.17"
+    "node": ">=22.11"
   }
 }
