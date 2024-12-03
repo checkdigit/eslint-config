@@ -29,8 +29,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check Imports
         uses: checkdigit/github-actions/check-imports@main
-      - name: Install latest npm
-        run: npm install -g npm@latest
       - name: Install Dependencies
         run: npm ci --ignore-scripts
       - name: Audit Signatures
