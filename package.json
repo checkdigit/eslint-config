@@ -43,7 +43,7 @@
     "jest": "^29.7.0"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "7.7.0-PR.107-79c1",
+    "@checkdigit/eslint-plugin": "7.7.0-PR.107-46e4",
     "@eslint/compat": "1.2.3",
     "@eslint/eslintrc": "3.2.0",
     "@eslint/js": "9.16.0",
