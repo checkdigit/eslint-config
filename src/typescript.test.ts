@@ -7,7 +7,7 @@ import 'typescript';
 // eslint-disable-next-line n/no-restricted-import
 import 'fclone';
 
-import './typescript';
+import './typescript.ts';
 
 function testHello(_?: string): number {
   return 123 + 0xf;
