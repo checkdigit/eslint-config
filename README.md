@@ -28,7 +28,7 @@ plugins that are supported by the configuration via `peerDependencies`.
 ### Example `eslint.config.mjs`
 
 ```ts
-import { default } from '@checkdigit/eslint-config';
+export { default } from '@checkdigit/eslint-config';
 ```
 
 ## License

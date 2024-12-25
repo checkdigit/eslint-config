@@ -8,17 +8,21 @@ import { strict as assert } from 'assert';
 
 import fs from 'node:fs';
 
-// eslint-disable-next-line n/prefer-global/url-search-params
+// eslint-disable-next-line n/prefer-global/url-search-params, @checkdigit/no-duplicated-imports
 import { URLSearchParams } from 'node:url';
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+assert.ok(URLSearchParams);
+
+import { format } from 'node:url';
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, sonarjs/different-types-comparison
+assert.ok(format !== undefined);
 
 // eslint-disable-next-line @checkdigit/no-test-import
-import testHello from './typescript.test';
+import testHello from './typescript.test.ts';
 testHello();
 
 // eslint-disable-next-line n/no-sync
 assert.ok(fs.existsSync('.'));
-// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-assert.ok(URLSearchParams);
 
 // eslint-disable-next-line n/no-process-env
 assert.ok(process.env['DEBUG'] !== undefined);
@@ -92,6 +96,7 @@ assert(`I'm a boolean, ${booleanValue}`);
 assert(`I'm a object, ${objectValue}`);
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
+// eslint-disable-next-line @checkdigit/no-side-effects
 await fetch('https://example.com');
 
 // test rule @checkdigit/invalid-json-stringify

@@ -46,7 +46,7 @@ const tsConfigurations = [
   n.configs['flat/recommended-module'],
   importPlugin.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
-  checkdigit.configs.all,
+  ...checkdigit.configs.all,
   {
     plugins: {
       'no-only-tests': noOnlyTests,
@@ -182,6 +182,8 @@ const tsConfigurations = [
       // typeof any === "evil".
       '@typescript-eslint/no-explicit-any': 'error',
 
+      'sonarjs/no-empty-function': 'off',
+      'sonarjs/no-unused-expressions': 'off',
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
       'no-only-tests/no-only-tests': 'error',
@@ -355,14 +357,24 @@ const tsConfigurations = [
 
       // we are seriously using many new features such as fetch, etc.
       'n/no-unsupported-features/node-builtins': 'off',
+
       '@checkdigit/no-test-import': 'error',
+
+      // disable this now that we have a similar but better solution with auto-fix from @checkdigit/eslint-plugin
+      'no-duplicate-imports': 'off',
+
+      // at this point, it's allowed to use in production code
+      '@checkdigit/no-serve-runtime': 'off',
     },
   },
   {
     files: ['**/*.spec.ts', '**/*.test.ts'],
     rules: {
+      '@checkdigit/no-random-v4-uuid': 'off',
       '@checkdigit/no-uuid': 'off',
       '@checkdigit/no-test-import': 'off',
+      '@checkdigit/no-serve-runtime': 'error',
+      '@checkdigit/no-side-effects': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
@@ -371,6 +383,39 @@ const tsConfigurations = [
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-floating-promises': [
+        'error',
+        {
+          allowForKnownSafeCalls: [
+            {
+              from: 'package',
+              name: [
+                'after',
+                'afterEach',
+                'before',
+                'beforeEach',
+                'describe',
+                'describe.only',
+                'describe.skip',
+                'describe.todo',
+                'it',
+                'it.only',
+                'it.skip',
+                'it.todo',
+                'suite',
+                'suite.only',
+                'suite.skip',
+                'suite.todo',
+                'test',
+                'test.only',
+                'test.skip',
+                'test.todo',
+              ],
+              package: 'node:test',
+            },
+          ],
+        },
+      ],
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
       '@typescript-eslint/no-confusing-void-expression': 'off',
@@ -421,15 +466,19 @@ const tsConfigurations = [
           maxNumberOfTopLevelDescribes: 1,
         },
       ],
+      'jest/no-deprecated-functions': 'off',
     },
   },
   {
     files: ['src/plugin/**'],
     rules: {
-      '@checkdigit/no-full-response': 'off',
+      '@checkdigit/no-legacy-service-typing': 'off',
     },
   },
-].map((config) => ({ files: ['**/*.ts'], ...config }));
+].map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.ts'],
+}));
 
 const jsonConfigurations = [
   {
@@ -437,16 +486,19 @@ const jsonConfigurations = [
     language: 'json/json',
     ...json.configs.recommended,
   },
-].map((config) => ({ files: ['**/*.json'], ...config }));
+].map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.json'],
+}));
 
 const yamlConfigurations = yaml.configs['flat/recommended'].map((config) => ({
-  files: ['**/*.yml', '**/*.yaml'],
   ...config,
+  files: config.files ?? ['**/*.yml', '**/*.yaml'],
 }));
 
 const markdownConfigurations = markdown.configs.recommended.map((config) => ({
   ...config,
-  files: ['**/*.md'],
+  files: config.files ?? ['**/*.md'],
 }));
 
 export default [
