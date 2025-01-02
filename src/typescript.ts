@@ -14,7 +14,7 @@ import { URLSearchParams } from 'node:url';
 assert.ok(URLSearchParams);
 
 import { format } from 'node:url';
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, sonarjs/different-types-comparison
 assert.ok(format !== undefined);
 
 // eslint-disable-next-line @checkdigit/no-test-import
@@ -45,7 +45,7 @@ function hello(_?: string): bigint {
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- not ok since this is a non-test file
 hello();
 
-// eslint-disable-next-line require-yield
+// eslint-disable-next-line require-yield,  sonarjs/generator-without-yield
 async function* paginator() {
   throw new Error('should not be called');
 }
@@ -63,17 +63,18 @@ eval('console.log("no-no");');
 // eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions
 assert.ok(this);
 
+// eslint-disable-next-line sonarjs/pseudo-random
 if (Math.random()) {
   // ...
 } else {
-  // eslint-disable-next-line no-lonely-if
+  // eslint-disable-next-line sonarjs/pseudo-random, no-lonely-if
   if (Math.random()) {
     // ...
   }
 }
 
-// eslint-disable-next-line no-unneeded-ternary
-assert.ok(Math.random() === 2 ? true : false);
+// eslint-disable-next-line sonarjs/pseudo-random
+assert.ok(Math.random() === 2);
 
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
