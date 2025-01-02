@@ -33,7 +33,7 @@ function hello(_?: string): bigint {
 
 // eslint-disable-next-line unicorn/no-array-for-each,unicorn/prevent-abbreviations
 ['', undefined].forEach((_lib) => {
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions,sonarjs/prefer-nullish-coalescing
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
   const thing = _lib || {};
   // this is a comment for the regex below
   assert.ok(/^[a-z]+$/u.test('hello'));
@@ -67,7 +67,7 @@ assert.ok(this);
 if (Math.random()) {
   // ...
 } else {
-  // eslint-disable-next-line sonarjs/no-lonely-if, sonarjs/pseudo-random, no-lonely-if
+  // eslint-disable-next-line sonarjs/pseudo-random, no-lonely-if
   if (Math.random()) {
     // ...
   }
@@ -81,7 +81,7 @@ const foo = <T>(argument: T) => (argument ? 1 : 0);
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 assert.ok(foo);
 
-// eslint-disable-next-line @typescript-eslint/no-base-to-string, sonarjs/no-base-to-string
+// eslint-disable-next-line @typescript-eslint/no-base-to-string
 assert.ok({}.toString());
 
 export default hello;
@@ -92,7 +92,7 @@ const objectValue = { key: 'value' };
 // linting error is not reported because @typescript-eslint/restrict-template-expressions is configured to allow number and boolean
 assert(`I'm a number, ${numberValue}`);
 assert(`I'm a boolean, ${booleanValue}`);
-// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string, sonarjs/no-base-to-string
+// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
 assert(`I'm a object, ${objectValue}`);
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled

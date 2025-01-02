@@ -182,8 +182,6 @@ const tsConfigurations = [
       // typeof any === "evil".
       '@typescript-eslint/no-explicit-any': 'error',
 
-      'sonarjs/no-empty-function': 'off',
-      'sonarjs/no-unused-expressions': 'off',
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
       'no-only-tests/no-only-tests': 'error',

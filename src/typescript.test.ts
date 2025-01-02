@@ -39,7 +39,6 @@ setTimeout("alert('Hi!');", 100);
 const foo = <T>(argument: T) => (argument ? 1 : 0);
 assert.ok(foo);
 
-// eslint-disable-next-line sonarjs/no-base-to-string
 assert.ok({}.toString());
 
 describe('testHello', () => {
