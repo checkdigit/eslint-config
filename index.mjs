@@ -429,7 +429,7 @@ const tsConfigurations = [
       'sonarjs/cognitive-complexity': 'off',
       'sonarjs/no-clear-text-protocols': 'off',
       'sonarjs/no-duplicate-string': 'off',
-      'sonarjs/no-empty-test-files': 'off',
+      'sonarjs/no-empty-test-file': 'off',
       'sonarjs/no-identical-functions': 'off',
       'sonarjs/no-misleading-array-reverse': 'off',
       'sonarjs/pseudo-random': 'off',
