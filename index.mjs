@@ -189,6 +189,7 @@ const tsConfigurations = [
       'sonarjs/no-unused-vars': 'off',
       'sonarjs/no-nested-conditional': 'off',
       'sonarjs/todo-tag': 'off', // duplicate of no-warning-comments
+      'sonarjs/generator-without-yield': 'off', // duplicate of require-yield
 
       'no-only-tests/no-only-tests': 'error',
 
