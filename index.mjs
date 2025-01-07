@@ -184,6 +184,8 @@ const tsConfigurations = [
 
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
+
+      'sonarjs/no-unused-vars': 'off',
       'no-only-tests/no-only-tests': 'error',
 
       // eslint:all rules to modify
@@ -373,6 +375,9 @@ const tsConfigurations = [
       '@checkdigit/no-test-import': 'off',
       '@checkdigit/no-serve-runtime': 'error',
       '@checkdigit/no-side-effects': 'off',
+      'sonarjs/no-clear-text-protocols': 'off',
+      'sonarjs/no-empty-test-files': 'off',
+      'sonarjs/pseudo-random': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
