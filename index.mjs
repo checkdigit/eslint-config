@@ -184,8 +184,11 @@ const tsConfigurations = [
 
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
-
+      'sonarjs/different-types-comparison': 'off', // this rule appears to be broken (as of 3.0.1)
       'sonarjs/no-unused-vars': 'off',
+      'sonarjs/no-nested-conditional': 'off',
+      'sonarjs/todo-tag': 'off', // duplicate
+
       'no-only-tests/no-only-tests': 'error',
 
       // eslint:all rules to modify
@@ -375,9 +378,6 @@ const tsConfigurations = [
       '@checkdigit/no-test-import': 'off',
       '@checkdigit/no-serve-runtime': 'error',
       '@checkdigit/no-side-effects': 'off',
-      'sonarjs/no-clear-text-protocols': 'off',
-      'sonarjs/no-empty-test-files': 'off',
-      'sonarjs/pseudo-random': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
@@ -426,9 +426,13 @@ const tsConfigurations = [
       '@typescript-eslint/unbound-method': 'off',
       'import/no-extraneous-dependencies': 'off',
       'n/no-process-env': 'off',
-      'sonarjs/no-duplicate-string': 'off',
-      'sonarjs/no-identical-functions': 'off',
       'sonarjs/cognitive-complexity': 'off',
+      'sonarjs/no-clear-text-protocols': 'off',
+      'sonarjs/no-duplicate-string': 'off',
+      'sonarjs/no-empty-test-files': 'off',
+      'sonarjs/no-identical-functions': 'off',
+      'sonarjs/no-misleading-array-reverse': 'off',
+      'sonarjs/pseudo-random': 'off',
       'unicorn/no-useless-undefined': 'off',
       'unicorn/no-await-expression-member': 'off',
       'unicorn/consistent-function-scoping': 'off',
