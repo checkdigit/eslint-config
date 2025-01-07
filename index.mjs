@@ -185,6 +185,7 @@ const tsConfigurations = [
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
       'sonarjs/different-types-comparison': 'off', // duplicate of @typescript-eslint/no-unnecessary-condition
+      'sonarjs/duplicates-in-character-class': 'off', // appears to be case-insensitive (as of 3.0.1)
       'sonarjs/no-unused-vars': 'off',
       'sonarjs/no-nested-conditional': 'off',
       'sonarjs/todo-tag': 'off', // duplicate of no-warning-comments
@@ -433,6 +434,7 @@ const tsConfigurations = [
       'sonarjs/no-identical-functions': 'off',
       'sonarjs/no-misleading-array-reverse': 'off',
       'sonarjs/pseudo-random': 'off',
+      'sonarjs/unused-named-groups': 'off',
       'unicorn/no-useless-undefined': 'off',
       'unicorn/no-await-expression-member': 'off',
       'unicorn/consistent-function-scoping': 'off',
