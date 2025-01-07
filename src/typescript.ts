@@ -6,6 +6,8 @@ import 'typescript';
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import { strict as assert } from 'assert';
 
+// eslint-disable-next-line no-warning-comments
+// TODO: hello
 import fs from 'node:fs';
 
 // eslint-disable-next-line n/prefer-global/url-search-params, @checkdigit/no-duplicated-imports
@@ -14,7 +16,7 @@ import { URLSearchParams } from 'node:url';
 assert.ok(URLSearchParams);
 
 import { format } from 'node:url';
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, sonarjs/different-types-comparison
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 assert.ok(format !== undefined);
 
 // eslint-disable-next-line @checkdigit/no-test-import

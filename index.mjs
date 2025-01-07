@@ -184,10 +184,10 @@ const tsConfigurations = [
 
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
-      'sonarjs/different-types-comparison': 'off', // this rule appears to be broken (as of 3.0.1)
+      'sonarjs/different-types-comparison': 'off', // duplicate of @typescript-eslint/no-unnecessary-condition
       'sonarjs/no-unused-vars': 'off',
       'sonarjs/no-nested-conditional': 'off',
-      'sonarjs/todo-tag': 'off', // duplicate
+      'sonarjs/todo-tag': 'off', // duplicate of no-warning-comments
 
       'no-only-tests/no-only-tests': 'error',
 
