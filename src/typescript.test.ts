@@ -25,7 +25,6 @@ function testHello(_?: string): number {
 // eslint-disable-next-line sonarjs/no-undefined-argument
 testHello(undefined);
 
-// eslint-disable-next-line  sonarjs/generator-without-yield
 async function* paginator() {
   // no yield required since this is a test file
   throw new Error('should not be called');

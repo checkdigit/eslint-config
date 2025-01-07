@@ -432,6 +432,7 @@ const tsConfigurations = [
       'sonarjs/no-clear-text-protocols': 'off',
       'sonarjs/no-duplicate-string': 'off',
       'sonarjs/no-empty-test-file': 'off',
+      'sonarjs/no-exclusive-tests': 'off', // duplicate
       'sonarjs/no-identical-functions': 'off',
       'sonarjs/no-misleading-array-reverse': 'off',
       'sonarjs/pseudo-random': 'off',
