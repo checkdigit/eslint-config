@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.0.4",
+  "version": "11.0.5",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [

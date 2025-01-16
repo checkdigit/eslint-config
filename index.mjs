@@ -156,7 +156,6 @@ const tsConfigurations = [
           devDependencies: ['**/*.spec.ts', '**/*.test.ts'],
         },
       ],
-      'import/no-deprecated': 'error',
       'import/namespace': 'off',
 
       // has a bug, throws an exception in some cases
