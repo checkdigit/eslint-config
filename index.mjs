@@ -156,7 +156,6 @@ const tsConfigurations = [
           devDependencies: ['**/*.spec.ts', '**/*.test.ts'],
         },
       ],
-      'import/no-deprecated': 'error',
       'import/namespace': 'off',
 
       // has a bug, throws an exception in some cases
@@ -170,6 +169,7 @@ const tsConfigurations = [
       'require-yield': 'error',
       'no-console': 'error',
       'no-return-await': 'error',
+      '@typescript-eslint/no-deprecated': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'error',
       '@typescript-eslint/ban-ts-comment': 'error',
@@ -435,6 +435,7 @@ const tsConfigurations = [
       'sonarjs/no-exclusive-tests': 'off', // duplicate
       'sonarjs/no-identical-functions': 'off',
       'sonarjs/no-misleading-array-reverse': 'off',
+      'sonarjs/slow-regexp': 'off',
       'sonarjs/pseudo-random': 'off',
       'sonarjs/unused-named-groups': 'off',
       'unicorn/no-useless-undefined': 'off',

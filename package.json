@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.0.4",
+  "version": "11.0.5",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -35,7 +35,7 @@
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^6.0.0",
+    "@checkdigit/prettier-config": "^6.1.0",
     "@checkdigit/typescript-config": "^9.0.0",
     "@jest/globals": "^29.7.0",
     "@types/eslint-config-prettier": "^6.11.3",
