@@ -98,7 +98,7 @@ assert(`I'm a boolean, ${booleanValue}`);
 assert(`I'm a object, ${objectValue}`);
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
-// eslint-disable-next-line @checkdigit/no-side-effects
+// eslint-disable-next-line @checkdigit/no-side-effects, @checkdigit/require-service-call-response-declaration
 await fetch('https://example.com');
 
 // test rule @checkdigit/invalid-json-stringify
