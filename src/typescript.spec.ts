@@ -10,6 +10,15 @@ describe('suite', () => {
   it('test', () => {
     testHello();
   });
+
+  function callService() {
+    const url = 'https://example.com';
+    return fetch(url);
+  }
+  it('test service calls', async () => {
+    await callService();
+    await fetch('https://example.com');
+  });
 });
 
 // linting error is not reported because unicorn/no-anonymous-default-export is disabled
