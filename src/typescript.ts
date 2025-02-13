@@ -12,21 +12,21 @@ import fs from 'node:fs';
 
 // eslint-disable-next-line n/prefer-global/url-search-params, @checkdigit/no-duplicated-imports
 import { URLSearchParams } from 'node:url';
-// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @checkdigit/require-assert-message
 assert.ok(URLSearchParams);
 
 import { format } from 'node:url';
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @checkdigit/require-assert-message
 assert.ok(format !== undefined);
 
 // eslint-disable-next-line @checkdigit/no-test-import
 import testHello from './typescript.test.ts';
 testHello();
 
-// eslint-disable-next-line n/no-sync
+// eslint-disable-next-line n/no-sync, @checkdigit/require-assert-message
 assert.ok(fs.existsSync('.'));
 
-// eslint-disable-next-line n/no-process-env
+// eslint-disable-next-line n/no-process-env, @checkdigit/require-assert-message
 assert.ok(process.env['DEBUG'] !== undefined);
 
 function hello(_?: string): bigint {
@@ -38,6 +38,7 @@ function hello(_?: string): bigint {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
   const thing = _lib || {};
   // this is a comment for the regex below
+  // eslint-disable-next-line @checkdigit/require-assert-message
   assert.ok(/^[a-z]+$/u.test('hello'));
   hello(thing as string);
   // do nothing
@@ -62,7 +63,7 @@ for (const value in [1, 2, 3]) {
 // eslint-disable-next-line no-eval
 eval('console.log("no-no");');
 
-// eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions
+// eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions, @checkdigit/require-assert-message
 assert.ok(this);
 
 // eslint-disable-next-line sonarjs/pseudo-random
@@ -75,15 +76,15 @@ if (Math.random()) {
   }
 }
 
-// eslint-disable-next-line sonarjs/pseudo-random
+// eslint-disable-next-line sonarjs/pseudo-random, @checkdigit/require-assert-message
 assert.ok(Math.random() === 2);
 
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
-// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @checkdigit/require-assert-message
 assert.ok(foo);
 
-// eslint-disable-next-line @typescript-eslint/no-base-to-string
+// eslint-disable-next-line @typescript-eslint/no-base-to-string, @checkdigit/require-assert-message
 assert.ok({}.toString());
 
 export default hello;
@@ -92,10 +93,10 @@ const numberValue = 1;
 const booleanValue = true;
 const objectValue = { key: 'value' };
 // linting error is not reported because @typescript-eslint/restrict-template-expressions is configured to allow number and boolean
-assert(`I'm a number, ${numberValue}`);
-assert(`I'm a boolean, ${booleanValue}`);
+assert(`I'm a number, ${numberValue}`, 'not a number');
+assert(`I'm a boolean, ${booleanValue}`, 'not a boolean');
 // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-assert(`I'm a object, ${objectValue}`);
+assert(`I'm a object, ${objectValue}`, 'not an object');
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
 // eslint-disable-next-line @checkdigit/no-side-effects, @checkdigit/require-service-call-response-declaration
@@ -103,10 +104,10 @@ await fetch('https://example.com');
 
 // test rule @checkdigit/invalid-json-stringify
 const objectToSerialize = { key: 'value' };
-assert.equal(JSON.stringify(objectToSerialize), '{"key":"value"}');
+assert.equal(JSON.stringify(objectToSerialize), '{"key":"value"}', 'not serialized correctly');
 const newError = new Error('error');
 // eslint-disable-next-line @checkdigit/invalid-json-stringify
-assert.equal(JSON.stringify(newError), '{}'); // serialization of Error object is losing information, hance the error
+assert.equal(JSON.stringify(newError), '{}', 'invalid object'); // serialization of Error object is losing information, hance the error
 try {
   //
 } catch (caughtError) {
@@ -119,7 +120,7 @@ export async function testNoPromiseInstanceMethodRule(): Promise<void> {
   return fetch('https://example.com')
     .then((response) => {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      assert.ok(response);
+      assert.ok(response, 'response is null');
     })
     .catch(() => {
       //
