@@ -30,6 +30,7 @@ describe('top level describe', () => {
 
   // eslint-disable-next-line jest/no-disabled-tests
   it.skip('skipped test', () => {
+    // eslint-disable-next-line  @checkdigit/require-assert-message
     assert.equal(0n, 0n);
   });
 
@@ -41,6 +42,7 @@ describe('top level describe', () => {
   // eslint-disable-next-line jest/max-nested-describe
   describe('nested describe', () => {
     it('nested test', () => {
+      // eslint-disable-next-line  @checkdigit/require-assert-message
       assert.equal(0n, 0n);
     });
   });
