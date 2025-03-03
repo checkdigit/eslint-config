@@ -13,21 +13,21 @@ import fs from 'node:fs';
 // eslint-disable-next-line n/prefer-global/url-search-params, @checkdigit/no-duplicated-imports
 import { URLSearchParams } from 'node:url';
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-assert.ok(URLSearchParams);
+assert.ok(URLSearchParams, 'URLSearchParams');
 
 import { format } from 'node:url';
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-assert.ok(format !== undefined);
+assert.ok(format !== undefined, 'format');
 
 // eslint-disable-next-line @checkdigit/no-test-import
 import testHello from './typescript.test.ts';
 testHello();
 
 // eslint-disable-next-line n/no-sync
-assert.ok(fs.existsSync('.'));
+assert.ok(fs.existsSync('.'), 'existsSync');
 
 // eslint-disable-next-line n/no-process-env
-assert.ok(process.env['DEBUG'] !== undefined);
+assert.ok(process.env['DEBUG'] !== undefined, 'process.env');
 
 function hello(_?: string): bigint {
   return -1n + 1n + 10n;
@@ -35,11 +35,11 @@ function hello(_?: string): bigint {
 
 // eslint-disable-next-line unicorn/no-array-for-each,unicorn/prevent-abbreviations
 ['', undefined].forEach((_lib) => {
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
-  const thing = _lib || {};
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions, unicorn/prefer-default-parameters
+  const thing: string = _lib || '';
   // this is a comment for the regex below
-  assert.ok(/^[a-z]+$/u.test('hello'));
-  hello(thing as string);
+  assert.ok(/^[a-z]+$/u.test('hello'), 'regex');
+  hello(thing satisfies string);
   // do nothing
 });
 
@@ -63,7 +63,7 @@ for (const value in [1, 2, 3]) {
 eval('console.log("no-no");');
 
 // eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions
-assert.ok(this);
+assert.ok(this, 'this');
 
 // eslint-disable-next-line sonarjs/pseudo-random
 if (Math.random()) {
@@ -76,15 +76,15 @@ if (Math.random()) {
 }
 
 // eslint-disable-next-line sonarjs/pseudo-random
-assert.ok(Math.random() === 2);
+assert.ok(Math.random() === 2, 'random');
 
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-assert.ok(foo);
+assert.ok(foo, 'foo');
 
 // eslint-disable-next-line @typescript-eslint/no-base-to-string
-assert.ok({}.toString());
+assert.ok({}.toString(), 'object');
 
 export default hello;
 
@@ -92,10 +92,10 @@ const numberValue = 1;
 const booleanValue = true;
 const objectValue = { key: 'value' };
 // linting error is not reported because @typescript-eslint/restrict-template-expressions is configured to allow number and boolean
-assert(`I'm a number, ${numberValue}`);
-assert(`I'm a boolean, ${booleanValue}`);
+assert(`I'm a number, ${numberValue}`, 'number');
+assert(`I'm a boolean, ${booleanValue}`, 'boolean');
 // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-assert(`I'm a object, ${objectValue}`);
+assert(`I'm a object, ${objectValue}`, 'object');
 
 // linting error is not reported because n/no-unsupported-features/node-builtins is disabled
 // eslint-disable-next-line @checkdigit/no-side-effects, @checkdigit/require-service-call-response-declaration
@@ -103,10 +103,10 @@ await fetch('https://example.com');
 
 // test rule @checkdigit/invalid-json-stringify
 const objectToSerialize = { key: 'value' };
-assert.equal(JSON.stringify(objectToSerialize), '{"key":"value"}');
+assert.equal(JSON.stringify(objectToSerialize), '{"key":"value"}', 'serialization');
 const newError = new Error('error');
 // eslint-disable-next-line @checkdigit/invalid-json-stringify
-assert.equal(JSON.stringify(newError), '{}'); // serialization of Error object is losing information, hance the error
+assert.equal(JSON.stringify(newError), '{}', 'Object'); // serialization of Error object is losing information, hance the error
 try {
   //
 } catch (caughtError) {
@@ -119,7 +119,7 @@ export async function testNoPromiseInstanceMethodRule(): Promise<void> {
   return fetch('https://example.com')
     .then((response) => {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      assert.ok(response);
+      assert.ok(response, 'response');
     })
     .catch(() => {
       //
