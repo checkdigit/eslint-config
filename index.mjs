@@ -16,8 +16,6 @@ import importPlugin from 'eslint-plugin-import';
 import noOnlyTests from 'eslint-plugin-no-only-tests';
 import noSecrets from 'eslint-plugin-no-secrets';
 import n from 'eslint-plugin-n';
-import tsParser from '@typescript-eslint/parser';
-import jest from 'eslint-plugin-jest';
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -54,7 +52,7 @@ const tsConfigurations = [
       import: importPlugin,
     },
     languageOptions: {
-      parser: tsParser,
+      parser: ts.parser,
       ecmaVersion: 'latest',
       sourceType: 'module',
       parserOptions: {
@@ -455,32 +453,6 @@ const tsConfigurations = [
       'no-undefined': 'off',
       'prefer-promise-reject-errors': 'off',
       'require-yield': 'off',
-    },
-  },
-  {
-    files: ['**/*.spec.ts'],
-    ...jest.configs['flat/recommended'],
-    rules: {
-      ...jest.configs['flat/recommended'].rules,
-      'jest/expect-expect': 'off',
-      'jest/max-nested-describe': [
-        'error',
-        {
-          max: 1,
-        },
-      ],
-      'jest/no-duplicate-hooks': ['error'],
-      'jest/prefer-hooks-in-order': ['error'],
-      'jest/prefer-hooks-on-top': ['error'],
-      'jest/no-disabled-tests': ['error'],
-      'jest/no-commented-out-tests': ['error'],
-      'jest/require-top-level-describe': [
-        'error',
-        {
-          maxNumberOfTopLevelDescribes: 1,
-        },
-      ],
-      'jest/no-deprecated-functions': 'off',
     },
   },
   {

@@ -36,12 +36,15 @@ setTimeout("alert('Hi!');", 100);
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
+// eslint-disable-next-line @checkdigit/require-assert-message
 assert.ok(foo);
 
+// eslint-disable-next-line @checkdigit/require-assert-message
 assert.ok({}.toString());
 
 describe('testHello', () => {
   it('should return a number', () => {
+    // eslint-disable-next-line @checkdigit/require-assert-message
     assert.equal(testHello(), 138);
   });
 });

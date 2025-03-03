@@ -1,6 +1,6 @@
 # @checkdigit/eslint-config
 
-Copyright (c) 2021-2024 [Check Digit, LLC](https://checkdigit.com)
+Copyright © 2021-2025 [Check Digit, LLC](https://checkdigit.com)
 
 ## Install
 
@@ -17,8 +17,8 @@ plugins that are supported by the configuration via `peerDependencies`.
 {
   // ...
   "scripts": {
-    "lint": "NODE_OPTIONS=\"--disable-warning ExperimentalWarning\" eslint --max-warnings 0 .",
-    "lint:fix": "NODE_OPTIONS=\"--disable-warning ExperimentalWarning\" eslint . --fix",
+    "lint": "eslint --max-warnings 0 .",
+    "lint:fix": "eslint . --fix",
     "test": "... && npm run lint",
   },
   // ...
