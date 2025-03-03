@@ -35,8 +35,8 @@
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
-    "@checkdigit/prettier-config": "6.3.0-PR.52-a040",
-    "@checkdigit/typescript-config": "9.1.0-PR.71-f692",
+    "@checkdigit/prettier-config": "^6.3.0",
+    "@checkdigit/typescript-config": "^9.1.0",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
