@@ -379,6 +379,7 @@ const tsConfigurations = [
       '@checkdigit/no-serve-runtime': 'error',
       '@checkdigit/no-side-effects': 'off',
       '@checkdigit/require-service-call-response-declaration': 'off',
+      '@checkdigit/require-assert-message': 'off',
       '@checkdigit/no-status-code-assert': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
