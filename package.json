@@ -40,7 +40,7 @@
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "7.12.0",
+    "@checkdigit/eslint-plugin": "7.12.1-PR.120-58f5",
     "@eslint/compat": "1.2.7",
     "@eslint/eslintrc": "3.3.0",
     "@eslint/js": "9.22.0",

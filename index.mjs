@@ -368,11 +368,6 @@ const tsConfigurations = [
 
       // at this point, it's allowed to use in production code
       '@checkdigit/no-serve-runtime': 'off',
-
-      '@checkdigit/no-side-effects': [
-        'error',
-        { excludedIdentifiers: ['assert', 'debug', 'log', 'promisify', 'Symbol.for', 'Object.freeze'] },
-      ],
     },
   },
   {
