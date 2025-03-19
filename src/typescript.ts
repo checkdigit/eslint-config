@@ -110,6 +110,7 @@ await fetch('https://example.com');
 const objectToSerialize = { key: 'value' };
 // eslint-disable-next-line @checkdigit/require-assert-message, @checkdigit/no-side-effects
 assert.equal(JSON.stringify(objectToSerialize), '{"key":"value"}');
+// eslint-disable-next-line  @checkdigit/no-side-effects
 const newError = new Error('error');
 // eslint-disable-next-line @checkdigit/invalid-json-stringify,@checkdigit/require-assert-message, @checkdigit/no-side-effects
 assert.equal(JSON.stringify(newError), '{}'); // serialization of Error object is losing information, hance the error
