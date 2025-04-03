@@ -16,8 +16,6 @@ import importPlugin from 'eslint-plugin-import';
 import noOnlyTests from 'eslint-plugin-no-only-tests';
 import noSecrets from 'eslint-plugin-no-secrets';
 import n from 'eslint-plugin-n';
-import tsParser from '@typescript-eslint/parser';
-import jest from 'eslint-plugin-jest';
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -54,7 +52,7 @@ const tsConfigurations = [
       import: importPlugin,
     },
     languageOptions: {
-      parser: tsParser,
+      parser: ts.parser,
       ecmaVersion: 'latest',
       sourceType: 'module',
       parserOptions: {
@@ -370,6 +368,12 @@ const tsConfigurations = [
 
       // at this point, it's allowed to use in production code
       '@checkdigit/no-serve-runtime': 'off',
+
+      // configure this to not report side effects for certain functions
+      '@checkdigit/no-side-effects': [
+        'error',
+        { excludedIdentifiers: ['debug', 'log', 'memoize', 'Object.freeze', 'promisify', 'Symbol.for'] },
+      ],
     },
   },
   {
@@ -381,6 +385,7 @@ const tsConfigurations = [
       '@checkdigit/no-serve-runtime': 'error',
       '@checkdigit/no-side-effects': 'off',
       '@checkdigit/require-service-call-response-declaration': 'off',
+      '@checkdigit/require-assert-message': 'off',
       '@checkdigit/no-status-code-assert': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
@@ -426,6 +431,7 @@ const tsConfigurations = [
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
       '@typescript-eslint/no-confusing-void-expression': 'off',
+      '@typescript-eslint/no-misused-spread': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/unbound-method': 'off',
       'import/no-extraneous-dependencies': 'off',
@@ -440,10 +446,14 @@ const tsConfigurations = [
       'sonarjs/slow-regexp': 'off',
       'sonarjs/pseudo-random': 'off',
       'sonarjs/unused-named-groups': 'off',
+      'sonarjs/no-nested-functions': 'off',
+      'sonarjs/no-alphabetical-sort': 'off',
+      'sonarjs/function-return-type': 'off',
       'unicorn/no-useless-undefined': 'off',
       'unicorn/no-await-expression-member': 'off',
       'unicorn/consistent-function-scoping': 'off',
       'unicorn/no-array-reduce': 'off',
+      'unicorn/prefer-spread': 'off',
       'unicorn/error-message': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/no-array-for-each': 'off',
@@ -455,32 +465,6 @@ const tsConfigurations = [
       'no-undefined': 'off',
       'prefer-promise-reject-errors': 'off',
       'require-yield': 'off',
-    },
-  },
-  {
-    files: ['**/*.spec.ts'],
-    ...jest.configs['flat/recommended'],
-    rules: {
-      ...jest.configs['flat/recommended'].rules,
-      'jest/expect-expect': 'off',
-      'jest/max-nested-describe': [
-        'error',
-        {
-          max: 1,
-        },
-      ],
-      'jest/no-duplicate-hooks': ['error'],
-      'jest/prefer-hooks-in-order': ['error'],
-      'jest/prefer-hooks-on-top': ['error'],
-      'jest/no-disabled-tests': ['error'],
-      'jest/no-commented-out-tests': ['error'],
-      'jest/require-top-level-describe': [
-        'error',
-        {
-          maxNumberOfTopLevelDescribes: 1,
-        },
-      ],
-      'jest/no-deprecated-functions': 'off',
     },
   },
   {
