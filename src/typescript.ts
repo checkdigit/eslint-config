@@ -40,6 +40,7 @@ function hello(_?: string): bigint {
   const thing = _lib || {};
   // this is a comment for the regex below
   assert.ok(/^[a-z]+$/u.test('hello'), 'regex');
+  // eslint-disable-next-line  @checkdigit/no-type-assertion-as
   hello(thing as string);
   // do nothing
 });

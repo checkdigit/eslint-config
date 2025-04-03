@@ -36,13 +36,13 @@ setTimeout("alert('Hi!');", 100);
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 const foo = <T>(argument: T) => (argument ? 1 : 0);
-assert.ok(foo);
+assert.ok(foo, 'foo');
 
-assert.ok({}.toString());
+assert.ok({}.toString(), 'object');
 
 describe('testHello', () => {
   it('should return a number', () => {
-    assert.equal(testHello(), 138);
+    assert.equal(testHello(), 138, 'testHello');
   });
 });
 
