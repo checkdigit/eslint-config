@@ -60,6 +60,9 @@ paginator();
 for (const value in [1, 2, 3]) {
   // eslint-disable-next-line no-console
   console.log(value);
+  const test = '/^[a-z]+$/u';
+  const testValue = 'hello';
+  assert.ok(testValue.match(test), 'It didn`t match the regex');
 }
 
 // eslint-disable-next-line no-eval, @checkdigit/no-side-effects
