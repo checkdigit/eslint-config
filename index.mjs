@@ -179,7 +179,7 @@ const tsConfigurations = [
 
       // typeof any === "evil".
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/prefer-regexp-exec': 'off', // RegExp.exec() is slightly faster than String.match() so will leave this off and not worth updating our code
+      '@typescript-eslint/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
       'sonarjs/different-types-comparison': 'off', // duplicate of @typescript-eslint/no-unnecessary-condition
@@ -188,7 +188,7 @@ const tsConfigurations = [
       'sonarjs/no-nested-conditional': 'off',
       'sonarjs/todo-tag': 'off', // duplicate of no-warning-comments
       'sonarjs/generator-without-yield': 'off', // duplicate of require-yield
-      'sonarjs/prefer-regexp-exec': 'off', // RegExp.exec() is slightly faster than String.match() so will leave this off and not worth updating our code
+      'sonarjs/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
 
       'no-only-tests/no-only-tests': 'error',
 
