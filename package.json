@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.2.3",
+  "version": "11.2.4",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -40,7 +40,7 @@
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "7.13.1",
+    "@checkdigit/eslint-plugin": "7.13.3",
     "@eslint/compat": "1.2.7",
     "@eslint/eslintrc": "3.3.0",
     "@eslint/js": "9.22.0",
