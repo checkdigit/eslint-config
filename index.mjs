@@ -25,7 +25,9 @@ import markdown from '@eslint/markdown';
 import yaml from 'eslint-plugin-yml';
 
 const ignores = [
-  ...(await fs.readFile('.gitignore', 'utf-8')).split('\n').filter((path) => path.trim() !== ''),
+  ...(await fs.readFile('.gitignore', 'utf-8'))
+    .split('\n')
+    .filter((path) => path.trim() !== ''),
   'eslint.config.mjs',
 ];
 const __filename = fileURLToPath(import.meta.url);
@@ -95,8 +97,15 @@ const tsConfigurations = [
       '@typescript-eslint/require-await': 'off',
 
       // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
-      // set to 200 because that is sonar's default
-      'max-lines-per-function': ['error', 200],
+      // increasing this to 250 instead of the default value of 200 because of prettier's printWidth reduced to 80
+      'max-lines-per-function': [
+        'error',
+        {
+          max: 250,
+          skipBlankLines: true,
+          skipComments: true,
+        },
+      ],
 
       // enforce use of curly braces around if statements and discourage one-line ifs
       curly: 'error',
@@ -124,7 +133,15 @@ const tsConfigurations = [
 
       'n/no-restricted-import': [
         'error',
-        ['moment', 'clone', 'fclone', 'lodash', 'underscore', 'fs-extra', '@checkdigit/typescript'],
+        [
+          'moment',
+          'clone',
+          'fclone',
+          'lodash',
+          'underscore',
+          'fs-extra',
+          '@checkdigit/typescript',
+        ],
       ],
 
       'n/no-process-env': 'error',
@@ -292,7 +309,7 @@ const tsConfigurations = [
       'max-lines': [
         'error',
         {
-          max: 500,
+          max: 625,
           skipBlankLines: true,
           skipComments: true,
         },
@@ -373,7 +390,16 @@ const tsConfigurations = [
       // configure this to not report side effects for certain functions
       '@checkdigit/no-side-effects': [
         'error',
-        { excludedIdentifiers: ['debug', 'log', 'memoize', 'Object.freeze', 'promisify', 'Symbol.for'] },
+        {
+          excludedIdentifiers: [
+            'debug',
+            'log',
+            'memoize',
+            'Object.freeze',
+            'promisify',
+            'Symbol.for',
+          ],
+        },
       ],
     },
   },
