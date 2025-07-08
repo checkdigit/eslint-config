@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.2.7",
+  "version": "11.3.0",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -25,7 +25,7 @@
     "ci:compile": "tsc --noEmit",
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier",
-    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style",
+    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style && node --test src/deprecated-rules.spec.ts",
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
     "prepare": "",
