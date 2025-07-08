@@ -25,13 +25,14 @@
     "ci:compile": "tsc --noEmit",
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier",
-    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style && node --test src/deprecated-rules.spec.ts",
+    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style && npm run test:node-mjs",
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
     "prepare": "",
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
-    "test": "npm run ci:test"
+    "test": "npm run ci:test && npm run test:node-mjs",
+    "test:node-mjs": "node --disable-warning ExperimentalWarning --experimental-strip-types --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {

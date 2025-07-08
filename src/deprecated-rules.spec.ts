@@ -78,7 +78,6 @@ function isRuleEnabled(setting: ESLintRuleSetting): boolean {
   );
 }
 
-// Test suite
 describe('No deprecated rules are explicitly enabled in config', () => {
   it('should not explicitly enable any deprecated rules', () => {
     const allDeprecated = new Set([
