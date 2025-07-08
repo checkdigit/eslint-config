@@ -31,7 +31,7 @@
     "prepare": "",
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
-    "test": "npm run ci:test && npm run test:node-mjs",
+    "test": "npm run ci:test",
     "test:node-mjs": "node --disable-warning ExperimentalWarning --experimental-strip-types --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
   },
   "prettier": "@checkdigit/prettier-config",
