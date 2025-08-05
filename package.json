@@ -36,7 +36,7 @@
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
     "@checkdigit/prettier-config": "^7.1.1",
-    "@checkdigit/typescript-config": "^9.2.0",
+    "@checkdigit/typescript-config": "^9.3.0",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
