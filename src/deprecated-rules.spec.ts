@@ -56,7 +56,7 @@ async function findDeprecatedRulesFromPlugins(
   const deprecatedRules: string[] = [];
   for (const pluginName of pluginNames) {
     const plugin = await import(pluginName);
-    const pluginRules: ESLintPluginRules = plugin.rules ?? {};
+    const pluginRules: ESLintPluginRules = plugin.default.rules ?? plugin.rules;
     deprecatedRules.push(
       ...Object.entries(pluginRules)
         .filter(([, rule]) => rule.meta?.deprecated)
