@@ -3,20 +3,10 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 
-// eslint-disable-next-line sonarjs/deprecation
-import { builtinRules } from 'eslint/use-at-your-own-risk';
-import { rules as sonarjsRules } from 'eslint-plugin-sonarjs';
-import unicornRules from 'eslint-plugin-unicorn';
-import nPlugin from 'eslint-plugin-n';
-import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
-
 /* eslint-disable @checkdigit/require-ts-extension-imports-exports */
 // @ts-expect-error: Importing ESM config in a test file is intentional
 import config from '../index.mjs';
 /* eslint-enable @checkdigit/require-ts-extension-imports-exports */
-
-const { rules: nRules } = nPlugin;
-const { rules: typescriptEslintRules } = typescriptEslintPlugin;
 
 interface ESLintRuleMeta {
   meta?: {
@@ -41,15 +31,64 @@ interface ESLintConfigEntry {
   [key: string]: unknown;
 }
 
-function findDeprecatedRules(
-  pluginRules: ESLintPluginRules | undefined,
-): string[] {
-  if (!pluginRules) {
-    return [];
+const desiredPlugins = new Set([
+  '@typescript-eslint/eslint-plugin',
+  'eslint-plugin-unicorn',
+  'eslint-plugin-sonarjs',
+  'eslint-plugin-n',
+]);
+
+async function findDeprecatedBuiltinRules(): Promise<string[]> {
+  // eslint-disable-next-line sonarjs/deprecation
+  const { builtinRules } = await import('eslint/use-at-your-own-risk');
+  const deprecatedRules: string[] = [];
+  for (const [ruleName, rule] of builtinRules) {
+    if (rule.meta?.deprecated) {
+      deprecatedRules.push(ruleName);
+    }
   }
-  return Object.entries(pluginRules)
-    .filter(([, rule]) => rule.meta?.deprecated)
-    .map(([ruleName]) => ruleName);
+  return deprecatedRules;
+}
+
+async function findDeprecatedRulesFromPlugins(
+  pluginNames: string[],
+): Promise<string[]> {
+  const deprecatedRules: string[] = [];
+  for (const pluginName of pluginNames) {
+    const plugin = await import(pluginName);
+    const pluginRules: ESLintPluginRules = plugin.rules ?? {};
+    deprecatedRules.push(
+      ...Object.entries(pluginRules)
+        .filter(([, rule]) => rule.meta?.deprecated)
+        .map(([ruleName]) => ruleName),
+    );
+  }
+  return deprecatedRules;
+}
+
+function extractPluginNamesFromConfig(
+  eslintConfig: ESLintConfigEntry[],
+): string[] {
+  const pluginNames = new Set<string>();
+  eslintConfig.forEach((entry) => {
+    if (
+      typeof entry === 'object' &&
+      !Array.isArray(entry) &&
+      entry.plugins &&
+      typeof entry.plugins === 'object' &&
+      !Array.isArray(entry.plugins)
+    ) {
+      Object.keys(entry.plugins).forEach((plugin) => {
+        if (plugin.startsWith('@')) {
+          pluginNames.add(`${plugin}/eslint-plugin`);
+        } else {
+          pluginNames.add(`eslint-plugin-${plugin}`);
+        }
+      });
+    }
+  });
+
+  return Array.from(pluginNames).filter((plugin) => desiredPlugins.has(plugin));
 }
 
 function getAllExplicitRulesFromConfig(
@@ -79,16 +118,12 @@ function isRuleEnabled(setting: ESLintRuleSetting): boolean {
 }
 
 describe('No deprecated rules are explicitly enabled in config', () => {
-  it('should not explicitly enable any deprecated rules', () => {
+  it('should not explicitly enable any deprecated rules', async () => {
+    const pluginNames = extractPluginNamesFromConfig(config);
+
     const allDeprecated = new Set([
-      ...findDeprecatedRules(sonarjsRules),
-      ...findDeprecatedRules(unicornRules.rules),
-      ...findDeprecatedRules(nRules),
-      ...findDeprecatedRules(typescriptEslintRules),
-      // eslint-disable-next-line sonarjs/deprecation
-      ...Array.from(builtinRules.entries())
-        .filter(([, rule]) => rule.meta?.deprecated)
-        .map(([ruleName]) => ruleName),
+      ...(await findDeprecatedRulesFromPlugins(pluginNames)),
+      ...(await findDeprecatedBuiltinRules()),
     ]);
 
     const configRules = getAllExplicitRulesFromConfig(config);
