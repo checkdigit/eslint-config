@@ -492,6 +492,7 @@ const tsConfigurations = [
       'no-undefined': 'off',
       'prefer-promise-reject-errors': 'off',
       'require-yield': 'off',
+      'unicorn/prefer-single-call': 'off',
     },
   },
   {
