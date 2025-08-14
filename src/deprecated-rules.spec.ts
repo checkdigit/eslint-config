@@ -70,7 +70,7 @@ function extractPluginNamesFromConfig(
   eslintConfig: ESLintConfigEntry[],
 ): string[] {
   const pluginNames = new Set<string>();
-  eslintConfig.forEach((entry) => {
+  for (const entry of eslintConfig) {
     if (
       typeof entry === 'object' &&
       !Array.isArray(entry) &&
@@ -78,15 +78,15 @@ function extractPluginNamesFromConfig(
       typeof entry.plugins === 'object' &&
       !Array.isArray(entry.plugins)
     ) {
-      Object.keys(entry.plugins).forEach((plugin) => {
+      for (const plugin of Object.keys(entry.plugins)) {
         if (plugin.startsWith('@')) {
           pluginNames.add(`${plugin}/eslint-plugin`);
         } else {
           pluginNames.add(`eslint-plugin-${plugin}`);
         }
-      });
+      }
     }
-  });
+  }
 
   return Array.from(pluginNames).filter((plugin) => desiredPlugins.has(plugin));
 }
@@ -94,7 +94,9 @@ function extractPluginNamesFromConfig(
 function getAllExplicitRulesFromConfig(
   eslintConfig: ESLintConfigEntry[],
 ): ESLintRules {
-  return eslintConfig.reduce<ESLintRules>((rules, entry) => {
+  const rules: ESLintRules = {};
+
+  for (const entry of eslintConfig) {
     if (
       typeof entry === 'object' &&
       !Array.isArray(entry) &&
@@ -103,8 +105,9 @@ function getAllExplicitRulesFromConfig(
     ) {
       Object.assign(rules, entry.rules);
     }
-    return rules;
-  }, {});
+  }
+
+  return rules;
 }
 
 function isRuleEnabled(setting: ESLintRuleSetting): boolean {
