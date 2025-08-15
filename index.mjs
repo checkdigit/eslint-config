@@ -206,6 +206,7 @@ const tsConfigurations = [
       'sonarjs/todo-tag': 'off', // duplicate of no-warning-comments
       'sonarjs/generator-without-yield': 'off', // duplicate of require-yield
       'sonarjs/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
+      'sonarjs/updated-loop-counter': 'off', // This rule is deprecated and this rule is enabled in the ✅ `recommended` config.
 
       'no-only-tests/no-only-tests': 'error',
 
