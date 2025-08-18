@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2024 Check Digit, LLC
+ * Copyright (c) 2021-2025 Check Digit, LLC
  *
  * This code is licensed under the MIT license (see LICENSE.txt for details).
  */
@@ -176,14 +176,14 @@ const tsConfigurations = [
       // has a bug, throws an exception in some cases
       'import/export': 'off',
 
-      'spaced-comment': 'error',
+      'spaced-comment': 'off',
       'no-var': 'error',
       'prefer-const': 'error',
       'prefer-rest-params': 'error',
       'prefer-spread': 'error',
       'require-yield': 'error',
       'no-console': 'error',
-      'no-return-await': 'error',
+      'no-return-await': 'off',
       '@typescript-eslint/no-deprecated': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'error',
@@ -206,6 +206,7 @@ const tsConfigurations = [
       'sonarjs/todo-tag': 'off', // duplicate of no-warning-comments
       'sonarjs/generator-without-yield': 'off', // duplicate of require-yield
       'sonarjs/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
+      'sonarjs/updated-loop-counter': 'off', // This rule is deprecated and this rule is enabled in the ✅ `recommended` config.
 
       'no-only-tests/no-only-tests': 'error',
 
