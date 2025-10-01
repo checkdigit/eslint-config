@@ -415,6 +415,7 @@ const tsConfigurations = [
       '@checkdigit/require-service-call-response-declaration': 'off',
       '@checkdigit/require-assert-message': 'off',
       '@checkdigit/no-status-code-assert': 'off',
+      '@checkdigit/require-aws-config': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
