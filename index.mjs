@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { promises as fs } from 'node:fs';
 
 import { fixupConfigRules } from '@eslint/compat';
-import checkdigit from '@checkdigit/eslint-plugin';
+import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
 import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
 import importPlugin from 'eslint-plugin-import';
@@ -531,6 +531,11 @@ const markdownConfigurations = markdown.configs.recommended.map((config) => ({
 
 export default [
   { ignores },
+  {
+    settings: {
+      isAwsSdkV3Used: isAwsSdkV3Used(),
+    },
+  },
   {
     linterOptions: {
       reportUnusedDisableDirectives: 'error',
