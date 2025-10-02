@@ -533,7 +533,7 @@ export default [
   { ignores },
   {
     settings: {
-      isAwsSdkV3Used: isAwsSdkV3Used(),
+      isAwsSdkV3Used: await isAwsSdkV3Used(),
     },
   },
   {
