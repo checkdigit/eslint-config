@@ -41,7 +41,7 @@
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "7.16.0-PR.136-d0cb",
+    "@checkdigit/eslint-plugin": "^7.16.0",
     "@eslint/compat": "1.3.1",
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.32.0",
@@ -61,6 +61,6 @@
     "typescript-eslint": "8.39.0"
   },
   "engines": {
-    "node": ">=22.15"
+    "node": ">=22.18"
   }
 }
