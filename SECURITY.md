@@ -6,8 +6,8 @@ These versions of `@checkdigit/eslint-config` are currently being supported with
 
 | Version  | Supported          |
 | -------- | ------------------ |
-| \>= 11.x | :white_check_mark: |
-| \< 11.0  | :x:                |
+| \>= 12.x | :white_check_mark: |
+| \< 12.0  | :x:                |
 
 ## Reporting a Vulnerability
 
