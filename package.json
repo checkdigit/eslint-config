@@ -36,12 +36,11 @@
   },
   "prettier": "@checkdigit/prettier-config",
   "overrides": {
-    "eslint": "10.1.0",
-    "typescript": ">=6.0.2 <7"
+    "eslint": "10.1.0"
   },
   "devDependencies": {
     "@checkdigit/prettier-config": "^8.0.0",
-    "@checkdigit/typescript-config": "10.1.0-PR.90-a826",
+    "@checkdigit/typescript-config": "10.1.0-PR.90-0823",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
@@ -50,7 +49,7 @@
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "10.0.1",
     "@eslint/json": "1.2.0",
-    "@eslint/markdown": "7.5.1",
+    "@eslint/markdown": "8.0.0",
     "eslint": "10.1.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.4",
@@ -60,9 +59,9 @@
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-no-secrets": "2.3.3",
     "eslint-plugin-sonarjs": "4.0.2",
-    "eslint-plugin-unicorn": "63.0.0",
+    "eslint-plugin-unicorn": "64.0.0",
     "eslint-plugin-yml": "3.3.1",
-    "typescript-eslint": "8.57.2"
+    "typescript-eslint": "8.58.0"
   },
   "engines": {
     "node": ">=24.13"
