@@ -134,6 +134,8 @@ const tsConfigurations = [
       'n/no-restricted-import': [
         'error',
         [
+          'axios',
+          'got',
           'moment',
           'clone',
           'fclone',
@@ -141,8 +143,6 @@ const tsConfigurations = [
           'underscore',
           'fs-extra',
           '@checkdigit/typescript',
-          'got',
-          'axios',
         ],
       ],
 
