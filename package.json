@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.6.2",
+  "version": "11.7.0",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -37,7 +37,7 @@
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
     "@checkdigit/prettier-config": "^7.1.2",
-    "@checkdigit/typescript-config": "^9.3.2",
+    "@checkdigit/typescript-config": "^10.1.0",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
@@ -58,7 +58,7 @@
     "eslint-plugin-sonarjs": "3.0.5",
     "eslint-plugin-unicorn": "60.0.0",
     "eslint-plugin-yml": "1.19.0",
-    "typescript-eslint": "8.39.0"
+    "typescript-eslint": "8.59.2"
   },
   "engines": {
     "node": ">=22.18"
