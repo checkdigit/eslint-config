@@ -200,8 +200,8 @@ const tsConfigurations = [
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
 
-      '@typescript-eslint/no-unsafe-enum-comparison': 'off', // with typescript v6, this rule behave differently and start reporting error when number is compared with enum e.g. `if (statusCode === StatusCodes.OK) { ... }` which is a common pattern in our codebase.
-
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off', // With TypeScript v6, this rule behaves differently and starts reporting errors when a number is compared with an enum, e.g. `if (statusCode === StatusCodes.OK) { ... }`, which is a common pattern in our codebase.
+      
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
       'sonarjs/different-types-comparison': 'off', // duplicate of @typescript-eslint/no-unnecessary-condition
