@@ -136,3 +136,19 @@ export async function testNoPromiseInstanceMethodRule(): Promise<void> {
       //
     });
 }
+
+/* eslint-disable @checkdigit-athena/athena */
+const sql = `WITH
+  parameters AS (
+    SELECT
+      '2026-01-01T00:00:00.000Z' AS p_from,
+      '2026-12-31T23:59:59.999Z' AS p_to
+  )
+  SELECT
+    *
+  FROM
+    non_existent_table
+`;
+// eslint-disable-next-line @checkdigit/no-side-effects, @checkdigit/require-assert-message
+assert.ok(sql);
+/* eslint-enable @checkdigit-athena/athena */

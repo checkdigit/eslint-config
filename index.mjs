@@ -10,6 +10,7 @@ import { promises as fs } from 'node:fs';
 
 import { fixupConfigRules } from '@eslint/compat';
 import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
+import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
 import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
 import importPlugin from 'eslint-plugin-import';
@@ -47,6 +48,7 @@ const tsConfigurations = [
   importPlugin.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
   ...checkdigit.configs.all,
+  ...checkdigitAthena.configs.all,
   {
     plugins: {
       'no-only-tests': noOnlyTests,
@@ -422,6 +424,7 @@ const tsConfigurations = [
       '@checkdigit/no-status-code-assert': 'off',
       '@checkdigit/require-aws-config': 'off',
       '@checkdigit/require-consistent-read': 'off',
+      '@checkdigit-athena/athena': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
@@ -533,6 +536,11 @@ const yamlConfigurations = yaml.configs['flat/recommended'].map((config) => ({
 const markdownConfigurations = markdown.configs.recommended.map((config) => ({
   ...config,
   files: config.files ?? ['**/*.md'],
+}));
+
+const athenaSqlConfigurations = checkdigitAthena.configs.all.map((config) => ({
+  ...config,
+  files: config.files ?? ['**/*.sql'],
 }));
 
 export default [

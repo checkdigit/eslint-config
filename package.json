@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.8.0",
+  "version": "11.9.0",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -41,6 +41,7 @@
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
+    "@checkdigit/eslint-athena-plugin": "1.0.0-PR.2-832f",
     "@checkdigit/eslint-plugin": "^7.17.1",
     "@eslint/compat": "1.4.0",
     "@eslint/eslintrc": "3.3.1",
