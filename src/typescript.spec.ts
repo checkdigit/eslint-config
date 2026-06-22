@@ -27,6 +27,7 @@ export default function (): string {
   return 'hello';
 }
 
+/* eslint-disable @checkdigit-athena/athena */
 const sql = `WITH
   parameters AS (
     SELECT
@@ -39,3 +40,4 @@ const sql = `WITH
     non_existent_table
 `;
 assert.ok(sql);
+/* eslint-enable @checkdigit-athena/athena */

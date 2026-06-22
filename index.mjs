@@ -559,4 +559,5 @@ export default [
   ...markdownConfigurations,
   ...jsonConfigurations,
   ...yamlConfigurations,
+  ...athenaSqlConfigurations,
 ];
