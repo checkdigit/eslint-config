@@ -540,7 +540,7 @@ const markdownConfigurations = markdown.configs.recommended.map((config) => ({
 
 const athenaSqlConfigurations = checkdigitAthena.configs.all.map((config) => ({
   ...config,
-  files: config.files ?? ['**/*.sql'],
+  files: ['**/*.sql'],
 }));
 
 export default [

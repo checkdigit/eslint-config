@@ -41,7 +41,7 @@
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-athena-plugin": "1.0.0-PR.2-4167",
+    "@checkdigit/eslint-athena-plugin": "1.0.0-PR.2-e574",
     "@checkdigit/eslint-plugin": "7.17.1",
     "@eslint/compat": "1.4.0",
     "@eslint/eslintrc": "3.3.1",
