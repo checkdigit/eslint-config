@@ -29,19 +29,19 @@
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
     "prepare": "",
-    "prettier": "prettier --ignore-path .gitignore --list-different .",
-    "prettier:fix": "prettier --ignore-path .gitignore --write .",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write",
     "test": "npm run ci:test",
-    "test:node-mjs": "node --disable-warning ExperimentalWarning --experimental-strip-types --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
+    "test:node-mjs": "node --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^8.0.0",
-    "@checkdigit/typescript-config": "^10.1.0",
+    "@checkdigit/prettier-config": "^8.1.0",
+    "@checkdigit/typescript-config": "^10.1.1",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-athena-plugin": "1.0.0-PR.2-e574",
+    "@checkdigit/eslint-athena-plugin": "1.0.0-PR.2-2335",
     "@checkdigit/eslint-plugin": "7.17.1",
     "@eslint/compat": "1.4.0",
     "@eslint/eslintrc": "3.3.1",
