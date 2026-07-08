@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.8.0",
+  "version": "11.9.0",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -29,19 +29,20 @@
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
     "prepare": "",
-    "prettier": "prettier --ignore-path .gitignore --list-different .",
-    "prettier:fix": "prettier --ignore-path .gitignore --write .",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write",
     "test": "npm run ci:test",
-    "test:node-mjs": "node --disable-warning ExperimentalWarning --experimental-strip-types --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
+    "test:node-mjs": "node --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^7.1.2",
-    "@checkdigit/typescript-config": "^10.1.0",
+    "@checkdigit/prettier-config": "^8.1.0",
+    "@checkdigit/typescript-config": "^10.1.1",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-plugin": "^7.17.1",
+    "@checkdigit/eslint-athena-plugin": "1.0.0",
+    "@checkdigit/eslint-plugin": "7.17.1",
     "@eslint/compat": "1.4.0",
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.37.0",
@@ -61,6 +62,6 @@
     "typescript-eslint": "8.59.2"
   },
   "engines": {
-    "node": ">=22.18"
+    "node": ">=24.14.1"
   }
 }
