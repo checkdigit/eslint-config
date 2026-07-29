@@ -13,7 +13,7 @@ import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
 import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
 import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
-import importPlugin from 'eslint-plugin-import';
+import importX from 'eslint-plugin-import-x';
 import noOnlyTests from 'eslint-plugin-no-only-tests';
 import noSecrets from 'eslint-plugin-no-secrets';
 import n from 'eslint-plugin-n';
@@ -45,7 +45,7 @@ const tsConfigurations = [
   sonarjs.configs.recommended,
   prettier,
   n.configs['flat/recommended-module'],
-  importPlugin.flatConfigs.typescript,
+  importX.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
   ...checkdigit.configs.all,
   ...checkdigitAthena.configs.all,
@@ -63,7 +63,7 @@ const tsConfigurations = [
       },
     },
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: true,
         node: true,
       },
@@ -122,7 +122,7 @@ const tsConfigurations = [
         },
       ],
 
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           'newlines-between': 'ignore',
@@ -168,16 +168,16 @@ const tsConfigurations = [
       'n/no-process-exit': 'off',
 
       // import-specific rules
-      'import/no-extraneous-dependencies': [
+      'import-x/no-extraneous-dependencies': [
         'error',
         {
           devDependencies: ['**/*.spec.ts', '**/*.test.ts'],
         },
       ],
-      'import/namespace': 'off',
+      'import-x/namespace': 'off',
 
       // has a bug, throws an exception in some cases
-      'import/export': 'off',
+      'import-x/export': 'off',
 
       'spaced-comment': 'off',
       'no-var': 'error',
@@ -343,6 +343,9 @@ const tsConfigurations = [
       // this doesn't make sense in Typescript code, we can rely on type checking to catch it
       'unicorn/no-array-callback-reference': 'off',
 
+      // use the more comprehensive @checkdigit rule instead
+      'unicorn/no-top-level-side-effects': 'off',
+
       // regardless of merits, these rules contradict prettier so cannot be
       'unicorn/no-nested-ternary': 'off',
       'unicorn/number-literal-case': 'off',
@@ -471,7 +474,7 @@ const tsConfigurations = [
       '@typescript-eslint/no-misused-spread': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/unbound-method': 'off',
-      'import/no-extraneous-dependencies': 'off',
+      'import-x/no-extraneous-dependencies': 'off',
       'n/no-process-env': 'off',
       'sonarjs/cognitive-complexity': 'off',
       'sonarjs/no-clear-text-protocols': 'off',

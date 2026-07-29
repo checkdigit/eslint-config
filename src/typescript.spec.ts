@@ -8,6 +8,7 @@ import testHello from './typescript.test.ts';
 testHello();
 
 describe('suite', () => {
+  // eslint-disable-next-line sonarjs/assertions-in-tests
   it('test', () => {
     testHello();
   });
@@ -16,6 +17,7 @@ describe('suite', () => {
     const url = 'https://example.com';
     return fetch(url);
   }
+  // eslint-disable-next-line sonarjs/assertions-in-tests
   it('test service calls', async () => {
     await callService();
     await fetch('https://example.com');
@@ -38,4 +40,5 @@ const sql = `WITH
   FROM
     non_existent_table
 `;
+// eslint-disable-next-line sonarjs/no-trivial-assertions
 assert.ok(sql);

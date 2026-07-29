@@ -14,9 +14,10 @@ function testHello(_?: string): number {
   return 123 + 0xf;
 }
 
+// eslint-disable-next-line unicorn/no-for-each, unicorn/name-replacements
 [].forEach((_lib) => {
   // do nothing
-  // eslint-disable-next-line @typescript-eslint/no-shadow,eqeqeq
+  // eslint-disable-next-line @typescript-eslint/no-shadow,eqeqeq,unicorn/consistent-boolean-name
   const testHello = ' '.trim() == '';
   return testHello;
 });

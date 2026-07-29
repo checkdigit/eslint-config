@@ -1,6 +1,6 @@
 // typescript.ts
 
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import-x/no-extraneous-dependencies
 import 'typescript';
 
 // eslint-disable-next-line unicorn/prefer-node-protocol
@@ -34,7 +34,7 @@ function hello(_?: string): bigint {
   return -1n + 1n + 10n;
 }
 
-// eslint-disable-next-line unicorn/no-array-for-each,unicorn/prevent-abbreviations
+// eslint-disable-next-line unicorn/no-for-each, unicorn/name-replacements
 ['', undefined].forEach((_lib) => {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
   const thing = _lib || {};
@@ -68,7 +68,7 @@ for (const value in [1, 2, 3]) {
 // eslint-disable-next-line no-eval, @checkdigit/no-side-effects
 eval('console.log("no-no");');
 
-// eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions,@checkdigit/require-assert-message, @checkdigit/no-side-effects
+// eslint-disable-next-line no-invalid-this,@typescript-eslint/strict-boolean-expressions,@checkdigit/require-assert-message, @checkdigit/no-side-effects, unicorn/no-this-outside-of-class
 assert.ok(this);
 
 // eslint-disable-next-line sonarjs/pseudo-random, @checkdigit/no-side-effects
@@ -95,6 +95,7 @@ assert.ok({}.toString());
 export default hello;
 
 const numberValue = 1;
+// eslint-disable-next-line unicorn/consistent-boolean-name
 const booleanValue = true;
 const objectValue = { key: 'value' };
 // linting error is not reported because @typescript-eslint/restrict-template-expressions is configured to allow number and boolean
@@ -126,15 +127,19 @@ try {
 }
 
 export async function testNoPromiseInstanceMethodRule(): Promise<void> {
-  // eslint-disable-next-line @checkdigit/no-promise-instance-method
-  return fetch('https://example.com')
-    .then((response) => {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions,@checkdigit/require-assert-message
-      assert.ok(response);
-    })
-    .catch(() => {
-      //
-    });
+  return (
+    // eslint-disable-next-line @checkdigit/no-promise-instance-method
+    fetch('https://example.com')
+      // eslint-disable-next-line unicorn/prefer-await
+      .then((response) => {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions,@checkdigit/require-assert-message
+        assert.ok(response);
+      })
+      // eslint-disable-next-line unicorn/prefer-await
+      .catch(() => {
+        //
+      })
+  );
 }
 
 /* eslint-disable @checkdigit-athena/athena */
@@ -149,6 +154,6 @@ const sql = `WITH
   FROM
     non_existent_table
 `;
-// eslint-disable-next-line @checkdigit/no-side-effects, @checkdigit/require-assert-message
+// eslint-disable-next-line @checkdigit/no-side-effects, @checkdigit/require-assert-message, sonarjs/no-trivial-assertions
 assert.ok(sql);
 /* eslint-enable @checkdigit-athena/athena */
