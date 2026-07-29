@@ -10,6 +10,7 @@ import { promises as fs } from 'node:fs';
 
 import { fixupConfigRules } from '@eslint/compat';
 import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
+import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
 import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
 import importPlugin from 'eslint-plugin-import';
@@ -47,6 +48,7 @@ const tsConfigurations = [
   importPlugin.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
   ...checkdigit.configs.all,
+  ...checkdigitAthena.configs.all,
   {
     plugins: {
       'no-only-tests': noOnlyTests,
@@ -133,6 +135,8 @@ const tsConfigurations = [
       'n/no-restricted-import': [
         'error',
         [
+          'axios',
+          'got',
           'moment',
           'clone',
           'fclone',
@@ -196,6 +200,9 @@ const tsConfigurations = [
       // typeof any === "evil".
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
+
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off', // With TypeScript v6, this rule behaves differently and starts reporting errors when a number is compared with an enum, e.g. `if (statusCode === StatusCodes.OK) { ... }`, which is a common pattern in our codebase.
+
       // We're smarter than the default (15). Right?
       'sonarjs/cognitive-complexity': ['error', 24],
       'sonarjs/different-types-comparison': 'off', // duplicate of @typescript-eslint/no-unnecessary-condition
@@ -416,6 +423,7 @@ const tsConfigurations = [
       '@checkdigit/no-status-code-assert': 'off',
       '@checkdigit/require-aws-config': 'off',
       '@checkdigit/require-consistent-read': 'off',
+      '@checkdigit-athena/athena': 'off',
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
@@ -529,6 +537,11 @@ const markdownConfigurations = markdown.configs.recommended.map((config) => ({
   files: config.files ?? ['**/*.md'],
 }));
 
+const athenaSqlConfigurations = checkdigitAthena.configs.all.map((config) => ({
+  ...config,
+  files: ['**/*.sql'],
+}));
+
 export default [
   { ignores },
   {
@@ -545,4 +558,5 @@ export default [
   ...markdownConfigurations,
   ...jsonConfigurations,
   ...yamlConfigurations,
+  ...athenaSqlConfigurations,
 ];

@@ -1,5 +1,6 @@
 // typescript.spec.ts
 
+import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 
 // it's ok to import test files from test code
@@ -25,3 +26,16 @@ describe('suite', () => {
 export default function (): string {
   return 'hello';
 }
+
+const sql = `WITH
+  parameters AS (
+    SELECT
+      '2026-01-01T00:00:00.000Z' AS p_from,
+      '2026-12-31T23:59:59.999Z' AS p_to
+  )
+  SELECT
+    *
+  FROM
+    non_existent_table
+`;
+assert.ok(sql);
