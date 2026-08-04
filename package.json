@@ -43,7 +43,7 @@
   },
   "peerDependencies": {
     "@checkdigit/eslint-athena-plugin": "2.0.0-PR.4-181b",
-    "@checkdigit/eslint-plugin": "8.0.0-PR.141-b8c9",
+    "@checkdigit/eslint-plugin": "8.0.0-PR.145-0939",
     "@eslint/compat": "2.1.0",
     "@eslint/eslintrc": "3.3.6",
     "@eslint/js": "10.0.1",
