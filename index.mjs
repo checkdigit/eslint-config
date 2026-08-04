@@ -377,6 +377,9 @@ const tsConfigurations = [
       // most of the time it makes sense, but sometimes it's bad to have to come up with a name
       'unicorn/no-anonymous-default-export': 'off',
 
+      // stale understanding of builtin properties, such as Symbol.asyncDispose
+      'unicorn/no-nonstandard-builtin-properties': 'off',
+
       // having this restriction for number/boolean literals forces unnecessary changes
       '@typescript-eslint/restrict-template-expressions': [
         'error',
@@ -495,6 +498,7 @@ const tsConfigurations = [
       'unicorn/no-array-reduce': 'off',
       'unicorn/prefer-spread': 'off',
       'unicorn/error-message': 'off',
+      'unicorn/prefer-https': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/no-array-for-each': 'off',
       'max-lines': 'off',
