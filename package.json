@@ -42,8 +42,8 @@
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-athena-plugin": "2.0.0-PR.4-181b",
-    "@checkdigit/eslint-plugin": "8.0.0-PR.145-0939",
+    "@checkdigit/eslint-athena-plugin": "^2.0.0",
+    "@checkdigit/eslint-plugin": "^8.0.0",
     "@eslint/compat": "2.1.0",
     "@eslint/eslintrc": "3.3.6",
     "@eslint/js": "10.0.1",
@@ -59,7 +59,7 @@
     "eslint-plugin-no-secrets": "2.3.3",
     "eslint-plugin-sonarjs": "4.2.0",
     "eslint-plugin-unicorn": "73.0.0",
-    "eslint-plugin-yml": "3.8.0",
+    "eslint-plugin-yml": "3.8.1",
     "typescript-eslint": "8.66.0"
   },
   "engines": {
