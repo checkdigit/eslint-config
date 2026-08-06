@@ -30,8 +30,8 @@
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
     "prepare": "",
-    "prettier": "prettier --ignore-path .gitignore --list-different .",
-    "prettier:fix": "prettier --ignore-path .gitignore --write .",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write",
     "test": "npm run ci:test",
     "test:node-mjs": "node --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
   },
