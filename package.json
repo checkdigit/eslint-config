@@ -26,19 +26,19 @@
     "ci:compile": "tsc --noEmit",
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier",
-    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style && npm run test:node-mjs",
+    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style && npm run test:node",
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
     "prepare": "",
     "prettier": "prettier . --check",
     "prettier:fix": "prettier . --write",
     "test": "npm run ci:test",
-    "test:node-mjs": "node --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
+    "test:node": "node --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
     "@checkdigit/prettier-config": "^8.1.1",
-    "@checkdigit/typescript-config": "^10.2.0",
+    "@checkdigit/typescript-config": "^10.2.1",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
