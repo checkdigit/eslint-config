@@ -34,10 +34,10 @@ function hello(_?: string): bigint {
   return -1n + 1n + 10n;
 }
 
-// eslint-disable-next-line unicorn/no-for-each, unicorn/name-replacements
-['', undefined].forEach((_lib) => {
+// eslint-disable-next-line unicorn/no-for-each
+['', undefined].forEach((_library) => {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing,@typescript-eslint/strict-boolean-expressions
-  const thing = _lib || {};
+  const thing = _library || {};
   // this is a comment for the regex below
   assert.ok(/^[a-z]+$/u.test('hello'), 'regex');
   hello(thing as string);
