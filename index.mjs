@@ -97,7 +97,7 @@ const tsConfigurations = [
       'require-await': 'off',
       '@typescript-eslint/require-await': 'off',
 
-      // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
+      // SonarJS doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
       // increasing this to 250 instead of the default value of 200 because of prettier's printWidth reduced to 80
       'max-lines-per-function': [
         'error',
