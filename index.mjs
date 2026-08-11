@@ -346,6 +346,12 @@ const tsConfigurations = [
       // use the more comprehensive @checkdigit rule instead
       'unicorn/no-top-level-side-effects': 'off',
 
+      // disagree with its opinions (e.g. configuration -> config)
+      'unicorn/name-replacements': 'off',
+
+      // we're smarter than 3 nested calls
+      'unicorn/max-nested-calls': ['error', { max: 5 }],
+
       // regardless of merits, these rules contradict prettier so cannot be
       'unicorn/no-nested-ternary': 'off',
       'unicorn/number-literal-case': 'off',
