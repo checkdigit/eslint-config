@@ -340,7 +340,7 @@ const tsConfigurations = [
       'dot-notation': 'off',
       'eslint-comments/no-unused-disable': 2,
 
-      // this doesn't make sense in Typescript code, we can rely on type checking to catch it
+      // this doesn't make sense in TypeScript code, we can rely on type checking to catch it
       'unicorn/no-array-callback-reference': 'off',
 
       // use the more comprehensive @checkdigit rule instead
@@ -365,12 +365,16 @@ const tsConfigurations = [
       // we have a lot of tests that do .expect
       'sonarjs/assertions-in-tests': 'off',
 
+      // we use "does"
       'unicorn/consistent-boolean-name': [
         'error',
         {
           prefixes: { does: true },
         },
       ],
+
+      // we don't have performance concerns that need this
+      'unicorn/prefer-split-limit': 'off',
 
       // regardless of merits, these rules contradict prettier so cannot be
       'unicorn/no-nested-ternary': 'off',
@@ -391,7 +395,7 @@ const tsConfigurations = [
       // duplicate of eslint-comments/no-unlimited-disable
       'unicorn/no-abusive-eslint-disable': 'off',
 
-      // because of Typescript, we don't use null in our code unless we have to, which makes this annoying
+      // because of TypeScript, we don't use null in our code unless we have to, which makes this annoying
       'unicorn/no-null': 'off',
 
       // there are a lot of cases where this doesn't help readability
