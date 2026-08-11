@@ -525,6 +525,8 @@ const tsConfigurations = [
       'unicorn/prefer-spread': 'off',
       'unicorn/error-message': 'off',
       'unicorn/prefer-https': 'off',
+      'unicorn/no-array-sort': 'off',
+      'unicorn/require-array-sort-compare': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/no-array-for-each': 'off',
       'max-lines': 'off',
