@@ -359,6 +359,19 @@ const tsConfigurations = [
       // we're smarter than 3 nested calls
       'unicorn/max-nested-calls': ['error', { max: 5 }],
 
+      // we use "get" on a lot of responses that involve HTTP GET
+      'unicorn/no-non-function-verb-prefix': 'off',
+
+      // we have a lot of tests that do .expect
+      'sonarjs/assertions-in-tests': 'off',
+
+      'unicorn/consistent-boolean-name': [
+        'error',
+        {
+          prefixes: { does: true },
+        },
+      ],
+
       // regardless of merits, these rules contradict prettier so cannot be
       'unicorn/no-nested-ternary': 'off',
       'unicorn/number-literal-case': 'off',
