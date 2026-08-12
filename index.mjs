@@ -376,6 +376,9 @@ const tsConfigurations = [
       // we don't have performance concerns that need this
       'unicorn/prefer-split-limit': 'off',
 
+      // we never want "this" being used
+      'unicorn/class-reference-in-static-methods': 'off',
+
       // regardless of merits, these rules contradict prettier so cannot be
       'unicorn/no-nested-ternary': 'off',
       'unicorn/number-literal-case': 'off',
