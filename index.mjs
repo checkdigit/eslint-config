@@ -13,7 +13,7 @@ import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
 import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
 import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
-import importPlugin from 'eslint-plugin-import';
+import importX from 'eslint-plugin-import-x';
 import noOnlyTests from 'eslint-plugin-no-only-tests';
 import noSecrets from 'eslint-plugin-no-secrets';
 import n from 'eslint-plugin-n';
@@ -45,7 +45,7 @@ const tsConfigurations = [
   sonarjs.configs.recommended,
   prettier,
   n.configs['flat/recommended-module'],
-  importPlugin.flatConfigs.typescript,
+  importX.flatConfigs.typescript,
   ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
   ...checkdigit.configs.all,
   ...checkdigitAthena.configs.all,
@@ -53,7 +53,6 @@ const tsConfigurations = [
     plugins: {
       'no-only-tests': noOnlyTests,
       'no-secrets': noSecrets,
-      import: importPlugin,
     },
     languageOptions: {
       parser: ts.parser,
@@ -64,7 +63,7 @@ const tsConfigurations = [
       },
     },
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: true,
         node: true,
       },
@@ -98,7 +97,7 @@ const tsConfigurations = [
       'require-await': 'off',
       '@typescript-eslint/require-await': 'off',
 
-      // sonarjs doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
+      // SonarJS doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
       // increasing this to 250 instead of the default value of 200 because of prettier's printWidth reduced to 80
       'max-lines-per-function': [
         'error',
@@ -123,7 +122,7 @@ const tsConfigurations = [
         },
       ],
 
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           'newlines-between': 'ignore',
@@ -169,16 +168,16 @@ const tsConfigurations = [
       'n/no-process-exit': 'off',
 
       // import-specific rules
-      'import/no-extraneous-dependencies': [
+      'import-x/no-extraneous-dependencies': [
         'error',
         {
           devDependencies: ['**/*.spec.ts', '**/*.test.ts'],
         },
       ],
-      'import/namespace': 'off',
+      'import-x/namespace': 'off',
 
       // has a bug, throws an exception in some cases
-      'import/export': 'off',
+      'import-x/export': 'off',
 
       'spaced-comment': 'off',
       'no-var': 'error',
@@ -341,8 +340,41 @@ const tsConfigurations = [
       'dot-notation': 'off',
       'eslint-comments/no-unused-disable': 2,
 
-      // this doesn't make sense in Typescript code, we can rely on type checking to catch it
+      // this doesn't make sense in TypeScript code, we can rely on type checking to catch it
       'unicorn/no-array-callback-reference': 'off',
+
+      // use the more comprehensive @checkdigit rule instead
+      'unicorn/no-top-level-side-effects': 'off',
+
+      // disagree with a few opinions (e.g. configuration -> config)
+      'unicorn/name-replacements': [
+        'error',
+        {
+          replacements: {
+            configuration: false,
+          },
+        },
+      ],
+
+      // we're smarter than 3 nested calls
+      'unicorn/max-nested-calls': ['error', { max: 5 }],
+
+      // we use "get" on a lot of responses that involve HTTP GET
+      'unicorn/no-non-function-verb-prefix': 'off',
+
+      // we have a lot of tests that do .expect
+      'sonarjs/assertions-in-tests': 'off',
+
+      // we use "does"
+      'unicorn/consistent-boolean-name': [
+        'error',
+        {
+          prefixes: { does: true },
+        },
+      ],
+
+      // we don't have performance concerns that need this
+      'unicorn/prefer-split-limit': 'off',
 
       // regardless of merits, these rules contradict prettier so cannot be
       'unicorn/no-nested-ternary': 'off',
@@ -363,7 +395,7 @@ const tsConfigurations = [
       // duplicate of eslint-comments/no-unlimited-disable
       'unicorn/no-abusive-eslint-disable': 'off',
 
-      // because of Typescript, we don't use null in our code unless we have to, which makes this annoying
+      // because of TypeScript, we don't use null in our code unless we have to, which makes this annoying
       'unicorn/no-null': 'off',
 
       // there are a lot of cases where this doesn't help readability
@@ -374,6 +406,9 @@ const tsConfigurations = [
 
       // most of the time it makes sense, but sometimes it's bad to have to come up with a name
       'unicorn/no-anonymous-default-export': 'off',
+
+      // stale understanding of builtin properties, such as Symbol.asyncDispose
+      'unicorn/no-nonstandard-builtin-properties': 'off',
 
       // having this restriction for number/boolean literals forces unnecessary changes
       '@typescript-eslint/restrict-template-expressions': [
@@ -472,7 +507,7 @@ const tsConfigurations = [
       '@typescript-eslint/no-misused-spread': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/unbound-method': 'off',
-      'import/no-extraneous-dependencies': 'off',
+      'import-x/no-extraneous-dependencies': 'off',
       'n/no-process-env': 'off',
       'sonarjs/cognitive-complexity': 'off',
       'sonarjs/no-clear-text-protocols': 'off',
@@ -493,6 +528,9 @@ const tsConfigurations = [
       'unicorn/no-array-reduce': 'off',
       'unicorn/prefer-spread': 'off',
       'unicorn/error-message': 'off',
+      'unicorn/prefer-https': 'off',
+      'unicorn/no-array-sort': 'off',
+      'unicorn/require-array-sort-compare': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/no-array-for-each': 'off',
       'max-lines': 'off',

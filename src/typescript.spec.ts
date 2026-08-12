@@ -38,4 +38,5 @@ const sql = `WITH
   FROM
     non_existent_table
 `;
+// eslint-disable-next-line sonarjs/no-trivial-assertions
 assert.ok(sql);

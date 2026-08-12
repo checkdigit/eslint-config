@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "11.9.0",
+  "version": "12.0.0",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -17,6 +17,7 @@
   },
   "license": "MIT",
   "author": "Check Digit, LLC",
+  "type": "module",
   "main": "index.mjs",
   "files": [
     "index.mjs"
@@ -25,43 +26,43 @@
     "ci:compile": "tsc --noEmit",
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier",
-    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style && npm run test:node-mjs",
+    "ci:test": "npm run ci:compile && npm run ci:lint && npm run ci:style && npm run test:node",
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint --max-warnings 0 --fix .",
     "prepare": "",
     "prettier": "prettier . --check",
     "prettier:fix": "prettier . --write",
     "test": "npm run ci:test",
-    "test:node-mjs": "node --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
+    "test:node": "node --test-timeout 600000 --test \"src/deprecated-rules.spec.ts\""
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
-    "@checkdigit/prettier-config": "^8.1.0",
-    "@checkdigit/typescript-config": "^10.1.1",
+    "@checkdigit/prettier-config": "^8.1.1",
+    "@checkdigit/typescript-config": "^10.2.1",
     "fclone": "^1.0.11"
   },
   "peerDependencies": {
-    "@checkdigit/eslint-athena-plugin": "1.0.0",
-    "@checkdigit/eslint-plugin": "7.17.1",
-    "@eslint/compat": "1.4.0",
-    "@eslint/eslintrc": "3.3.1",
-    "@eslint/js": "9.37.0",
-    "@eslint/json": "0.13.2",
-    "@eslint/markdown": "7.4.0",
-    "eslint": "9.37.0",
+    "@checkdigit/eslint-athena-plugin": "2.0.0",
+    "@checkdigit/eslint-plugin": "8.0.0",
+    "@eslint/compat": "2.1.0",
+    "@eslint/eslintrc": "3.3.6",
+    "@eslint/js": "10.0.1",
+    "@eslint/json": "2.0.1",
+    "@eslint/markdown": "8.0.3",
+    "eslint": "10.8.1",
     "eslint-config-prettier": "10.1.8",
-    "eslint-import-resolver-typescript": "4.4.4",
+    "eslint-import-resolver-typescript": "4.4.5",
     "eslint-plugin-eslint-comments": "3.2.0",
-    "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-n": "17.23.1",
-    "eslint-plugin-no-only-tests": "3.3.0",
-    "eslint-plugin-no-secrets": "2.2.1",
-    "eslint-plugin-sonarjs": "3.0.5",
-    "eslint-plugin-unicorn": "60.0.0",
-    "eslint-plugin-yml": "1.19.0",
-    "typescript-eslint": "8.59.2"
+    "eslint-plugin-import-x": "4.17.1",
+    "eslint-plugin-n": "18.3.0",
+    "eslint-plugin-no-only-tests": "3.4.0",
+    "eslint-plugin-no-secrets": "2.3.3",
+    "eslint-plugin-sonarjs": "4.2.0",
+    "eslint-plugin-unicorn": "73.0.0",
+    "eslint-plugin-yml": "3.8.1",
+    "typescript-eslint": "8.67.0"
   },
   "engines": {
-    "node": ">=24.14.1"
+    "node": ">=24.18.0"
   }
 }
