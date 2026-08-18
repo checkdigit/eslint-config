@@ -392,6 +392,14 @@ const tsConfigurations = [
         },
       ],
 
+      // require 6 or more comparisons before an error
+      'unicorn/prefer-includes-over-repeated-comparisons': [
+        'error',
+        {
+          minimumComparisons: 6,
+        },
+      ],
+
       // this seems excessive
       'unicorn/no-unreadable-array-destructuring': 'off',
 
