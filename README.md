@@ -8,8 +8,14 @@ Copyright © 2021-2026 [Check Digit, LLC](https://checkdigit.com)
 $ npm i @checkdigit/eslint-config --save-dev
 ```
 
-Note that `@checkdigit/eslint-config` automatically brings in the correct version of `eslint` and the various
-plugins that are supported by the configuration via `peerDependencies`.
+`@checkdigit/eslint-config` installs the plugins and supporting configurations it
+uses. Its exact supported version of `eslint` is automatically installed as a
+peer dependency.
+
+The configuration supports Node.js 24.18 or newer. It lints TypeScript `.ts`
+files, Markdown, JSON, YAML, and Athena SQL. JavaScript and other TypeScript
+source extensions—including `.js`, `.mjs`, `.cjs`, `.jsx`, `.tsx`, `.mts`, and
+`.cts`—are intentionally ignored.
 
 ### Example `package.json`
 
