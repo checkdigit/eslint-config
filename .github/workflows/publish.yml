@@ -1,4 +1,4 @@
-name: Publish NPM Packages
+name: Publish
 
 on:
   release:
@@ -8,8 +8,8 @@ on:
       - 'main'
 
 jobs:
-  publish-production:
-    name: Publish Production (Release Created Only)
+  publish-release:
+    name: Publish Release
     if: github.event_name == 'release' && github.event.action == 'created'
     runs-on: ubuntu-latest
     environment: npm-publish
@@ -31,11 +31,11 @@ jobs:
         run: npm audit signatures
       - name: Prepare
         run: npm run prepare
-      - name: Publish Production
+      - name: Publish Release
         run: npm publish
 
   publish-beta:
-    name: Publish Beta (Pull Request to Main Only)
+    name: Publish Beta
     if: >-
       github.event_name == 'pull_request' &&
       github.event.pull_request.base.ref == 'main' &&
@@ -81,6 +81,8 @@ jobs:
         uses: checkdigit/github-actions/validate-npm-package@main
         with:
           betaPackage: ${{ steps.prepare-beta.outputs.betaPackage }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Comment npm publish result
         uses: checkdigit/github-actions/comment-npm-publish@main
         with:
