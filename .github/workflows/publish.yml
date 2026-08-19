@@ -35,8 +35,8 @@ jobs:
       - name: Check Label
         if: github.event_name == 'pull_request'
         uses: checkdigit/github-actions/check-label@main
-      #        env:
-      #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check Imports
         if: github.event_name == 'pull_request'
         uses: checkdigit/github-actions/check-imports@main
@@ -70,5 +70,5 @@ jobs:
         uses: checkdigit/github-actions/comment-npm-publish@main
         with:
           betaPackage: ${{ steps.prepare-beta.outputs.betaPackage }}
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
