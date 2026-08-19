@@ -59,12 +59,6 @@ jobs:
       - name: Publish Beta
         if: github.event_name == 'pull_request'
         run: npm publish --tag beta
-      #      - name: Validate Published Beta NPM Package
-      #        if: github.event_name == 'pull_request'
-      #        id: validate-npm-package
-      #        uses: checkdigit/github-actions/validate-npm-package@main
-      #        with:
-      #          betaPackage: ${{ steps.prepare-beta.outputs.betaPackage }}
       - name: Comment npm publish result
         if: github.event_name == 'pull_request'
         uses: checkdigit/github-actions/comment-npm-publish@main
