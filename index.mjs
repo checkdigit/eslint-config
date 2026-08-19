@@ -7,8 +7,6 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
-import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
-import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments/configs';
 import { defineConfig, globalIgnores, includeIgnoreFile } from 'eslint/config';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
@@ -24,6 +22,9 @@ import unicorn from 'eslint-plugin-unicorn';
 import json from '@eslint/json';
 import markdown from '@eslint/markdown';
 import yaml from 'eslint-plugin-yml';
+
+import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
+import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
 
 const gitignorePath = path.resolve(process.cwd(), '.gitignore');
 const ignoreConfigurations = [
