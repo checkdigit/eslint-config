@@ -1,13 +1,18 @@
-name: Publish
+name: Publish NPM Packages
 
 on:
   release:
     types: [created]
+  pull_request:
+    branches:
+      - 'main'
 
 jobs:
-  publish:
-    name: Publish to NPM
+  publish-production:
+    name: Publish Production (Release Created Only)
+    if: github.event_name == 'release' && github.event.action == 'created'
     runs-on: ubuntu-latest
+    environment: npm-publish
     permissions:
       contents: read
       id-token: write
@@ -18,12 +23,67 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: '26.x'
+          package-manager-cache: false
           registry-url: 'https://registry.npmjs.org'
       - name: Install Dependencies
         run: npm ci --ignore-scripts
       - name: Audit Signatures
         run: npm audit signatures
-      - name: Publish
-        run: npm publish --provenance
+      - name: Prepare
+        run: npm run prepare
+      - name: Publish Production
+        run: npm publish
+
+  publish-beta:
+    name: Publish Beta (Pull Request to Main Only)
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.base.ref == 'main' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '26.x'
+          package-manager-cache: false
+          registry-url: 'https://registry.npmjs.org'
+      - name: Check Label
+        uses: checkdigit/github-actions/check-label@main
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check Imports
+        uses: checkdigit/github-actions/check-imports@main
+      - name: Install Dependencies
+        run: npm ci --ignore-scripts
+      - name: Audit Signatures
+        run: npm audit signatures
+      - name: Prepare
+        run: npm run prepare
+      - name: Run Test
+        run: npm run ci:test
+      - name: Prepare Beta
+        id: prepare-beta
+        uses: checkdigit/github-actions/prepare-beta@main
+      - name: Publish Beta
+        run: npm publish --tag beta
+      - name: Validate Published Beta NPM Package
+        id: validate-npm-package
+        uses: checkdigit/github-actions/validate-npm-package@main
+        with:
+          betaPackage: ${{ steps.prepare-beta.outputs.betaPackage }}
+      - name: Comment npm publish result
+        uses: checkdigit/github-actions/comment-npm-publish@main
+        with:
+          betaPackage: ${{ steps.prepare-beta.outputs.betaPackage }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
