@@ -44,6 +44,19 @@ function hello(_?: string): bigint {
   // do nothing
 });
 
+// eslint-disable-next-line @checkdigit/no-side-effects,sonarjs/pseudo-random
+const randomString = Math.random().toString();
+// eslint-disable-next-line @checkdigit/no-side-effects
+if (
+  randomString === '1' ||
+  randomString === '2' ||
+  randomString === '3' ||
+  randomString === '4' ||
+  randomString === '5'
+) {
+  // do nothing
+}
+
 // eslint-disable-next-line @checkdigit/no-uuid
 // uuid: 'c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd' <- not ok since this is a non-test file
 // eslint-disable-next-line @checkdigit/no-side-effects

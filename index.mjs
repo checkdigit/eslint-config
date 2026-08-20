@@ -4,38 +4,53 @@
  * This code is licensed under the MIT license (see LICENSE.txt for details).
  */
 
+import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { promises as fs } from 'node:fs';
 
-import { fixupConfigRules } from '@eslint/compat';
-import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
-import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
+import eslintComments from '@eslint-community/eslint-plugin-eslint-comments/configs';
+import { defineConfig, globalIgnores, includeIgnoreFile } from 'eslint/config';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import ts from 'typescript-eslint';
 import sonarjs from 'eslint-plugin-sonarjs';
-import importX from 'eslint-plugin-import-x';
+import importX, { createNodeResolver } from 'eslint-plugin-import-x';
 import noOnlyTests from 'eslint-plugin-no-only-tests';
 import noSecrets from 'eslint-plugin-no-secrets';
 import n from 'eslint-plugin-n';
 import js from '@eslint/js';
-import prettier from 'eslint-config-prettier';
-import { FlatCompat } from '@eslint/eslintrc';
+import prettier from 'eslint-config-prettier/flat';
 import unicorn from 'eslint-plugin-unicorn';
 import json from '@eslint/json';
 import markdown from '@eslint/markdown';
 import yaml from 'eslint-plugin-yml';
 
-const ignores = [
-  ...(await fs.readFile('.gitignore', 'utf-8'))
-    .split('\n')
-    .filter((path) => path.trim() !== ''),
-  'eslint.config.mjs',
+import checkdigit, { isAwsSdkV3Used } from '@checkdigit/eslint-plugin';
+import checkdigitAthena from '@checkdigit/eslint-athena-plugin';
+
+const gitignorePath = path.resolve(process.cwd(), '.gitignore');
+const ignoreConfigurations = [
+  ...(existsSync(gitignorePath)
+    ? [
+        includeIgnoreFile(gitignorePath, {
+          gitignoreResolution: true,
+          name: '@checkdigit/eslint-config/gitignore',
+        }),
+      ]
+    : []),
+  globalIgnores(
+    [
+      '**/*.cjs',
+      '**/*.cts',
+      '**/*.js',
+      '**/*.jsx',
+      '**/*.mjs',
+      '**/*.mts',
+      '**/*.tsx',
+    ],
+    '@checkdigit/eslint-config/unsupported-source-files',
+  ),
 ];
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+
+const typescriptFiles = ['**/*.ts'];
 
 const tsConfigurations = [
   js.configs.all,
@@ -43,13 +58,13 @@ const tsConfigurations = [
   ...ts.configs.stylisticTypeChecked,
   unicorn.configs['flat/recommended'],
   sonarjs.configs.recommended,
-  prettier,
   n.configs['flat/recommended-module'],
   importX.flatConfigs.typescript,
-  ...fixupConfigRules(compat.extends('plugin:eslint-comments/recommended')),
+  eslintComments.recommended,
   ...checkdigit.configs.all,
-  ...checkdigitAthena.configs.all,
+  prettier,
   {
+    name: '@checkdigit/eslint-config/typescript/rules',
     plugins: {
       'no-only-tests': noOnlyTests,
       'no-secrets': noSecrets,
@@ -63,10 +78,11 @@ const tsConfigurations = [
       },
     },
     settings: {
-      'import-x/resolver': {
-        typescript: true,
-        node: true,
-      },
+      isAwsSdkV3Used: await isAwsSdkV3Used(),
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver(),
+        createNodeResolver(),
+      ],
     },
     rules: {
       'no-shadow': 'off',
@@ -81,8 +97,6 @@ const tsConfigurations = [
       ],
 
       'no-underscore-dangle': 'off',
-      'no-useless-constructor': 'off',
-      '@typescript-eslint/no-useless-constructor': ['error'],
       'func-names': 'off',
 
       'no-secrets/no-secrets': [
@@ -94,7 +108,6 @@ const tsConfigurations = [
 
       // Per require-await docs:
       // If you are throwing an error inside an asynchronous function for this purpose, then you may want to disable this rule.
-      'require-await': 'off',
       '@typescript-eslint/require-await': 'off',
 
       // SonarJS doesn't implement the no-big-function rule probably because this rule already exists within stock eslint
@@ -179,26 +192,9 @@ const tsConfigurations = [
       // has a bug, throws an exception in some cases
       'import-x/export': 'off',
 
-      'spaced-comment': 'off',
-      'no-var': 'error',
-      'prefer-const': 'error',
-      'prefer-rest-params': 'error',
-      'prefer-spread': 'error',
-      'require-yield': 'error',
-      'no-console': 'error',
-      'no-return-await': 'off',
       '@typescript-eslint/no-deprecated': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'error',
-      '@typescript-eslint/ban-ts-comment': 'error',
-      '@typescript-eslint/no-floating-promises': 'error',
-      '@typescript-eslint/no-require-imports': 'error',
-
-      // sometimes fails on valid interface names like ISO8583
-      '@typescript-eslint/interface-name-prefix': 'off',
-
-      // typeof any === "evil".
-      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
 
       '@typescript-eslint/no-unsafe-enum-comparison': 'off', // With TypeScript v6, this rule behaves differently and starts reporting errors when a number is compared with an enum, e.g. `if (statusCode === StatusCodes.OK) { ... }`, which is a common pattern in our codebase.
@@ -212,7 +208,6 @@ const tsConfigurations = [
       'sonarjs/todo-tag': 'off', // duplicate of no-warning-comments
       'sonarjs/generator-without-yield': 'off', // duplicate of require-yield
       'sonarjs/prefer-regexp-exec': 'off', // RegExp.exec() is *only* slightly faster than String.match() so will leave this off and not worth updating our code
-      'sonarjs/updated-loop-counter': 'off', // This rule is deprecated and this rule is enabled in the ✅ `recommended` config.
 
       'no-only-tests/no-only-tests': 'error',
 
@@ -229,8 +224,6 @@ const tsConfigurations = [
           allowArrowFunctions: true,
         },
       ],
-
-      'multiline-comment-style': 'off',
 
       'no-magic-numbers': [
         'error',
@@ -304,7 +297,6 @@ const tsConfigurations = [
       'consistent-return': 'off',
       'init-declarations': 'off',
       'no-inline-comments': 'off',
-      'line-comment-position': 'off',
       'prefer-destructuring': 'off',
 
       // use the sonarjs version instead
@@ -336,9 +328,6 @@ const tsConfigurations = [
           capIsNew: false,
         },
       ],
-
-      'dot-notation': 'off',
-      'eslint-comments/no-unused-disable': 2,
 
       // this doesn't make sense in TypeScript code, we can rely on type checking to catch it
       'unicorn/no-array-callback-reference': 'off',
@@ -376,9 +365,13 @@ const tsConfigurations = [
       // we don't have performance concerns that need this
       'unicorn/prefer-split-limit': 'off',
 
-      // regardless of merits, these rules contradict prettier so cannot be
-      'unicorn/no-nested-ternary': 'off',
-      'unicorn/number-literal-case': 'off',
+      // we never want "this" being used
+      'unicorn/class-reference-in-static-methods': [
+        'error',
+        {
+          preferThis: false,
+        },
+      ],
 
       // require 4 separate conditions before an error
       'unicorn/prefer-switch': [
@@ -389,10 +382,18 @@ const tsConfigurations = [
         },
       ],
 
+      // require 6 or more comparisons before an error
+      'unicorn/prefer-includes-over-repeated-comparisons': [
+        'error',
+        {
+          minimumComparisons: 6,
+        },
+      ],
+
       // this seems excessive
       'unicorn/no-unreadable-array-destructuring': 'off',
 
-      // duplicate of eslint-comments/no-unlimited-disable
+      // duplicate of @eslint-community/eslint-comments/no-unlimited-disable
       'unicorn/no-abusive-eslint-disable': 'off',
 
       // because of TypeScript, we don't use null in our code unless we have to, which makes this annoying
@@ -422,8 +423,6 @@ const tsConfigurations = [
       // we are seriously using many new features such as fetch, etc.
       'n/no-unsupported-features/node-builtins': 'off',
 
-      '@checkdigit/no-test-import': 'error',
-
       // disable this now that we have a similar but better solution with auto-fix from @checkdigit/eslint-plugin
       'no-duplicate-imports': 'off',
 
@@ -447,6 +446,7 @@ const tsConfigurations = [
     },
   },
   {
+    name: '@checkdigit/eslint-config/typescript/tests',
     files: ['**/*.spec.ts', '**/*.test.ts'],
     rules: {
       '@checkdigit/no-random-v4-uuid': 'off',
@@ -480,21 +480,12 @@ const tsConfigurations = [
                 'before',
                 'beforeEach',
                 'describe',
-                'describe.only',
-                'describe.skip',
-                'describe.todo',
                 'it',
-                'it.only',
-                'it.skip',
-                'it.todo',
+                'only',
+                'skip',
                 'suite',
-                'suite.only',
-                'suite.skip',
-                'suite.todo',
                 'test',
-                'test.only',
-                'test.skip',
-                'test.todo',
+                'todo',
               ],
               package: 'node:test',
             },
@@ -507,7 +498,6 @@ const tsConfigurations = [
       '@typescript-eslint/no-misused-spread': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/unbound-method': 'off',
-      'import-x/no-extraneous-dependencies': 'off',
       'n/no-process-env': 'off',
       'sonarjs/cognitive-complexity': 'off',
       'sonarjs/no-clear-text-protocols': 'off',
@@ -516,7 +506,7 @@ const tsConfigurations = [
       'sonarjs/no-exclusive-tests': 'off', // duplicate
       'sonarjs/no-identical-functions': 'off',
       'sonarjs/no-misleading-array-reverse': 'off',
-      'sonarjs/slow-regexp': 'off',
+      'sonarjs/slow-regex': 'off',
       'sonarjs/pseudo-random': 'off',
       'sonarjs/unused-named-groups': 'off',
       'sonarjs/no-nested-functions': 'off',
@@ -531,71 +521,79 @@ const tsConfigurations = [
       'unicorn/prefer-https': 'off',
       'unicorn/no-array-sort': 'off',
       'unicorn/require-array-sort-compare': 'off',
-      'unicorn/prevent-abbreviations': 'off',
-      'unicorn/no-array-for-each': 'off',
+      'unicorn/name-replacements': 'off',
+      'unicorn/no-for-each': 'off',
       'max-lines': 'off',
       'max-lines-per-function': 'off',
       'max-statements': 'off',
       'no-await-in-loop': 'off',
       'no-magic-numbers': 'off',
       'no-undefined': 'off',
-      'prefer-promise-reject-errors': 'off',
+      '@typescript-eslint/prefer-promise-reject-errors': 'off',
       'require-yield': 'off',
       'unicorn/prefer-single-call': 'off',
     },
   },
   {
-    files: ['src/plugin/**'],
+    name: '@checkdigit/eslint-config/typescript/plugin-source',
+    files: ['src/plugin/**/*.ts'],
     rules: {
       '@checkdigit/no-legacy-service-typing': 'off',
     },
   },
-].map((config) => ({
-  ...config,
-  files: config.files ?? ['**/*.ts'],
-}));
+];
+
+const scopedTsConfigurations = defineConfig({
+  name: '@checkdigit/eslint-config/typescript',
+  files: typescriptFiles,
+  extends: tsConfigurations,
+});
 
 const jsonConfigurations = [
   {
-    ignores: ['package-lock.json'],
-    language: 'json/json',
     ...json.configs.recommended,
+    name: '@checkdigit/eslint-config/json',
+    files: ['**/*.json'],
+    ignores: ['**/package-lock.json'],
+    language: 'json/json',
   },
-].map((config) => ({
-  ...config,
-  files: config.files ?? ['**/*.json'],
-}));
+];
 
-const yamlConfigurations = yaml.configs['flat/recommended'].map((config) => ({
-  ...config,
-  files: config.files ?? ['**/*.yml', '**/*.yaml'],
-}));
+const yamlConfigurations = yaml.configs['flat/recommended'].map(
+  (config, index) => ({
+    ...config,
+    name: config.name ?? `@checkdigit/eslint-config/yaml/recommended-${index}`,
+    files: config.files ?? ['**/*.yml', '**/*.yaml'],
+  }),
+);
 
-const markdownConfigurations = markdown.configs.recommended.map((config) => ({
-  ...config,
-  files: config.files ?? ['**/*.md'],
-}));
+const markdownConfigurations = markdown.configs.recommended.map(
+  (config, index) => ({
+    ...config,
+    name:
+      config.name ?? `@checkdigit/eslint-config/markdown/recommended-${index}`,
+    files: config.files ?? ['**/*.md'],
+  }),
+);
 
-const athenaSqlConfigurations = checkdigitAthena.configs.all.map((config) => ({
-  ...config,
-  files: ['**/*.sql'],
-}));
+const athenaConfigurations = checkdigitAthena.configs.all.map(
+  (config, index) => ({
+    ...config,
+    name: `@checkdigit/eslint-config/athena/all-${index}`,
+  }),
+);
 
-export default [
-  { ignores },
+export default defineConfig([
+  ...ignoreConfigurations,
   {
-    settings: {
-      isAwsSdkV3Used: await isAwsSdkV3Used(),
-    },
-  },
-  {
+    name: '@checkdigit/eslint-config/linter-options',
     linterOptions: {
       reportUnusedDisableDirectives: 'error',
     },
   },
-  ...tsConfigurations,
+  ...athenaConfigurations,
+  ...scopedTsConfigurations,
   ...markdownConfigurations,
   ...jsonConfigurations,
   ...yamlConfigurations,
-  ...athenaSqlConfigurations,
-];
+]);

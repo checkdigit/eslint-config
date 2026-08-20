@@ -12,11 +12,15 @@ import config from '../index.mjs';
 describe('No deprecated rules are explicitly enabled in config', () => {
   it('should report error when deprecated rules are explicitly enabled', async () => {
     const badConfig = {
+      files: ['**/*.ts'],
       rules: {
         'no-buffer-constructor': ['error'] as ['error'],
       },
     };
-    const linter = new ESLint({ baseConfig: badConfig });
+    const linter = new ESLint({
+      overrideConfig: badConfig,
+      overrideConfigFile: true,
+    });
     const results = await linter.lintText('new Buffer("test")', {
       filePath: 'index.ts',
     });
@@ -27,7 +31,10 @@ describe('No deprecated rules are explicitly enabled in config', () => {
   });
 
   it('should not explicitly enable any deprecated rules', async () => {
-    const linter = new ESLint({ baseConfig: config });
+    const linter = new ESLint({
+      overrideConfig: config,
+      overrideConfigFile: true,
+    });
     const results = await linter.lintFiles(['./src/index.ts']);
     const deprecatedRules = results[0]?.usedDeprecatedRules ?? [];
     assert.deepEqual(
