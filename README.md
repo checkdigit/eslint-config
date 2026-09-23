@@ -12,7 +12,7 @@ $ npm i @checkdigit/eslint-config --save-dev
 uses. Its exact supported version of `eslint` is automatically installed as a
 peer dependency.
 
-The configuration supports Node.js 24.18 or newer. It lints TypeScript `.ts`
+The configuration supports Node.js 24.20 or newer. It lints TypeScript `.ts`
 files, Markdown, JSON, YAML, and Athena SQL. JavaScript and other TypeScript
 source extensions—including `.js`, `.mjs`, `.cjs`, `.jsx`, `.tsx`, `.mts`, and
 `.cts`—are intentionally ignored.
