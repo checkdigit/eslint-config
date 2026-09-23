@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -38,11 +38,11 @@
   },
   "prettier": "@checkdigit/prettier-config",
   "dependencies": {
-    "@checkdigit/eslint-athena-plugin": "2.0.0",
-    "@checkdigit/eslint-plugin": "8.0.0",
-    "@eslint-community/eslint-plugin-eslint-comments": "4.7.2",
+    "@checkdigit/eslint-athena-plugin": "2.0.1",
+    "@checkdigit/eslint-plugin": "8.1.0",
+    "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@eslint/js": "10.0.1",
-    "@eslint/json": "2.0.1",
+    "@eslint/json": "2.1.0",
     "@eslint/markdown": "8.0.3",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.5",
@@ -56,8 +56,8 @@
     "typescript-eslint": "8.67.0"
   },
   "devDependencies": {
-    "@checkdigit/prettier-config": "^8.1.1",
-    "@checkdigit/typescript-config": "^10.2.1",
+    "@checkdigit/prettier-config": "^8.3.0",
+    "@checkdigit/typescript-config": "^10.2.2",
     "fclone": "^1.0.11",
     "typescript": "^6.0.3"
   },
@@ -65,6 +65,10 @@
     "eslint": "10.8.1"
   },
   "engines": {
-    "node": ">=24.18.0"
+    "node": ">=24.20.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": false,
+    "unrs-resolver@1.12.2": false
   }
 }

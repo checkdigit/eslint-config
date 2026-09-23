@@ -11,12 +11,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
       - name: Check Published
         uses: checkdigit/github-actions/check-published@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           DEBUG: '*'
           SLACK_PUBLISH_MISMATCH: ${{ secrets.SLACK_PUBLISH_MISMATCH }}
