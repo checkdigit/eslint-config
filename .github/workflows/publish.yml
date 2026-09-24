@@ -32,6 +32,8 @@ jobs:
           node-version: '26.x'
           package-manager-cache: false
           registry-url: 'https://registry.npmjs.org'
+      - name: Install Latest npm
+        run: npm install --global npm@latest
       - name: Check Label
         if: github.event_name == 'pull_request'
         uses: checkdigit/github-actions/check-label@main
