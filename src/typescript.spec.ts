@@ -7,6 +7,18 @@ import { describe, it } from 'node:test';
 import testHello from './typescript.test.ts';
 testHello();
 
+const sql = `WITH
+  parameters AS (
+    SELECT
+      '2026-01-01T00:00:00.000Z' AS p_from,
+      '2026-12-31T23:59:59.999Z' AS p_to
+  )
+  SELECT
+    *
+  FROM
+    non_existent_table
+`;
+
 describe('suite', () => {
   it('test', () => {
     testHello();
@@ -20,23 +32,14 @@ describe('suite', () => {
     await callService();
     await fetch('https://example.com');
   });
+
+  it('test sql', () => {
+    // eslint-disable-next-line sonarjs/no-trivial-assertions
+    assert.ok(sql);
+  });
 });
 
 // linting error is not reported because unicorn/no-anonymous-default-export is disabled
 export default function (): string {
   return 'hello';
 }
-
-const sql = `WITH
-  parameters AS (
-    SELECT
-      '2026-01-01T00:00:00.000Z' AS p_from,
-      '2026-12-31T23:59:59.999Z' AS p_to
-  )
-  SELECT
-    *
-  FROM
-    non_existent_table
-`;
-// eslint-disable-next-line sonarjs/no-trivial-assertions
-assert.ok(sql);
