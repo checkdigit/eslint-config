@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/eslint-config",
-  "version": "12.1.1",
+  "version": "12.2.0",
   "private": false,
   "description": "Check Digit standard eslint configuration",
   "keywords": [
@@ -39,7 +39,7 @@
   "prettier": "@checkdigit/prettier-config",
   "dependencies": {
     "@checkdigit/eslint-athena-plugin": "2.0.1",
-    "@checkdigit/eslint-plugin": "8.1.1",
+    "@checkdigit/eslint-plugin": "8.2.0-PR.151-b469",
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
     "@eslint/js": "10.0.1",
     "@eslint/json": "2.1.0",
