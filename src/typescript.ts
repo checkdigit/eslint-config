@@ -123,6 +123,27 @@ assert(`I'm a object, ${objectValue}`, 'object?');
 // eslint-disable-next-line @checkdigit/no-side-effects, @checkdigit/require-service-call-response-declaration
 await fetch('https://example.com');
 
+// linting error is not reported because unicorn/no-unnecessary-fetch-options is disabled
+export async function testExplicitDefaultFetchOptions(): Promise<number> {
+  const response = await fetch('https://example.com', {
+    method: 'GET',
+    redirect: 'follow',
+  });
+  return response.status;
+}
+
+// linting error is not reported because no-continue is disabled
+export function testEarlyContinue(values: string[]): string[] {
+  const keptValues: string[] = [];
+  for (const value of values) {
+    if (value === '') {
+      continue;
+    }
+    keptValues.push(value);
+  }
+  return keptValues;
+}
+
 // test rule @checkdigit/invalid-json-stringify
 const objectToSerialize = { key: 'value' };
 // eslint-disable-next-line @checkdigit/require-assert-message, @checkdigit/no-side-effects

@@ -305,6 +305,9 @@ const tsConfigurations = [
       // thanks to Prettier, we don't rely on automatic semicolon insertion, so this can remain off
       'no-plusplus': 'off',
 
+      // an early continue keeps loop bodies flat, the same way an early return does
+      'no-continue': 'off',
+
       'max-lines': [
         'error',
         {
@@ -410,6 +413,9 @@ const tsConfigurations = [
 
       // stale understanding of builtin properties, such as Symbol.asyncDispose
       'unicorn/no-nonstandard-builtin-properties': 'off',
+
+      // we prefer fetch options to be stated explicitly rather than relying on implicit defaults
+      'unicorn/no-unnecessary-fetch-options': 'off',
 
       // having this restriction for number/boolean literals forces unnecessary changes
       '@typescript-eslint/restrict-template-expressions': [
